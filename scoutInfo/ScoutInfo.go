@@ -4,20 +4,15 @@ import (
 	"fmt"
 )
 
-type message struct {
-	eventType EventType
-	hostType  HostType
-	matchTime float32
-}
-
 type ScoutInfo struct {
-	Messages  []message
-	HomeShare float32
+	Messages     []Message
+	HomeShare    float32
+	FixtureState FixtureState
 }
 
 func New(homeShare float32) ScoutInfo {
-	messages := []message{}
-	s := ScoutInfo{messages, homeShare}
+	Messages := []Message{}
+	s := ScoutInfo{Messages, homeShare, PreMatchFixtureState}
 	return s
 }
 
@@ -27,8 +22,8 @@ func (s ScoutInfo) String() string {
 		output = "ScoutInfo (0 messages)\n\n"
 	} else {
 		output = fmt.Sprintf("\nScoutInfo (%d messages):\n", len(s.Messages))
-		for _, element := range s.Messages {
-			output2 := fmt.Sprintf("- %s (%s)\n", element.eventType.String(), element.hostType.String())
+		for _, message := range s.Messages {
+			output2 := fmt.Sprintf("- %s\n", message.String())
 			output = output + output2
 		}
 		output = output + "\n"
@@ -37,6 +32,51 @@ func (s ScoutInfo) String() string {
 }
 
 func (s *ScoutInfo) Add(eventType EventType, hostType HostType) {
-	message := message{eventType, hostType, 0.0}
+	message := Message{eventType, hostType, 0.0}
 	s.Messages = append(s.Messages, message)
+
+	switch eventType {
+	case GameStarted:
+		s.FixtureState = InPlayFixtureState
+	case GameEnded:
+		s.FixtureState = FinishedFixtureState
+	}
+}
+
+func (s ScoutInfo) FlipsSoFar() int {
+	var result int
+	for _, message := range s.Messages {
+		if message.EventType == CoinToss {
+			result++
+		}
+	}
+	return result
+}
+
+func (s ScoutInfo) GetNthFlipHostType(nth int) HostType {
+	var seenSoFar int
+	for _, message := range s.Messages {
+		if message.EventType == CoinToss {
+			seenSoFar++
+			if seenSoFar == nth {
+				return message.HostType
+			}
+		}
+	}
+	return HostTypeNone
+}
+
+func (s ScoutInfo) GetAllFlipsAsHostTypes() []HostType {
+	var result []HostType
+	for _, message := range s.Messages {
+		if message.EventType == CoinToss {
+			if message.HostType != HostTypeNone { // should throw an exception here
+				result = append(result, message.HostType)
+			}
+		}
+	}
+	for i := len(result); i < 5; i++ {
+		result = append(result, HostTypeNone)
+	}
+	return result
 }

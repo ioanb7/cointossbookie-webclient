@@ -5,6 +5,7 @@ import (
 	"cointossbookie/Calculator"
 	"cointossbookie/ScoutInfo"
 	"fmt"
+	"math/rand"
 	"os"
 	"strconv"
 	"time"
@@ -12,6 +13,7 @@ import (
 
 type Game struct {
 	calculator Calculator.Calculator
+	scoreboard ScoreBoard
 }
 
 func New() Game {
@@ -20,32 +22,41 @@ func New() Game {
 }
 
 func (g Game) Play() {
-	scoutinfo := ScoutInfo.New(0.6)
+	rand.Seed(time.Now().UnixNano())
+	scoutinfo := ScoutInfo.New(0.5)
 	g.calculator = Calculator.New(&scoutinfo)
+	reader := bufio.NewReader(os.Stdin)
 
-	// 0 = pre match, put bets for 1st flip
-	// 1 = in play round 1, put bets for 2nd flip
-	// 2 = in play round 2, put bets for 3rd flip
-	// 3 = in play round 3, put bets for 4th flip
-	// 4 = in play round 4, put bets for 5th flip
-	// 5 = game ends
-	for i := 0; i < 6; i++ {
+	// 0 = pre match, game begins
+	// 1 = 1st flip settles, put bets for 2nd flip
+	// 2 = 2nd flip settles, put bets for 3rd flip
+	// 3 = 3rd flip settles, put bets for 4th flip
+	// 4 = 4th flip settles, put bets for 5th flip
+	// 5 = 5th flip settles
+	// 6 = game finished
+	for i := 0; i <= 6; i++ {
+		fmt.Println()
+		fmt.Println()
+		fmt.Println()
+		fmt.Println()
+		fmt.Println()
+		fmt.Println()
+		fmt.Println()
+		fmt.Println()
+		fmt.Println()
+
+		fmt.Print(g.scoreboard.String(*g.calculator.Scoutinfo))
+		fmt.Println()
 		g.printScoutInfo(&scoutinfo)
 		if err := g.printOdds(); err != nil {
 			break
 		}
 
-		reader := bufio.NewReader(os.Stdin)
-		g.playRound(reader, i)
-
-		time.Sleep(2 * time.Second)
-
-		fmt.Println()
-		fmt.Println()
-		fmt.Println("New round...")
-		fmt.Println()
-		fmt.Println()
-		g.endOfRound(i)
+		if scoutinfo.FixtureState != ScoutInfo.FinishedFixtureState {
+			g.playRound(reader, i)
+			time.Sleep(500 * time.Millisecond)
+			g.endOfRound(i)
+		}
 	}
 }
 
@@ -74,19 +85,24 @@ func (g Game) playRound(reader *bufio.Reader, nth int) {
 }
 
 func (g Game) endOfRound(nth int) {
+	var hostType = ScoutInfo.HostTypeHome
+	if rand.Float32() < 0.5 {
+		hostType = ScoutInfo.HostTypeAway
+	}
+
 	switch nth {
 	case 0:
 		g.calculator.Scoutinfo.Add(ScoutInfo.GameStarted, ScoutInfo.HostTypeNone)
 	case 1:
-		g.calculator.Scoutinfo.Add(ScoutInfo.CoinToss, ScoutInfo.HostTypeHome)
+		g.calculator.Scoutinfo.Add(ScoutInfo.CoinToss, hostType)
 	case 2:
-		g.calculator.Scoutinfo.Add(ScoutInfo.CoinToss, ScoutInfo.HostTypeHome)
+		g.calculator.Scoutinfo.Add(ScoutInfo.CoinToss, hostType)
 	case 3:
-		g.calculator.Scoutinfo.Add(ScoutInfo.CoinToss, ScoutInfo.HostTypeHome)
+		g.calculator.Scoutinfo.Add(ScoutInfo.CoinToss, hostType)
 	case 4:
-		g.calculator.Scoutinfo.Add(ScoutInfo.CoinToss, ScoutInfo.HostTypeHome)
+		g.calculator.Scoutinfo.Add(ScoutInfo.CoinToss, hostType)
 	case 5:
-		g.calculator.Scoutinfo.Add(ScoutInfo.CoinToss, ScoutInfo.HostTypeAway)
+		g.calculator.Scoutinfo.Add(ScoutInfo.CoinToss, hostType)
 		g.calculator.Scoutinfo.Add(ScoutInfo.GameEnded, ScoutInfo.HostTypeNone)
 	}
 }
