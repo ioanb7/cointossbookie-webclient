@@ -7,8 +7,7 @@ const (
 	GameEnded     EventType = iota
 	GamePaused    EventType = iota
 	GameCancelled EventType = iota
-	CoinTossHome  EventType = iota
-	CoinTossAway  EventType = iota
+	CoinToss      EventType = iota
 )
 
 func (e EventType) String() string {
@@ -17,6 +16,5 @@ func (e EventType) String() string {
 		"GameEnded",
 		"GamePaused",
 		"GameCancelled",
-		"CoinTossHome",
-		"CoinTossAway"}[e]
+		"CoinToss"}[e]
 }

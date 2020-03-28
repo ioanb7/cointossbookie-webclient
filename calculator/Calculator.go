@@ -7,7 +7,7 @@ import (
 )
 
 type Calculator struct {
-	scoutinfo *ScoutInfo.ScoutInfo
+	Scoutinfo *ScoutInfo.ScoutInfo
 }
 
 func New(s *ScoutInfo.ScoutInfo) Calculator {
@@ -15,27 +15,29 @@ func New(s *ScoutInfo.ScoutInfo) Calculator {
 	return c
 }
 
-func (c Calculator) calculatePrices() ([]Selection, error) {
-	if len(c.scoutinfo.Messages) != 0 {
-		return nil, errors.New("can't calculate if anything happened in the game yet - not implemented")
-	} else {
-		homeRawOdds := c.scoutinfo.HomeShare
-		awayRawOdds := 1 - c.scoutinfo.HomeShare
+func (c Calculator) GetMarkets() ([]Market, error) {
+	homeRawOdds := c.Scoutinfo.HomeShare
+	awayRawOdds := 1 - c.Scoutinfo.HomeShare
 
-		var selections = []Selection{
-			Selection{homeRawOdds, homeRawOdds * 1.3, HostTypeHome},
-			Selection{awayRawOdds, awayRawOdds * 1.3, HostTypeAway},
-		}
-
-		return selections, nil
+	var selections = []Selection{
+		Selection{homeRawOdds, homeRawOdds * 1.3, ScoutInfo.HostTypeHome},
+		Selection{awayRawOdds, awayRawOdds * 1.3, ScoutInfo.HostTypeAway},
 	}
+
+	var markets = []Market{
+		NewMarket(NthFlipMarketType, 1, selections, OpenMarketStatus),
+	}
+
+	return markets, nil
 }
 
-func (c Calculator) GetPriceForBet(hostType HostType, bet float32) (float32, error) {
-	if selections, e := c.calculatePrices(); e == nil {
-		for _, selection := range selections {
-			if selection.hostType == hostType {
-				return bet + bet*(1/selection.price), nil
+func (c Calculator) GetPriceForBet(marketType MarketType, hostType ScoutInfo.HostType, bet float32) (float32, error) {
+	if markets, e := c.GetMarkets(); e == nil {
+		for _, market := range markets {
+			for _, selection := range market.Selections {
+				if selection.hostType == hostType {
+					return bet + bet*(1/selection.price), nil
+				}
 			}
 		}
 	}
@@ -44,10 +46,13 @@ func (c Calculator) GetPriceForBet(hostType HostType, bet float32) (float32, err
 }
 
 func (c Calculator) String() (string, error) {
-	if selections, e := c.calculatePrices(); e == nil {
-		output := fmt.Sprintf("Odds are:\n")
-		for _, selection := range selections {
-			output += fmt.Sprintf("%s: %f (TP: %f)\n", selection.hostType.String(), selection.price, selection.trueProbability)
+	output := fmt.Sprintf("Markets are:\n")
+	if markets, e := c.GetMarkets(); e == nil {
+		for _, market := range markets {
+			output += fmt.Sprintf("Market: %s (%f) with selections:\n", market.MarketType.String(), market.Handicap)
+			for _, selection := range market.Selections {
+				output += fmt.Sprintf("%s: %f (TP: %f)\n", selection.hostType.String(), selection.price, selection.trueProbability)
+			}
 		}
 		return output, nil
 	} else {

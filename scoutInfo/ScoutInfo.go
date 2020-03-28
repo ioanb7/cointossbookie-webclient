@@ -6,6 +6,7 @@ import (
 
 type message struct {
 	eventType EventType
+	hostType  HostType
 	matchTime float32
 }
 
@@ -27,7 +28,7 @@ func (s ScoutInfo) String() string {
 	} else {
 		output = fmt.Sprintf("\nScoutInfo (%d messages):\n", len(s.Messages))
 		for _, element := range s.Messages {
-			output2 := fmt.Sprintf("- %s\n", element.eventType.String())
+			output2 := fmt.Sprintf("- %s (%s)\n", element.eventType.String(), element.hostType.String())
 			output = output + output2
 		}
 		output = output + "\n"
@@ -35,7 +36,7 @@ func (s ScoutInfo) String() string {
 	return output
 }
 
-func (s *ScoutInfo) Add(eventType EventType) {
-	message := message{eventType, 0.0}
+func (s *ScoutInfo) Add(eventType EventType, hostType HostType) {
+	message := message{eventType, hostType, 0.0}
 	s.Messages = append(s.Messages, message)
 }
