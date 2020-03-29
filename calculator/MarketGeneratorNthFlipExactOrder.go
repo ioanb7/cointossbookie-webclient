@@ -19,8 +19,8 @@ func (mg MarketGeneratorNthFlipExactOrder) GetMarkets(scoutInfo ScoutInfo.ScoutI
 		homeRawOdds := (scoutInfo.HomeShare) * pow
 		awayRawOdds := (1 - scoutInfo.HomeShare) * pow
 		var selections = []Selection{
-			Selection{homeRawOdds, homeRawOdds * 1.3, ScoutInfo.HostTypeHome, SelectionTypeYesNo},
-			Selection{awayRawOdds, awayRawOdds * 1.3, ScoutInfo.HostTypeAway, SelectionTypeYesNo},
+			Selection{homeRawOdds, ScoutInfo.HostTypeHome, SelectionTypeYesNo},
+			Selection{awayRawOdds, ScoutInfo.HostTypeAway, SelectionTypeYesNo},
 		}
 		var market = NewMarket(NthFlipExactMarketType, 0, selections, OpenMarketStatus)
 		market.HostTypes = hostTypesHere
@@ -39,8 +39,8 @@ func (mg MarketGeneratorNthFlipExactOrder) GetMarkets(scoutInfo ScoutInfo.ScoutI
 				homeRawOdds = 0.0
 				awayRawOdds = 1.0
 				var selections = []Selection{
-					Selection{homeRawOdds, homeRawOdds * 1.3, ScoutInfo.HostTypeHome, SelectionTypeYesNo},
-					Selection{awayRawOdds, awayRawOdds * 1.3, ScoutInfo.HostTypeAway, SelectionTypeYesNo},
+					Selection{homeRawOdds, ScoutInfo.HostTypeHome, SelectionTypeYesNo},
+					Selection{awayRawOdds, ScoutInfo.HostTypeAway, SelectionTypeYesNo},
 				}
 
 				market.Status = SettledMarketStatus
@@ -53,8 +53,8 @@ func (mg MarketGeneratorNthFlipExactOrder) GetMarkets(scoutInfo ScoutInfo.ScoutI
 				homeRawOdds = 1.0
 				awayRawOdds = 0.0
 				var selections = []Selection{
-					Selection{homeRawOdds, homeRawOdds * 1.3, ScoutInfo.HostTypeHome, SelectionTypeYesNo},
-					Selection{awayRawOdds, awayRawOdds * 1.3, ScoutInfo.HostTypeAway, SelectionTypeYesNo},
+					Selection{homeRawOdds, ScoutInfo.HostTypeHome, SelectionTypeYesNo},
+					Selection{awayRawOdds, ScoutInfo.HostTypeAway, SelectionTypeYesNo},
 				}
 
 				market.Status = SettledMarketStatus

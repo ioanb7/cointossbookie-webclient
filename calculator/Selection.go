@@ -7,9 +7,12 @@ import (
 
 type Selection struct {
 	TrueProbability float32
-	Price           float32
 	HostType        ScoutInfo.HostType
 	SelectionType   SelectionType
+}
+
+func (s Selection) GetPrice() float32 {
+	return s.TrueProbability * 1.3
 }
 
 func (s Selection) String() string {
@@ -20,5 +23,5 @@ func (s Selection) String() string {
 			selectionName = "No"
 		}
 	}
-	return fmt.Sprintf("%s: %.2f (TP: %.2f)", selectionName, s.Price, s.TrueProbability)
+	return fmt.Sprintf("%s: %.2f (TP: %.2f)", selectionName, s.GetPrice(), s.TrueProbability)
 }
