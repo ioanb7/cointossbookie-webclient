@@ -26,11 +26,7 @@ func (mg MarketGeneratorNthFlip) GetMarkets(scoutInfo ScoutInfo.ScoutInfo) []Mar
 			status = SettledMarketStatus
 		}
 
-		var selections = []Selection{
-			Selection{homeRawOdds, ScoutInfo.HostTypeHome, SelectionTypeHomeAway},
-			Selection{awayRawOdds, ScoutInfo.HostTypeAway, SelectionTypeHomeAway},
-		}
-
+		selections := NewSelections(homeRawOdds, awayRawOdds, SelectionTypeHomeAway)
 		var market = NewMarket(NthFlipMarketType, float32(i), selections, status)
 		markets = append(markets, market)
 	}

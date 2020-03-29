@@ -20,10 +20,12 @@ func (c Calculator) GetMarkets() ([]Market, error) {
 	mgNthFlip := MarketGeneratorNthFlip{}
 	mgNthFlipExactPosition := MarketGeneratorNthFlipExactPosition{}
 	mgNthFlipExactOrder := MarketGeneratorNthFlipExactOrder{}
+	mgNthFlipOverUnder := MarketGeneratorFlipOverUnder{}
 
 	markets = append(markets, mgNthFlip.GetMarkets(*c.Scoutinfo)...)
 	markets = append(markets, mgNthFlipExactPosition.GetMarkets(*c.Scoutinfo)...)
 	markets = append(markets, mgNthFlipExactOrder.GetMarkets(*c.Scoutinfo)...)
+	markets = append(markets, mgNthFlipOverUnder.GetMarkets(*c.Scoutinfo)...)
 
 	return markets, nil
 }

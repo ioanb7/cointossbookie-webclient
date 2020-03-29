@@ -84,7 +84,7 @@ func (g Game) playRound(reader *bufio.Reader, nth int) {
 
 func (g Game) endOfRound(nth int) {
 	var hostType = ScoutInfo.HostTypeHome
-	if rand.Float32() < 0.5 {
+	if rand.Intn(2) == 0 {
 		hostType = ScoutInfo.HostTypeAway
 	}
 

@@ -80,3 +80,37 @@ func (s ScoutInfo) GetAllFlipsAsHostTypes() []HostType {
 	}
 	return result
 }
+
+func (s ScoutInfo) CountFlipsForHostType(hostType HostType) int {
+	var result int
+	for _, message := range s.Messages {
+		if message.EventType == CoinToss {
+			if message.HostType == hostType {
+				result++
+			}
+		}
+	}
+	return result
+}
+
+/*
+
+func (s ScoutInfo) CountFlipsForHostType(hostType HostType, firstN int) int {
+	var result int
+
+	var seenMessages int
+	for _, message := range s.Messages {
+		if message.EventType == CoinToss {
+			seenMessages++
+			if message.HostType == hostType {
+				result++
+			}
+			if seenMessages >= firstN {
+				return result
+			}
+		}
+	}
+	return result
+}
+
+*/

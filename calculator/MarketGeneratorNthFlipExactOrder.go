@@ -18,10 +18,7 @@ func (mg MarketGeneratorNthFlipExactOrder) GetMarkets(scoutInfo ScoutInfo.ScoutI
 		var pow = float32(math.Pow(2, float64(powPow)))
 		homeRawOdds := (scoutInfo.HomeShare) * pow
 		awayRawOdds := (1 - scoutInfo.HomeShare) * pow
-		var selections = []Selection{
-			Selection{homeRawOdds, ScoutInfo.HostTypeHome, SelectionTypeYesNo},
-			Selection{awayRawOdds, ScoutInfo.HostTypeAway, SelectionTypeYesNo},
-		}
+		selections := NewSelections(homeRawOdds, awayRawOdds, SelectionTypeYesNo)
 		var market = NewMarket(NthFlipExactMarketType, 0, selections, OpenMarketStatus)
 		market.HostTypes = hostTypesHere
 
@@ -36,29 +33,15 @@ func (mg MarketGeneratorNthFlipExactOrder) GetMarkets(scoutInfo ScoutInfo.ScoutI
 			}
 
 			if market.HostTypes[i] != element {
-				homeRawOdds = 0.0
-				awayRawOdds = 1.0
-				var selections = []Selection{
-					Selection{homeRawOdds, ScoutInfo.HostTypeHome, SelectionTypeYesNo},
-					Selection{awayRawOdds, ScoutInfo.HostTypeAway, SelectionTypeYesNo},
-				}
-
 				market.Status = SettledMarketStatus
-				market.Selections = selections
+				market.Selections = NewSelections(0, 1, SelectionTypeYesNo)
 				break
 			}
 
 			//settled success.
 			if i == 4 {
-				homeRawOdds = 1.0
-				awayRawOdds = 0.0
-				var selections = []Selection{
-					Selection{homeRawOdds, ScoutInfo.HostTypeHome, SelectionTypeYesNo},
-					Selection{awayRawOdds, ScoutInfo.HostTypeAway, SelectionTypeYesNo},
-				}
-
 				market.Status = SettledMarketStatus
-				market.Selections = selections
+				market.Selections = NewSelections(1, 0, SelectionTypeYesNo)
 			}
 		}
 
