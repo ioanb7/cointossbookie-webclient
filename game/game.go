@@ -83,26 +83,29 @@ func (g Game) playRound(reader *bufio.Reader, nth int) {
 }
 
 func (g Game) endOfRound(nth int) {
-	var hostType = ScoutInfo.HostTypeHome
-	if rand.Intn(2) == 0 {
-		hostType = ScoutInfo.HostTypeAway
-	}
-
 	switch nth {
 	case 0:
 		g.calculator.Scoutinfo.Add(ScoutInfo.GameStarted, ScoutInfo.HostTypeNone)
 	case 1:
-		g.calculator.Scoutinfo.Add(ScoutInfo.CoinToss, hostType)
+		g.triggerCoinToss()
 	case 2:
-		g.calculator.Scoutinfo.Add(ScoutInfo.CoinToss, hostType)
+		g.triggerCoinToss()
 	case 3:
-		g.calculator.Scoutinfo.Add(ScoutInfo.CoinToss, hostType)
+		g.triggerCoinToss()
 	case 4:
-		g.calculator.Scoutinfo.Add(ScoutInfo.CoinToss, hostType)
+		g.triggerCoinToss()
 	case 5:
-		g.calculator.Scoutinfo.Add(ScoutInfo.CoinToss, hostType)
+		g.triggerCoinToss()
 		g.calculator.Scoutinfo.Add(ScoutInfo.GameEnded, ScoutInfo.HostTypeNone)
 	}
+}
+
+func (g Game) triggerCoinToss() {
+	var hostType = ScoutInfo.HostTypeHome
+	if rand.Intn(2) == 0 {
+		hostType = ScoutInfo.HostTypeAway
+	}
+	g.calculator.Scoutinfo.Add(ScoutInfo.CoinToss, hostType)
 }
 
 func (g Game) getInputAsInt(reader *bufio.Reader, outputFirst string) int {
