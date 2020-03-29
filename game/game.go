@@ -2,8 +2,11 @@ package Game
 
 import (
 	"bufio"
+	"bytes"
 	"cointossbookie/Calculator"
 	"cointossbookie/ScoutInfo"
+	"compress/gzip"
+	"encoding/json"
 	"fmt"
 	"math/rand"
 	//"os"
@@ -12,13 +15,14 @@ import (
 )
 
 type Game struct {
-	id         int
-	calculator Calculator.Calculator
-	scoreboard ScoreBoard
+	id          int
+	json_output *chan []byte
+	calculator  Calculator.Calculator
+	scoreboard  ScoreBoard
 }
 
-func New(id int) Game {
-	g := Game{id, Calculator.Calculator{}, ScoreBoard{}}
+func New(id int, json_output *chan []byte) Game {
+	g := Game{id, json_output, Calculator.Calculator{}, ScoreBoard{}}
 	return g
 }
 
@@ -37,9 +41,7 @@ func (g Game) Play() {
 	// 6 = game finished
 	for i := 0; i <= 6; i++ {
 		g.showState()
-		if err := g.printOdds(); err != nil {
-			break
-		}
+		g.String()
 		g.showState()
 
 		if scoutinfo.FixtureState != ScoutInfo.FinishedFixtureState {
@@ -147,16 +149,6 @@ func (g Game) printScoutInfo() {
 	fmt.Printf(g.calculator.Scoutinfo.String())
 }
 
-func (g Game) printOdds() error {
-	if oddsResult, error := g.String(); error == nil { // .. refactor
-		fmt.Printf(oddsResult)
-		return nil
-	} else {
-		fmt.Printf("An error has occured.\n%s\n", error.Error())
-		return error
-	}
-}
-
 func (g Game) String() (string, error) {
 	output := fmt.Sprintf("Markets are:\n")
 	if markets, e := g.calculator.GetMarkets(); e == nil {
@@ -182,8 +174,27 @@ func (g Game) String() (string, error) {
 				}
 			}
 		}
+
+		bytesSerialised, err := json.Marshal(NewGameOutput(g.id, markets, g.calculator.Scoutinfo.FixtureState, g.calculator.Scoutinfo.GetAllFlipsAsHostTypes()))
+		if err != nil {
+			//panic(err)
+		} else {
+			var b bytes.Buffer
+			gz := gzip.NewWriter(&b)
+			fmt.Printf("Initial size: %d\n\n", len(bytesSerialised))
+			if _, err := gz.Write(bytesSerialised); err != nil {
+				//log.Fatal(err)
+			}
+			if err := gz.Close(); err != nil {
+				//log.Fatal(err)
+			}
+
+			*g.json_output <- b.Bytes()
+		}
+		fmt.Printf(output)
 		return output, nil
 	} else {
+		fmt.Printf("An error has occured.\n%s\n", e.Error())
 		return "", e
 	}
 }
