@@ -15,6 +15,6 @@ func (m MarketType) String() string {
 		"Home Win Over Under",
 		"Home Win Over Under",
 		"Flip",
-		"Flip On Home/Away",
+		"Flip On Exact Position",
 		"Flip On Exact Order"}[m]
 }

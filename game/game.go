@@ -35,22 +35,11 @@ func (g Game) Play() {
 	// 5 = 5th flip settles
 	// 6 = game finished
 	for i := 0; i <= 6; i++ {
-		fmt.Println()
-		fmt.Println()
-		fmt.Println()
-		fmt.Println()
-		fmt.Println()
-		fmt.Println()
-		fmt.Println()
-		fmt.Println()
-		fmt.Println()
-
-		fmt.Print(g.scoreboard.String(*g.calculator.Scoutinfo))
-		fmt.Println()
-		g.printScoutInfo(&scoutinfo)
+		g.showState()
 		if err := g.printOdds(); err != nil {
 			break
 		}
+		g.showState()
 
 		if scoutinfo.FixtureState != ScoutInfo.FinishedFixtureState {
 			g.playRound(reader, i)
@@ -58,6 +47,15 @@ func (g Game) Play() {
 			g.endOfRound(i)
 		}
 	}
+}
+func (g Game) showState() {
+	fmt.Println()
+	fmt.Println()
+	fmt.Println()
+
+	fmt.Print(g.scoreboard.String(*g.calculator.Scoutinfo))
+	fmt.Println()
+	g.printScoutInfo()
 }
 
 func (g Game) playRound(reader *bufio.Reader, nth int) {
@@ -141,8 +139,12 @@ func (g Game) printPriceForBet(marketType Calculator.MarketType, hostType ScoutI
 	}
 }
 
+func (g Game) printScoutInfo() {
+	fmt.Printf(g.calculator.Scoutinfo.String())
+}
+
 func (g Game) printOdds() error {
-	if oddsResult, error := g.calculator.String(); error == nil {
+	if oddsResult, error := g.String(); error == nil { // .. refactor
 		fmt.Printf(oddsResult)
 		return nil
 	} else {
@@ -151,6 +153,33 @@ func (g Game) printOdds() error {
 	}
 }
 
-func (g Game) printScoutInfo(s *ScoutInfo.ScoutInfo) {
-	fmt.Printf(s.String())
+func (g Game) String() (string, error) {
+	output := fmt.Sprintf("Markets are:\n")
+	if markets, e := g.calculator.GetMarkets(); e == nil {
+		for _, market := range markets {
+			if market.Status != Calculator.OpenMarketStatus {
+				if market.Status == Calculator.SettledMarketStatus {
+					selectionText := ""
+					for _, selection := range market.Selections {
+						if selection.TrueProbability == 1.0 {
+							selectionText = selection.String()
+							break
+						}
+					}
+
+					output += fmt.Sprintf("Market: %s (settled for %s)\n", market.String(), selectionText)
+				} else {
+					output += fmt.Sprintf("Market: %s\n", market.String())
+				}
+			} else {
+				output += fmt.Sprintf("Market: %s with selections:\n", market.String())
+				for _, selection := range market.Selections {
+					output += fmt.Sprintf("%s\n", selection.String())
+				}
+			}
+		}
+		return output, nil
+	} else {
+		return "", e
+	}
 }
