@@ -9,7 +9,6 @@ type MarketGeneratorFlipOverUnder struct {
 }
 
 func (mg MarketGeneratorFlipOverUnder) GetMarkets(scoutInfo ScoutInfo.ScoutInfo) []Market {
-
 	var markets = []Market{}
 
 	homeFlips := scoutInfo.CountFlipsForHostType(ScoutInfo.HostTypeHome)

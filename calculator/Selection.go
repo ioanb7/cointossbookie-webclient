@@ -20,7 +20,7 @@ func NewSelections(home float32, away float32, selectionType SelectionType) []Se
 }
 
 func (s Selection) GetPrice() float32 {
-	return s.TrueProbability * 1.3
+	return s.TrueProbability * 1.05
 }
 
 func (s Selection) String() string {

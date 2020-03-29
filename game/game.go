@@ -6,18 +6,19 @@ import (
 	"cointossbookie/ScoutInfo"
 	"fmt"
 	"math/rand"
-	"os"
+	//"os"
 	"strconv"
 	"time"
 )
 
 type Game struct {
+	id         int
 	calculator Calculator.Calculator
 	scoreboard ScoreBoard
 }
 
-func New() Game {
-	g := Game{}
+func New(id int) Game {
+	g := Game{id, Calculator.Calculator{}, ScoreBoard{}}
 	return g
 }
 
@@ -25,7 +26,7 @@ func (g Game) Play() {
 	rand.Seed(time.Now().UnixNano())
 	scoutinfo := ScoutInfo.New(0.5)
 	g.calculator = Calculator.New(&scoutinfo)
-	reader := bufio.NewReader(os.Stdin)
+	//reader := bufio.NewReader(os.Stdin)
 
 	// 0 = pre match, game begins
 	// 1 = 1st flip settles, put bets for 2nd flip
@@ -42,8 +43,8 @@ func (g Game) Play() {
 		g.showState()
 
 		if scoutinfo.FixtureState != ScoutInfo.FinishedFixtureState {
-			g.playRound(reader, i)
-			time.Sleep(500 * time.Millisecond)
+			//g.playRound(reader, i)
+			time.Sleep(5000 * time.Millisecond)
 			g.endOfRound(i)
 		}
 	}
