@@ -39,8 +39,8 @@ func (mg MarketGeneratorNthFlipExactPosition) GetMarkets(scoutInfo ScoutInfo.Sco
 			status = SettledMarketStatus
 		}
 
-		selections := NewSelections(homeRawOdds, awayRawOdds, SelectionTypeHomeAway)
-		var market = NewMarket(NthFlipExactMarketType, float32(i), selections, status)
+		outcomes := NewOutcomes(homeRawOdds, awayRawOdds, OutcomeTypeHomeAway)
+		var market = NewMarket(NthFlipExactMarketType, float32(i), outcomes, status)
 		markets = append(markets, market)
 	}
 

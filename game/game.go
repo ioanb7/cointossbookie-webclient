@@ -163,22 +163,22 @@ func (g Game) String() (string, error) {
 		for _, market := range markets {
 			if market.Status != Calculator.OpenMarketStatus {
 				if market.Status == Calculator.SettledMarketStatus {
-					selectionText := ""
-					for _, selection := range market.Selections {
-						if selection.TrueProbability == 1.0 {
-							selectionText = selection.String()
+					outcomeText := ""
+					for _, outcome := range market.Outcomes {
+						if outcome.TrueProbability == 1.0 {
+							outcomeText = outcome.String()
 							break
 						}
 					}
 
-					output += fmt.Sprintf("Market: %s (settled for %s)\n", market.String(), selectionText)
+					output += fmt.Sprintf("Market: %s (settled for %s)\n", market.String(), outcomeText)
 				} else {
 					output += fmt.Sprintf("Market: %s\n", market.String())
 				}
 			} else {
-				output += fmt.Sprintf("Market: %s with selections:\n", market.String())
-				for _, selection := range market.Selections {
-					output += fmt.Sprintf("%s\n", selection.String())
+				output += fmt.Sprintf("Market: %s with outcomes:\n", market.String())
+				for _, outcome := range market.Outcomes {
+					output += fmt.Sprintf("%s\n", outcome.String())
 				}
 			}
 		}

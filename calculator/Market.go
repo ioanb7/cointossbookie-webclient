@@ -8,13 +8,13 @@ import (
 type Market struct {
 	MarketType MarketType
 	Handicap   float32
-	Selections []Selection
+	Outcomes []Outcome
 	Status     MarketStatus
 	HostTypes  []ScoutInfo.HostType
 }
 
-func NewMarket(marketType MarketType, handicap float32, selections []Selection, status MarketStatus) Market {
-	m := Market{marketType, handicap, selections, status, []ScoutInfo.HostType{}}
+func NewMarket(marketType MarketType, handicap float32, outcomes []Outcome, status MarketStatus) Market {
+	m := Market{marketType, handicap, outcomes, status, []ScoutInfo.HostType{}}
 	return m
 }
 

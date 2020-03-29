@@ -33,9 +33,9 @@ func (c Calculator) GetMarkets() ([]Market, error) {
 func (c Calculator) GetPriceForBet(marketType MarketType, hostType ScoutInfo.HostType, bet float32) (float32, error) {
 	if markets, e := c.GetMarkets(); e == nil {
 		for _, market := range markets {
-			for _, selection := range market.Selections {
-				if selection.HostType == hostType {
-					return bet + bet*(1/selection.GetPrice()), nil
+			for _, outcome := range market.Outcomes {
+				if outcome.HostType == hostType {
+					return bet + bet*(1/outcome.GetPrice()), nil
 				}
 			}
 		}

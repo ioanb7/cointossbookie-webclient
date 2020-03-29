@@ -20,8 +20,8 @@ func (mg MarketGeneratorFlipOverUnder) GetMarkets(scoutInfo ScoutInfo.ScoutInfo)
 		var pow = float32(math.Pow(2, float64(powPow)))
 		homeRawOdds := (scoutInfo.HomeShare) * pow
 		awayRawOdds := (1 - scoutInfo.HomeShare) * pow
-		selections := NewSelections(homeRawOdds, awayRawOdds, SelectionTypeOverUnder)
-		var market = NewMarket(HomeWinOverUnderMarketType, float32(i)+0.5, selections, OpenMarketStatus)
+		outcomes := NewOutcomes(homeRawOdds, awayRawOdds, OutcomeTypeOverUnder)
+		var market = NewMarket(HomeWinOverUnderMarketType, float32(i)+0.5, outcomes, OpenMarketStatus)
 
 		if scoutInfo.FlipsSoFar() == 5-1 {
 			//suspend.. there are other markets similar to this anyway.
@@ -42,7 +42,7 @@ func (mg MarketGeneratorFlipOverUnder) GetMarkets(scoutInfo ScoutInfo.ScoutInfo)
 			}
 
 			market.Status = SettledMarketStatus
-			market.Selections = NewSelections(homeRawOdds, awayRawOdds, SelectionTypeOverUnder)
+			market.Outcomes = NewOutcomes(homeRawOdds, awayRawOdds, OutcomeTypeOverUnder)
 		}
 
 		markets = append(markets, market)
