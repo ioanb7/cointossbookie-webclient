@@ -36,14 +36,11 @@ func (g *Generator) resetFor(i int) {
 	g.working_array[i] = 1
 }
 
-func (g *Generator) changeAtI(i int) {
-	startAt := len(g.working_array) - 1
-	for j := startAt; j > i; j-- {
-		g.resetFor(j)
+func (g *Generator) changeAtI(lowerBound int) {
+	for thisIter := len(g.working_array) - 1; thisIter > lowerBound; thisIter-- {
+		g.resetFor(thisIter)
 		g.append()
 
-		for k := len(g.working_array) - 1; k >= j; k-- {
-			g.changeAtI(k)
-		}
+		g.changeAtI(thisIter)
 	}
 }

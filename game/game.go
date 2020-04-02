@@ -2,14 +2,15 @@ package Game
 
 import (
 	"bufio"
-	"bytes"
+	//"bytes"
 	"cointossbookie/Calculator"
 	"cointossbookie/ScoutInfo"
-	"compress/gzip"
+	//"compress/gzip"
 	"encoding/json"
 	"fmt"
 	"math/rand"
 	//"os"
+	"log"
 	"strconv"
 	"time"
 )
@@ -26,8 +27,11 @@ func New(id int, json_output *chan []byte) Game {
 	return g
 }
 
-func (g Game) Play() {
-	rand.Seed(time.Now().UnixNano())
+func (g Game) Play(millisecondsBetweenRounds int) {
+	if millisecondsBetweenRounds == 0 {
+		log.Panicf("`millisecondsBetweenRounds` = 0 not allowed")
+	}
+	rand.Seed(time.Now().UnixNano()) // TODO: move this to main
 	scoutinfo := ScoutInfo.New(0.5)
 	g.calculator = Calculator.New(&scoutinfo)
 	//reader := bufio.NewReader(os.Stdin)
@@ -46,7 +50,7 @@ func (g Game) Play() {
 
 		if scoutinfo.FixtureState != ScoutInfo.FinishedFixtureState {
 			//g.playRound(reader, i)
-			time.Sleep(5000 * time.Millisecond)
+			time.Sleep(time.Millisecond * time.Duration(millisecondsBetweenRounds))
 			g.endOfRound(i)
 		}
 	}
@@ -174,22 +178,24 @@ func (g Game) String() (string, error) {
 				}
 			}
 		}
-
-		bytesSerialised, err := json.Marshal(NewGameOutput(g.id, markets, g.calculator.Scoutinfo.FixtureState, g.calculator.Scoutinfo.GetAllFlipsAsHostTypes()))
+		gameOutputGenerated := NewGameOutput(g.id, markets, g.calculator.Scoutinfo.FixtureState, g.calculator.Scoutinfo.GetAllFlipsAsHostTypes())
+		bytesSerialised, err := json.Marshal(gameOutputGenerated)
 		if err != nil {
 			//panic(err)
 		} else {
-			var b bytes.Buffer
-			gz := gzip.NewWriter(&b)
-			fmt.Printf("Initial size: %d\n\n", len(bytesSerialised))
-			if _, err := gz.Write(bytesSerialised); err != nil {
-				//log.Fatal(err)
-			}
-			if err := gz.Close(); err != nil {
-				//log.Fatal(err)
-			}
+			/*
+				var b bytes.Buffer
+				gz := gzip.NewWriter(&b)
+				fmt.Printf("Initial size: %d\n\n", len(bytesSerialised))
+				if _, err := gz.Write(bytesSerialised); err != nil {
+					//log.Fatal(err)
+				}
+				if err := gz.Close(); err != nil {
+					//log.Fatal(err)
+				}
 
-			*g.json_output <- b.Bytes()
+				*g.json_output <- b.Bytes()*/
+			*g.json_output <- bytesSerialised
 		}
 		fmt.Printf(output)
 		return output, nil

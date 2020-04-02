@@ -19,7 +19,7 @@ func (mg MarketGeneratorNthFlipExactOrder) GetMarkets(scoutInfo ScoutInfo.ScoutI
 		homeRawOdds := (scoutInfo.HomeShare) * pow
 		awayRawOdds := (1 - scoutInfo.HomeShare) * pow
 		outcomes := NewOutcomes(homeRawOdds, awayRawOdds, OutcomeTypeYesNo)
-		var market = NewMarket(NthFlipExactMarketType, 0, outcomes, OpenMarketStatus)
+		var market = NewMarket(NthFlipExactOrderMarketType, 0, outcomes, OpenMarketStatus)
 		market.HostTypes = hostTypesHere
 
 		if scoutInfo.FlipsSoFar() == 5-1 {

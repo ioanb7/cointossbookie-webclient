@@ -18,14 +18,18 @@ func (c Calculator) GetMarkets() ([]Market, error) {
 	var markets = []Market{}
 
 	mgNthFlip := MarketGeneratorNthFlip{}
+	mgNthFlipOverUnder := MarketGeneratorFlipOverUnder{}
 	mgNthFlipExactPosition := MarketGeneratorNthFlipExactPosition{}
 	mgNthFlipExactOrder := MarketGeneratorNthFlipExactOrder{}
-	mgNthFlipOverUnder := MarketGeneratorFlipOverUnder{}
 
 	markets = append(markets, mgNthFlip.GetMarkets(*c.Scoutinfo)...)
+	markets = append(markets, mgNthFlipOverUnder.GetMarkets(*c.Scoutinfo)...)
 	markets = append(markets, mgNthFlipExactPosition.GetMarkets(*c.Scoutinfo)...)
 	markets = append(markets, mgNthFlipExactOrder.GetMarkets(*c.Scoutinfo)...)
-	markets = append(markets, mgNthFlipOverUnder.GetMarkets(*c.Scoutinfo)...)
+
+	for i, _ := range markets {
+		markets[i].Id = i
+	}
 
 	return markets, nil
 }

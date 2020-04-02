@@ -6,15 +6,16 @@ import (
 )
 
 type Market struct {
+	Id         int
 	MarketType MarketType
 	Handicap   float32
-	Outcomes []Outcome
+	Outcomes   []Outcome
 	Status     MarketStatus
 	HostTypes  []ScoutInfo.HostType
 }
 
 func NewMarket(marketType MarketType, handicap float32, outcomes []Outcome, status MarketStatus) Market {
-	m := Market{marketType, handicap, outcomes, status, []ScoutInfo.HostType{}}
+	m := Market{0, marketType, handicap, outcomes, status, []ScoutInfo.HostType{}}
 	return m
 }
 
