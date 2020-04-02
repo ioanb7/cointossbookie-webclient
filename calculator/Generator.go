@@ -30,7 +30,7 @@ func (g *Generator) Generate(n int) [][]int {
 }
 
 func (g *Generator) resetFor(i int) {
-	for j := i; j < len(g.working_array); j++ {
+	for j := i + 1; j < len(g.working_array); j++ {
 		g.working_array[j] = 0
 	}
 	g.working_array[i] = 1

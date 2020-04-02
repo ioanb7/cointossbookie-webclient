@@ -1,0 +1,38 @@
+{
+    "textmarker.savedHighlights": [{
+            "pattern": {
+                "type": "string",
+                "expression": "script>",
+                "ignoreCase": false,
+                "wholeMatch": false
+            },
+            "color": "darkmagenta"
+        }, {
+            "pattern": {
+                "type": "string",
+                "expression": "<style",
+                "ignoreCase": false,
+                "wholeMatch": false
+            },
+            "color": "darkmagenta"
+        },
+        {
+            "pattern": {
+                "type": "string",
+                "expression": "</style",
+                "ignoreCase": false,
+                "wholeMatch": false
+            },
+            "color": "darkmagenta"
+        },
+        {
+            "pattern": {
+                "type": "string",
+                "expression": "template>",
+                "ignoreCase": false,
+                "wholeMatch": false
+            },
+            "color": "darkmagenta"
+        }
+    ]
+}

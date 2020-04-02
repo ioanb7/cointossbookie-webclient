@@ -1,0 +1,815 @@
+{
+    "Markets": [{
+        "Id": 0,
+        "MarketType": "Flip",
+        "Handicap": 1,
+        "Outcomes": [{
+            "TrueProbability": 0.5,
+            "HostType": "Home",
+            "OutcomeType": "Home / Away"
+        }, {
+            "TrueProbability": 0.5,
+            "HostType": "Away",
+            "OutcomeType": "Home / Away"
+        }],
+        "Status": "Open",
+        "HostTypes": []
+    }, {
+        "Id": 1,
+        "MarketType": "Flip",
+        "Handicap": 2,
+        "Outcomes": [{
+            "TrueProbability": 0.5,
+            "HostType": "Home",
+            "OutcomeType": "Home / Away"
+        }, {
+            "TrueProbability": 0.5,
+            "HostType": "Away",
+            "OutcomeType": "Home / Away"
+        }],
+        "Status": "Open",
+        "HostTypes": []
+    }, {
+        "Id": 2,
+        "MarketType": "Flip",
+        "Handicap": 3,
+        "Outcomes": [{
+            "TrueProbability": 0.5,
+            "HostType": "Home",
+            "OutcomeType": "Home / Away"
+        }, {
+            "TrueProbability": 0.5,
+            "HostType": "Away",
+            "OutcomeType": "Home / Away"
+        }],
+        "Status": "Open",
+        "HostTypes": []
+    }, {
+        "Id": 3,
+        "MarketType": "Flip",
+        "Handicap": 4,
+        "Outcomes": [{
+            "TrueProbability": 0.5,
+            "HostType": "Home",
+            "OutcomeType": "Home / Away"
+        }, {
+            "TrueProbability": 0.5,
+            "HostType": "Away",
+            "OutcomeType": "Home / Away"
+        }],
+        "Status": "Open",
+        "HostTypes": []
+    }, {
+        "Id": 4,
+        "MarketType": "Flip",
+        "Handicap": 5,
+        "Outcomes": [{
+            "TrueProbability": 0.5,
+            "HostType": "Home",
+            "OutcomeType": "Home / Away"
+        }, {
+            "TrueProbability": 0.5,
+            "HostType": "Away",
+            "OutcomeType": "Home / Away"
+        }],
+        "Status": "Open",
+        "HostTypes": []
+    }, {
+        "Id": 5,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 1,
+        "Outcomes": [{
+            "TrueProbability": 0.5,
+            "HostType": "Home",
+            "OutcomeType": "Home / Away"
+        }, {
+            "TrueProbability": 0.5,
+            "HostType": "Away",
+            "OutcomeType": "Home / Away"
+        }],
+        "Status": "Open",
+        "HostTypes": []
+    }, {
+        "Id": 6,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 2,
+        "Outcomes": [{
+            "TrueProbability": 1,
+            "HostType": "Home",
+            "OutcomeType": "Home / Away"
+        }, {
+            "TrueProbability": 1,
+            "HostType": "Away",
+            "OutcomeType": "Home / Away"
+        }],
+        "Status": "Open",
+        "HostTypes": []
+    }, {
+        "Id": 7,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 3,
+        "Outcomes": [{
+            "TrueProbability": 2,
+            "HostType": "Home",
+            "OutcomeType": "Home / Away"
+        }, {
+            "TrueProbability": 2,
+            "HostType": "Away",
+            "OutcomeType": "Home / Away"
+        }],
+        "Status": "Open",
+        "HostTypes": []
+    }, {
+        "Id": 8,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 4,
+        "Outcomes": [{
+            "TrueProbability": 4,
+            "HostType": "Home",
+            "OutcomeType": "Home / Away"
+        }, {
+            "TrueProbability": 4,
+            "HostType": "Away",
+            "OutcomeType": "Home / Away"
+        }],
+        "Status": "Open",
+        "HostTypes": []
+    }, {
+        "Id": 9,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 5,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Home / Away"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Home / Away"
+        }],
+        "Status": "Open",
+        "HostTypes": []
+    }, {
+        "Id": 10,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Home", "Home", "Home", "Home", "Home"]
+    }, {
+        "Id": 11,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Home", "Home", "Home", "Home", "Away"]
+    }, {
+        "Id": 12,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Home", "Home", "Home", "Away", "Home"]
+    }, {
+        "Id": 13,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Home", "Home", "Home", "Away", "Away"]
+    }, {
+        "Id": 14,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Home", "Home", "Away", "Home", "Home"]
+    }, {
+        "Id": 15,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Home", "Home", "Away", "Home", "Away"]
+    }, {
+        "Id": 16,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Home", "Home", "Away", "Away", "Home"]
+    }, {
+        "Id": 17,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Home", "Home", "Away", "Away", "Away"]
+    }, {
+        "Id": 18,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Home", "Away", "Home", "Home", "Home"]
+    }, {
+        "Id": 19,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Home", "Away", "Home", "Home", "Away"]
+    }, {
+        "Id": 20,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Home", "Away", "Home", "Away", "Home"]
+    }, {
+        "Id": 21,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Home", "Away", "Home", "Away", "Away"]
+    }, {
+        "Id": 22,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Home", "Away", "Away", "Home", "Home"]
+    }, {
+        "Id": 23,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Home", "Away", "Away", "Home", "Away"]
+    }, {
+        "Id": 24,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Home", "Away", "Away", "Home", "Away"]
+    }, {
+        "Id": 25,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Home", "Away", "Away", "Away", "Home"]
+    }, {
+        "Id": 26,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Home", "Away", "Away", "Away", "Away"]
+    }, {
+        "Id": 27,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Home", "Home", "Home", "Home"]
+    }, {
+        "Id": 28,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Home", "Home", "Home", "Away"]
+    }, {
+        "Id": 29,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Home", "Home", "Away", "Home"]
+    }, {
+        "Id": 30,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Home", "Home", "Away", "Away"]
+    }, {
+        "Id": 31,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Home", "Away", "Home", "Home"]
+    }, {
+        "Id": 32,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Home", "Away", "Home", "Away"]
+    }, {
+        "Id": 33,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Home", "Away", "Home", "Away"]
+    }, {
+        "Id": 34,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Home", "Away", "Away", "Home"]
+    }, {
+        "Id": 35,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Home", "Away", "Away", "Away"]
+    }, {
+        "Id": 36,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Away", "Home", "Home", "Home"]
+    }, {
+        "Id": 37,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Away", "Home", "Home", "Away"]
+    }, {
+        "Id": 38,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Away", "Home", "Home", "Away"]
+    }, {
+        "Id": 39,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Away", "Home", "Away", "Home"]
+    }, {
+        "Id": 40,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Away", "Home", "Away", "Away"]
+    }, {
+        "Id": 41,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Away", "Home", "Away", "Away"]
+    }, {
+        "Id": 42,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Away", "Home", "Away", "Home"]
+    }, {
+        "Id": 43,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Away", "Home", "Away", "Away"]
+    }, {
+        "Id": 44,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Away", "Away", "Home", "Home"]
+    }, {
+        "Id": 45,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Away", "Away", "Home", "Away"]
+    }, {
+        "Id": 46,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Away", "Away", "Home", "Away"]
+    }, {
+        "Id": 47,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Away", "Away", "Away", "Home"]
+    }, {
+        "Id": 48,
+        "MarketType": "Flip On Exact Position",
+        "Handicap": 0,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Yes / No"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Yes / No"
+        }],
+        "Status": "Open",
+        "HostTypes": ["Away", "Away", "Away", "Away", "Away"]
+    }, {
+        "Id": 49,
+        "MarketType": "Home Win Over Under",
+        "Handicap": 0.5,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Over / Under"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Over / Under"
+        }],
+        "Status": "Open",
+        "HostTypes": []
+    }, {
+        "Id": 50,
+        "MarketType": "Home Win Over Under",
+        "Handicap": 1.5,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Over / Under"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Over / Under"
+        }],
+        "Status": "Open",
+        "HostTypes": []
+    }, {
+        "Id": 51,
+        "MarketType": "Home Win Over Under",
+        "Handicap": 2.5,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Over / Under"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Over / Under"
+        }],
+        "Status": "Open",
+        "HostTypes": []
+    }, {
+        "Id": 52,
+        "MarketType": "Home Win Over Under",
+        "Handicap": 3.5,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Over / Under"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Over / Under"
+        }],
+        "Status": "Open",
+        "HostTypes": []
+    }, {
+        "Id": 53,
+        "MarketType": "Home Win Over Under",
+        "Handicap": 4.5,
+        "Outcomes": [{
+            "TrueProbability": 8,
+            "HostType": "Home",
+            "OutcomeType": "Over / Under"
+        }, {
+            "TrueProbability": 8,
+            "HostType": "Away",
+            "OutcomeType": "Over / Under"
+        }],
+        "Status": "Open",
+        "HostTypes": []
+    }],
+    "FixtureState": "Pre Match",
+    "Score": ["None", "None", "None", "None", "None"]
+}

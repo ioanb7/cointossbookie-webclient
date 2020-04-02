@@ -6,7 +6,7 @@ import (
 )
 
 type GameOutput struct {
-	id           int
+	Id           int
 	Markets      []Calculator.Market
 	FixtureState ScoutInfo.FixtureState
 	Score        []ScoutInfo.HostType
