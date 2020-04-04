@@ -16,11 +16,8 @@
   import MarketFlipOnExactOrder from './MarketFlipOnExactOrder.vue'
   import Market from './Market.vue'
   import ScoreBoard from './ScoreBoard.vue'
-  import ReconnectingWebSocket from 'reconnecting-websocket';
-  import Convertor from '../helpers/convertor';
   import Wallet from '../helpers/wallet';
-
-  var convertor = new Convertor();
+  import Networking from '../helpers/networking';
 
   export default {
     name: "MainBetting",
@@ -61,31 +58,10 @@
     },
     methods: {
       setUpWebSocket() {
-        var self = this;
-
-        const rws = new ReconnectingWebSocket('ws://localhost:7777/status');
-        rws.binaryType = "arraybuffer";
-
-        rws.addEventListener('open', () => {
-          rws.send('hello!');
-          console.log("WebSocket: open")
+        var networking = new Networking((data) => {
+          Object.assign(this.$data, data)
         });
-
-        rws.addEventListener('error', () => {
-          console.log("WebSocket: error")
-        });
-
-        rws.addEventListener('close', () => {
-          console.log("WebSocket: close")
-        });
-
-        rws.addEventListener('message', (message) => {
-          console.log("WebSocket: message")
-          self.handleMessage(message)
-        });
-      },
-      handleMessage(event) {
-        Object.assign(this.$data, convertor.All(JSON.parse(event.data)))
+        networking.run()
       }
     }
   }
@@ -104,24 +80,4 @@
   .markets:nth-child(odd) {
     background-color: #4299e1;
   }
-
-  /*
-  h3 {
-    margin: 40px 0 0;
-  }
-
-  ul {
-    padding: 0;
-    list-style-type: none;
-  }
-
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-
-  a {
-    color: #42b983;
-  }
-  */
 </style>
