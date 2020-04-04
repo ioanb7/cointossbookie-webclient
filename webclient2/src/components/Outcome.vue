@@ -7,14 +7,14 @@
                 {{price}}
             </a>
         </p>
-        <BetPlacer v-if="isBetPlacerVisible" :price="price"></BetPlacer>
+        <BetPlacer v-if="isBetPlacerVisible" :price="price" :wallet="wallet"></BetPlacer>
     </div>
 </template>
 
 <script>
     import BetPlacer from './BetPlacer.vue'
     export default {
-        props: ["outcome"],
+        props: ["outcome", "wallet"],
         components: {
             BetPlacer
         },

@@ -18,7 +18,7 @@
                 Place bet ?
             </a>
         </p>
-        <BetPlacer v-if="isBetPlacerVisible" :price="trueProbability" />
+        <BetPlacer v-if="isBetPlacerVisible" :price="trueProbability" :wallet="wallet" />
     </div>
 </template>
 
@@ -26,7 +26,7 @@
     import BetPlacer from './BetPlacer.vue'
     import Score from './Score.vue'
     export default {
-        props: ["scoreSoFar", "trueProbability"],
+        props: ["scoreSoFar", "trueProbability", "wallet"],
         components: {
             Score,
             BetPlacer
@@ -51,7 +51,7 @@
         data: function () {
             return {
                 'hostTypes': this.initialHostTypesValues(
-                    this.scoreSoFar.filter((s) => s.val != 'None').map((s) => s.val)
+                    !this.scoreSoFar ? [] : this.scoreSoFar.filter((s) => s.val != 'None').map((s) => s.val)
                 ),
                 isBetPlacerVisible: false
             }

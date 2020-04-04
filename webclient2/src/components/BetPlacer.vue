@@ -1,11 +1,11 @@
 <template>
     <div class="betplacer">
         <p>
-            <input type="text" v-model="betValue" label="How much would you like to bet?" @focus="betValue = ''" />
+            <input type="text" v-model="betValue" label="How much would you like to bet?" @focus="focused" />
             <b>io</b>
         </p>
         <ul class='suggestedBetValues'>
-            <template v-for="suggestedBetValue in [1,2,5,10,20,50,100,500,1000]">
+            <template v-for="suggestedBetValue in suggestedBetValues">
                 <li :key="suggestedBetValue" v-if="canPlaceBet(suggestedBetValue)">
                     <a href="#" @click.prevent='betValue = suggestedBetValue'>{{suggestedBetValue}}</a>
                 </li>
@@ -19,7 +19,7 @@
 
 <script>
     export default {
-        props: ["price"],
+        props: ["price", "wallet"],
         data() {
             return {
                 'betValue': 0,
@@ -27,6 +27,10 @@
             }
         },
         computed: {
+            suggestedBetValues: function () {
+                var self = this;
+                return [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000].filter((val) => self.wallet.get() >= val)
+            },
             winnings: function () {
                 var bet = parseFloat(this.betValue)
                 var price = this.price
@@ -37,9 +41,16 @@
         methods: {
             placeBet: function () {
                 this.placed = true;
+                this.betValue = 0;
             },
             canPlaceBet: function (bet) {
                 return bet < 500;
+            },
+            focused: () => {
+                /*
+                if (this.betValue == "0") {
+                    this.betValue = ''
+                }*/
             }
         }
     }

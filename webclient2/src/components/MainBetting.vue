@@ -2,10 +2,10 @@
   <div v-if="GameId != 0">
     <div class="centered-container">
       <ScoreBoard v-bind:id="GameId" v-bind:fixtureState="FixtureState" v-bind:items="Score" />
-      <MarketFlipOnExactOrder class="marketOnExactOrder" :scoreSoFar="Score" v-if="marketOnExactOrderTrueProbability"
-        :trueProbability="marketOnExactOrderTrueProbability" />
+      <MarketFlipOnExactOrder class="marketOnExactOrder" v-if="marketOnExactOrderTrueProbability" :scoreSoFar="Score"
+        :trueProbability="marketOnExactOrderTrueProbability" :wallet="Wallet" />
       <div class="markets" :key="item.Id" v-for="item in this.filteredMarkets">
-        <Market v-bind:market="item" />
+        <Market v-bind:market="item" :wallet="Wallet" />
       </div>
     </div>
   </div>
@@ -18,8 +18,10 @@
   import ScoreBoard from './ScoreBoard.vue'
   import ReconnectingWebSocket from 'reconnecting-websocket';
   import Convertor from '../helpers/convertor';
+  import Wallet from '../helpers/wallet';
 
   var convertor = new Convertor();
+
   export default {
     name: "MainBetting",
     components: {
@@ -28,11 +30,14 @@
       MarketFlipOnExactOrder
     },
     data() {
+      var wallet = new Wallet();
+
       return {
         GameId: 0,
         Markets: [],
         FixtureState: "",
-        Score: []
+        Score: [],
+        Wallet: wallet
       }
     },
     created() {
@@ -80,12 +85,7 @@
         });
       },
       handleMessage(event) {
-        var gameOutput = convertor.All(JSON.parse(event.data))
-
-        this.Markets = gameOutput.Markets
-        this.FixtureState = gameOutput.FixtureState
-        this.Score = gameOutput.Score
-        this.GameId = gameOutput.Id
+        Object.assign(this.$data, convertor.All(JSON.parse(event.data)))
       }
     }
   }

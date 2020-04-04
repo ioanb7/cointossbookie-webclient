@@ -18,7 +18,7 @@
 
             <div class="outcomes">
                 <template v-for="outcome in market.Outcomes">
-                    <Outcome :key="outcome.Id" v-bind:outcome="outcome" />
+                    <Outcome :key="outcome.Id" v-bind:outcome="outcome" :wallet="wallet" />
                 </template>
             </div>
         </div>
@@ -29,7 +29,7 @@
     import Outcome from './Outcome.vue'
     import Score from './Score.vue'
     export default {
-        props: ["market"],
+        props: ["market", "wallet"],
         components: {
             Score,
             Outcome

@@ -1,77 +1,67 @@
 export default class Convertor {
   constructor() {}
 
-  marketType(marketTypeId) {
+  marketType = (marketTypeId) => {
     return [
       "Home Win Over Under",
       "Flip",
       "Flip On Exact Position",
-      "Flip On Exact Order"
+      "Flip On Exact Order",
     ][marketTypeId];
-  }
+  };
 
-  outcomeType(outcomeTypeId) {
+  outcomeType = (outcomeTypeId) => {
     return ["Home / Away", "Yes / No", "Over / Under"][outcomeTypeId];
-  }
+  };
 
-  marketStatus(marketStatusId) {
+  marketStatus = (marketStatusId) => {
     return ["Open", "Suspended", "Hidden", "Settled"][marketStatusId];
-  }
+  };
 
-  hostType(hostTypeId) {
+  hostType = (hostTypeId) => {
     return ["None", "Home", "Away"][hostTypeId];
-  }
+  };
 
-  fixtureState(fixtureStateId) {
+  fixtureState = (fixtureStateId) => {
     return ["Pre Match", "In Play", "Finished"][fixtureStateId];
-  }
+  };
 
-  outcomes(outcomes) {
-    var self = this;
-    return outcomes.map(function(o) {
-      return {
-        TrueProbability: o.TrueProbability,
-        HostType: self.hostType(o.HostType),
-        OutcomeType: self.outcomeType(o.OutcomeType)
-      };
-    });
-  }
+  outcomes = (outcomes) => {
+    return outcomes.map((o) => ({
+      TrueProbability: o.TrueProbability,
+      HostType: this.hostType(o.HostType),
+      OutcomeType: this.outcomeType(o.OutcomeType),
+    }));
+  };
 
-  hostTypes(hostTypes) {
-    var self = this;
-    return hostTypes.map(function(h) {
-      return self.hostType(h);
-    });
-  }
+  hostTypes = (hostTypes) => {
+    return hostTypes.map((h) => this.hostType(h));
+  };
 
-  markets(markets) {
-    var self = this;
-    return markets.map(function(market) {
-      return {
-        Id: market.Id,
-        MarketType: self.marketType(market.MarketType),
-        Handicap: market.Handicap,
-        Outcomes: self.outcomes(market.Outcomes),
-        Status: self.marketStatus(market.Status),
-        HostTypes: self.hostTypes(market.HostTypes)
-      };
-    });
-  }
+  markets = (markets) => {
+    return markets.map((market) => ({
+      Id: market.Id,
+      MarketType: this.marketType(market.MarketType),
+      Handicap: market.Handicap,
+      Outcomes: this.outcomes(market.Outcomes),
+      Status: this.marketStatus(market.Status),
+      HostTypes: this.hostTypes(market.HostTypes),
+    }));
+  };
 
   score(score) {
-    var self = this;
-    return score.map((val, i) => {
-      return {
-        id: i,
-        val: self.hostType(val)
-      };
-    });
+    return score.map((val, i) => ({
+      id: i,
+      val: this.hostType(val),
+    }));
   }
 
   All(gameOutput) {
-    gameOutput.Markets = this.markets(gameOutput.Markets);
-    gameOutput.FixtureState = this.fixtureState(gameOutput.FixtureState);
-    gameOutput.Score = this.score(gameOutput.Score);
-    return gameOutput;
+    return {
+      GameId: gameOutput.id,
+      Markets: this.markets(gameOutput.Markets),
+      Score: this.score(gameOutput.Score),
+      FixtureState: this.fixtureState(gameOutput.FixtureState),
+    };
   }
 }

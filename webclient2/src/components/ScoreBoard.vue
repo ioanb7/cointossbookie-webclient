@@ -9,14 +9,17 @@
                 <Score :key="item.id" v-bind:item="item.val" />
             </template>
         </div>
+        <WalletComponent />
     </div>
 </template>
 
 <script>
+    import WalletComponent from './WalletComponent.vue'
     import Score from './Score.vue'
     export default {
         components: {
-            Score
+            Score,
+            WalletComponent
         },
         props: ["items", "id", "fixtureState"]
     }
