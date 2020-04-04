@@ -48,6 +48,11 @@ func (g Game) Play(millisecondsBetweenRounds int) {
 		g.String()
 		g.showState()
 
+		// if debug..
+		if i == 4 {
+			time.Sleep(time.Millisecond * time.Duration(999999999))
+		}
+
 		if scoutinfo.FixtureState != ScoutInfo.FinishedFixtureState {
 			//g.playRound(reader, i)
 			time.Sleep(time.Millisecond * time.Duration(millisecondsBetweenRounds))

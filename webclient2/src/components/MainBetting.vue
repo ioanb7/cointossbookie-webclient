@@ -1,13 +1,16 @@
 <template>
-  <div>
-    <ScoreBoard v-bind:id="this.GameId" v-bind:fixtureState="this.FixtureState" v-bind:items="this.Score" />
-    <div :key="item.Id" v-for="item in this.Markets">
-      <Market v-if="item.Status == 'Open'" v-bind:market="item" />
+  <div class="centered-container">
+    <ScoreBoard v-bind:id="GameId" v-bind:fixtureState="FixtureState" v-bind:items="Score" />
+    <MarketFlipOnExactOrder class="marketOnExactOrder" :scoreSoFar="Score" v-if="marketOnExactOrderTrueProbability"
+      :trueProbability="marketOnExactOrderTrueProbability" />
+    <div class="markets" :key="item.Id" v-for="item in this.filteredMarkets">
+      <Market v-bind:market="item" />
     </div>
   </div>
 </template>
 
 <script>
+  import MarketFlipOnExactOrder from './MarketFlipOnExactOrder.vue'
   import Market from './Market.vue'
   import ScoreBoard from './ScoreBoard.vue'
   import axios from 'axios'
@@ -16,7 +19,8 @@
     name: "MainBetting",
     components: {
       ScoreBoard,
-      Market
+      Market,
+      MarketFlipOnExactOrder
     },
     data() {
       return {
@@ -34,27 +38,39 @@
       rws.binaryType = "arraybuffer";
 
       rws.addEventListener('open', () => {
-        //rws.send('hello!');
+        rws.send('hello!');
         console.log("open")
       });
 
       rws.addEventListener('error', () => {
         console.log("error")
-        //rws.send('hello!');
       });
 
       rws.addEventListener('close', () => {
         console.log("close")
-        //rws.send('hello!');
       });
 
       rws.addEventListener('message', (message) => {
         console.log("message")
         console.log(message)
-        //rws.send('hello!');
         self.handleMessage(message)
       });
-
+    },
+    computed: {
+      filteredMarkets: function () {
+        return this.Markets.filter((item) => {
+          return item.Status == 'Open' && item.MarketType != 'Flip On Exact Order'
+        })
+      },
+      marketOnExactOrderTrueProbability: function () {
+        let market = this.Markets.find((item) => {
+          return item.Status == 'Open' && item.MarketType == 'Flip On Exact Order'
+        })
+        if (!market) {
+          return 0
+        }
+        return market.Outcomes[0].TrueProbability
+      }
     },
     methods: {
       getDataFromApi() {
@@ -162,8 +178,21 @@
   }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .centered-container {
+    padding: 50px;
+  }
+
+  .marketOnExactOrder {
+    padding: 30px;
+    margin: 0 auto;
+  }
+
+  .markets:nth-child(odd) {
+    background-color: #4299e1;
+  }
+
+  /*
   h3 {
     margin: 40px 0 0;
   }
@@ -181,4 +210,5 @@
   a {
     color: #42b983;
   }
+  */
 </style>

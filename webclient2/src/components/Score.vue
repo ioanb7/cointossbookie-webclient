@@ -1,9 +1,13 @@
 <template>
-    <span>[{{this.item}}]</span>
+    <Coin v-bind:head="this.item == 'Home'" v-bind:neither="this.item == 'None'" @click="$emit('click')" />
 </template>
 
 <script>
+    import Coin from './Coin.vue'
     export default {
-        props: ["item"]
+        components: {
+            Coin
+        },
+        props: ["item"],
     }
 </script>

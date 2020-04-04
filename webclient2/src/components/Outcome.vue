@@ -1,10 +1,13 @@
 <template>
-    <div class="outcome">
-        <a href="#">
-            <p><b>{{this.getOutcomeName()}}</b></p>
-            <p>{{this.getPrice()}}</p>
-        </a>
-        <BetPlacer></BetPlacer>
+    <div class="outcome md-layout-item">
+        <p>
+            <a @click.prevent='isBetPlacerVisible = !isBetPlacerVisible' href="#">
+                <b>{{outcomeName}}</b>
+                &nbsp;
+                {{price}}
+            </a>
+        </p>
+        <BetPlacer v-if="isBetPlacerVisible" :price="price"></BetPlacer>
     </div>
 </template>
 
@@ -15,11 +18,16 @@
         components: {
             BetPlacer
         },
-        methods: {
-            getPrice() {
+        data() {
+            return {
+                'isBetPlacerVisible': false
+            }
+        },
+        computed: {
+            price() {
                 return this.outcome.TrueProbability * 1.05
             },
-            getOutcomeName() {
+            outcomeName() {
                 var hostType = this.outcome.HostType
                 var result = this.outcome.HostType
                 switch (this.outcome.OutcomeType) {
@@ -40,3 +48,22 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    //@import "vue-material/theme/engine";
+
+    .betplacer {
+        margin-bottom: 50px;
+    }
+
+    .md-layout-item {
+
+        &:after {
+            width: 100%;
+            height: 100%;
+            display: block;
+            background: md-get-palette-color(red, 200);
+            content: " ";
+        }
+    }
+</style>
