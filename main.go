@@ -5,22 +5,31 @@ import (
 	"cointossbookie/networking"
 	"fmt"
 	"time"
+	"os"
 )
 
+// TODO: https://stackoverflow.com/questions/35038864/how-to-access-global-variables
+// TODO: websocket server breaks if client is not responsive on send.. (or some other issue)
 func main() {
-	var game_id int = 1
+	var gameId int = 1
 	var ch = make(chan []byte)
 	go networking.SetUpNetworking(ch)
+
+	var isDebug = len(os.Args) > 1 && os.Args[1] == "dev"
+
+	if isDebug {
+		fmt.Println("DEBUG: ON")
+	}
 	//go broadcastGameOutput(ch)
 	for {
-		fmt.Printf("Game %d starting\n", game_id)
+		fmt.Printf("Game %d starting\n", gameId)
 
-		var g = Game.New(game_id, &ch)
+		var g = Game.New(isDebug, gameId, &ch)
 		g.Play(10000)
 
 		fmt.Printf("Pause before the next game starts..\n")
 		time.Sleep(2000 * time.Millisecond)
-		game_id++
+		gameId++
 	}
 }
 

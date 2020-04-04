@@ -31,7 +31,6 @@
             Score,
             BetPlacer
         },
-
         watch: {
             scoreSoFar: function (scoreSoFarNew) {
                 var self = this;

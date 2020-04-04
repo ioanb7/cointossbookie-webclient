@@ -15,6 +15,8 @@ import (
 	"time"
 )
 
+var _isDebug bool
+
 type Game struct {
 	id          int
 	json_output *chan []byte
@@ -22,7 +24,8 @@ type Game struct {
 	scoreboard  ScoreBoard
 }
 
-func New(id int, json_output *chan []byte) Game {
+func New(isDebug bool, id int, json_output *chan []byte) Game {
+	_isDebug = isDebug
 	g := Game{id, json_output, Calculator.Calculator{}, ScoreBoard{}}
 	return g
 }
@@ -48,9 +51,11 @@ func (g Game) Play(millisecondsBetweenRounds int) {
 		g.String()
 		g.showState()
 
-		// if debug..
-		if i == 4 {
-			time.Sleep(time.Millisecond * time.Duration(999999999))
+		if _isDebug {
+			fmt.Println("Game is in debug mode.")
+			if i == 4 {
+				time.Sleep(time.Millisecond * time.Duration(999999999))
+			}
 		}
 
 		if scoutinfo.FixtureState != ScoutInfo.FinishedFixtureState {
