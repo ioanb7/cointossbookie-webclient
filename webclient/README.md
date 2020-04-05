@@ -1,4 +1,4 @@
-# webclient2
+# cointossbookie-webclient
 
 ## Project setup
 ```

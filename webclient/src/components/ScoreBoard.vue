@@ -6,7 +6,7 @@
         </div>
         <div class="scores">
             <template v-for="item in this.items">
-                <Score :key="item.id" v-bind:item="item.val" />
+                <Score :key="item.id" :item="item.val" />
             </template>
         </div>
         <WalletComponent />

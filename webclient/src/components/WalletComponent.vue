@@ -1,20 +1,16 @@
 <template>
-    <p>Your money: <b>{{money}}io</b></p>
+    <p>Your money: <b>{{getWallet}}io</b></p>
 </template>
 
 <script>
-    import Wallet from '../helpers/wallet'
-    var wallet = new Wallet()
+    import {
+        mapGetters
+    } from 'vuex'
     export default {
         computed: {
-            money: {
-                get: function () {
-                    return wallet.get()
-                },
-                set: function (value) {
-                    return wallet.set(value)
-                }
-            }
+            ...mapGetters([
+                'getWallet'
+            ])
         }
     }
 </script>

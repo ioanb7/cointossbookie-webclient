@@ -1,5 +1,5 @@
 <template>
-    <Coin v-bind:head="this.item == 'Home'" v-bind:neither="this.item == 'None'" @click="$emit('click')" />
+    <Coin :coinType="coinType" />
 </template>
 
 <script>
@@ -9,5 +9,16 @@
             Coin
         },
         props: ["item"],
+        computed: {
+            coinType() {
+                if (this.item == 'Home') {
+                    return 'head';
+                }
+                if (this.item == 'Away') {
+                    return 'tail';
+                }
+                return ''
+            }
+        }
     }
 </script>

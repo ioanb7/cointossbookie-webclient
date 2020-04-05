@@ -1,38 +1,44 @@
 <template>
-    <div class="marketOnExactOrder" v-if="canChange(3)">
-        <header>
-            <h2>
-                <b>EXACT POSITION</b>
-            </h2>
-        </header>
-        <div class=" selectionsOrder">
-            <template v-for="item in hostTypes">
-                <Score :key="item.id" v-bind:item="item.val"
-                    :class="{canNotChange: !canChange(item.id), canChange: canChange(item.id)}"
-                    @click="flip(item.id)" />
-            </template>
+    <keep-alive>
+        <div class="marketOnExactOrder" v-if="canChange(3)">
+            <header>
+                <h2>
+                    <b>EXACT POSITION</b>
+                </h2>
+            </header>
+            <div class="selectionsOrder">
+                <template v-for="item in hostTypes">
+                    <Score :key="item.id" :item="item.val"
+                        :class="{canNotChange: !canChange(item.id), canChange: canChange(item.id)}"
+                        @click.native="flip(item.id)" />
+                </template>
+            </div>
+            <p><i>Note: Click on the image to toggle</i></p>
+            <p>
+                <a @click.prevent='isBetPlacerVisible = !isBetPlacerVisible' href="#">
+                    Place bet ?
+                </a>
+            </p>
+            <BetPlacer v-if="isBetPlacerVisible" :price="trueProbability" :outcomeUid=outcomeUid />
         </div>
-        <p><i>Note: Click on the image to toggle</i></p>
-        <p>
-            <a @click.prevent='isBetPlacerVisible = !isBetPlacerVisible' href="#">
-                Place bet ?
-            </a>
-        </p>
-        <BetPlacer v-if="isBetPlacerVisible" :price="trueProbability" :wallet="wallet" />
-    </div>
+    </keep-alive>
 </template>
 
 <script>
+    import {
+        ExactOrderMarket
+    } from '../helpers/outcomeUidGenerator'
+
     import BetPlacer from './BetPlacer.vue'
     import Score from './Score.vue'
     export default {
-        props: ["scoreSoFar", "trueProbability", "wallet"],
+        props: ["scoreSoFar", "trueProbability", "gameId"],
         components: {
             Score,
             BetPlacer
         },
         watch: {
-            scoreSoFar: function (scoreSoFarNew) {
+            scoreSoFar(scoreSoFarNew) {
                 var self = this;
                 scoreSoFarNew.forEach((score) => {
                     var localScore = self.hostTypes.find((elem) => elem.id == score.id);
@@ -48,7 +54,7 @@
                 })
             }
         },
-        data: function () {
+        data() {
             return {
                 'hostTypes': this.initialHostTypesValues(
                     !this.scoreSoFar ? [] : this.scoreSoFar.filter((s) => s.val != 'None').map((s) => s.val)
@@ -56,8 +62,13 @@
                 isBetPlacerVisible: false
             }
         },
+        computed: {
+            outcomeUid() {
+                return this.gameId + "-" + ExactOrderMarket(this.hostTypes.map(ht => ht.val))
+            }
+        },
         methods: {
-            initialHostTypesValues: function (initialValues) {
+            initialHostTypesValues(initialValues) {
                 const initialValuesLength = initialValues.length
                 initialValues = initialValues.concat(['Home', 'Away', 'Home', 'Away', 'Home'])
                 initialValues = initialValues.slice(0, 5)
@@ -70,7 +81,7 @@
                 });
                 return initialValues
             },
-            canChange: function (position) {
+            canChange(position) {
                 var localScore = this.hostTypes.find((elem) => elem.id == position);
                 if (!localScore) {
                     console.error("Couldn't find local store.");
@@ -78,7 +89,7 @@
                 }
                 return localScore.canChange
             },
-            flip: function (position) {
+            flip(position) {
                 this.hostTypes.forEach((item) => {
                     if (item.id == position && item.canChange) {
                         let currentValue = item.val

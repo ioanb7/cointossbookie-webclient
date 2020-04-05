@@ -1,13 +1,21 @@
 <template>
-    <span class="coin" @click="$emit('click')">
-        <img v-if="head" src="https://img.icons8.com/dotty/80/000000/fan-head.png" />
-        <img v-else-if="!neither" src="https://img.icons8.com/dotty/80/000000/tail-of-whale.png" />
+    <span class="coin">
+        <img v-if="coinType == 'head'" src="https://img.icons8.com/dotty/80/000000/fan-head.png" />
+        <img v-else-if="coinType == 'tail'" src="https://img.icons8.com/dotty/80/000000/tail-of-whale.png" />
         <span v-else class="neither">?</span>
     </span>
 </template>
 <script>
     export default {
-        props: ["head", "neither"]
+        props: {
+            "coinType": {
+                type: String,
+                default: "",
+                validator(prop) {
+                    return ["head", "tail", ""].includes(prop)
+                }
+            }
+        }
     }
 </script>
 

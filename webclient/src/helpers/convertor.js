@@ -1,53 +1,55 @@
+import outcomeUidGenerator from './outcomeUidGenerator'
+
 export default class Convertor {
   constructor() {}
 
-  marketType = (marketTypeId) => {
+  marketType(marketTypeId) {
     return [
       "Home Win Over Under",
       "Flip",
       "Flip On Exact Position",
       "Flip On Exact Order",
     ][marketTypeId];
-  };
+  }
 
-  outcomeType = (outcomeTypeId) => {
+  outcomeType(outcomeTypeId) {
     return ["Home / Away", "Yes / No", "Over / Under"][outcomeTypeId];
-  };
+  }
 
-  marketStatus = (marketStatusId) => {
+  marketStatus(marketStatusId) {
     return ["Open", "Suspended", "Hidden", "Settled"][marketStatusId];
-  };
+  }
 
-  hostType = (hostTypeId) => {
+  hostType(hostTypeId) {
     return ["None", "Home", "Away"][hostTypeId];
-  };
+  }
 
-  fixtureState = (fixtureStateId) => {
+  fixtureState(fixtureStateId) {
     return ["Pre Match", "In Play", "Finished"][fixtureStateId];
-  };
+  }
 
-  outcomes = (outcomes) => {
-    return outcomes.map((o) => ({
+  outcomes(market) {
+    return market.Outcomes.map((o) => ({
       TrueProbability: o.TrueProbability,
       HostType: this.hostType(o.HostType),
       OutcomeType: this.outcomeType(o.OutcomeType),
     }));
-  };
+  }
 
-  hostTypes = (hostTypes) => {
+  hostTypes(hostTypes) {
     return hostTypes.map((h) => this.hostType(h));
-  };
+  }
 
-  markets = (markets) => {
+  markets(markets) {
     return markets.map((market) => ({
       Id: market.Id,
       MarketType: this.marketType(market.MarketType),
       Handicap: market.Handicap,
-      Outcomes: this.outcomes(market.Outcomes),
+      Outcomes: this.outcomes(market),
       Status: this.marketStatus(market.Status),
       HostTypes: this.hostTypes(market.HostTypes),
     }));
-  };
+  }
 
   score(score) {
     return score.map((val, i) => ({
@@ -57,11 +59,18 @@ export default class Convertor {
   }
 
   All(gameOutput) {
+    var ms = this.markets(gameOutput.Markets)
+
+    ms.forEach(market => {
+      market.Outcomes.forEach(outcome => {
+        outcome.Uid = gameOutput.Id + "-" + outcomeUidGenerator(market, outcome)
+      });
+    });
     return {
-      GameId: gameOutput.id,
-      Markets: this.markets(gameOutput.Markets),
+      GameId: gameOutput.Id,
+      Markets: ms,
       Score: this.score(gameOutput.Score),
       FixtureState: this.fixtureState(gameOutput.FixtureState),
-    };
+    }
   }
 }

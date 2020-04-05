@@ -10,6 +10,7 @@ import (
 
 // TODO: https://stackoverflow.com/questions/35038864/how-to-access-global-variables
 // TODO: websocket server breaks if client is not responsive on send.. (or some other issue)
+ // TODO: add a config file.
 func main() {
 	var gameId int = 1
 	var ch = make(chan []byte)

@@ -30,7 +30,7 @@
             "request": "launch",
             "name": "vuejs: chrome",
             "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}/webclient2/src",
+            "webRoot": "${workspaceFolder}/webclient/src",
             "breakOnLoad": true,
             "sourceMapPathOverrides": {
                 "webpack:///src/*": "${webRoot}/*"

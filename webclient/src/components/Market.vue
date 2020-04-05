@@ -12,13 +12,13 @@
             </header>
             <div class="selectionsOrder">
                 <template v-for="item in hostTypes">
-                    <Score :key="item.id" v-bind:item="item.val" />
+                    <Score :key="item.id" :item="item.val" />
                 </template>
             </div>
 
             <div class="outcomes">
                 <template v-for="outcome in market.Outcomes">
-                    <Outcome :key="outcome.Id" v-bind:outcome="outcome" :wallet="wallet" />
+                    <Outcome :key="outcome.Id" :outcome="outcome" />
                 </template>
             </div>
         </div>
@@ -29,7 +29,9 @@
     import Outcome from './Outcome.vue'
     import Score from './Score.vue'
     export default {
-        props: ["market", "wallet"],
+        props: {
+            market: Object, // TODO: market type.
+        },
         components: {
             Score,
             Outcome

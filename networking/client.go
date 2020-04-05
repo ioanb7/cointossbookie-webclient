@@ -32,6 +32,8 @@ func (c *client) Close() {
 	close(c.quit)
 }
 
+// TODO: this breaks the server.
+// 2020/04/05 16:52:00 ws write error: wsasend tcp 127.0.0.1:7777->127.0.0.1:49408: wsasend: An existing connection was forcibly closed by the remote host.
 func (c *client) handle() {
 	for {
 		select {
