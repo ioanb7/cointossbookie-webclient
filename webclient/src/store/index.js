@@ -20,7 +20,7 @@ export default new Vuex.Store({
     },
   },
   mutations: {
-    ...storeHelpers.getMutations(BetManager, ["placeBet", "settledBets"])
+      ...storeHelpers.getPublicMutations(BetManager)
   },
   actions: {},
   modules: {},

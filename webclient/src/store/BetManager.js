@@ -1,5 +1,6 @@
 export default class BetterCode {
     constructor(state) {
+        this.public = [this.placeBet.name, this.settledBets.name]
         this.state = state;
     }
 
