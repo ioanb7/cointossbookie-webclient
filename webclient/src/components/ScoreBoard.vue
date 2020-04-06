@@ -5,9 +5,7 @@
             {{this.fixtureState}}
         </div>
         <div class="scores">
-            <template v-for="item in this.items">
-                <Score :key="item.id" :item="item.val" />
-            </template>
+            <Score v-for="item in this.items" :key="item.id" :item="item.val" />
         </div>
         <WalletComponent />
     </div>
@@ -33,6 +31,10 @@
     }
 
     .scoreboard {
+        // TODO: this has to be the final height.. it can't be more than this.
+        height: 300px;
+        overflow-y: hidden;
+
         padding-bottom: 20px;
         border: 1px solid #ccc;
         background-color: #48bb78;

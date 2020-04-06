@@ -7,11 +7,9 @@
                 </h2>
             </header>
             <div class="selectionsOrder">
-                <template v-for="item in hostTypes">
-                    <Score :key="item.id" :item="item.val"
-                        :class="{canNotChange: !canChange(item.id), canChange: canChange(item.id)}"
-                        @click.native="flip(item.id)" />
-                </template>
+                <Score v-for="item in hostTypes" :key="item.id" :item="item.val"
+                    :class="{canNotChange: !canChange(item.id), canChange: canChange(item.id)}"
+                    @click.native="flip(item.id)" />
             </div>
             <p><i>Note: Click on the image to toggle</i></p>
             <p>

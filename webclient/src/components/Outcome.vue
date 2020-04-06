@@ -1,10 +1,9 @@
 <template>
-    <div class="outcome md-layout-item">
+    <div class="outcome" :class="{home: outcome.HostType=='Home', away: outcome.HostType=='Away'}">
         <p>
             <a @click.prevent='isBetPlacerVisible = !isBetPlacerVisible' href="#">
-                <b>{{outcomeName}}</b>
-                &nbsp;
-                {{price}}
+                <b class="outcomeName">{{outcomeName}}</b>
+                <span class="price">{{price}}</span>
             </a>
         </p>
         <BetPlacer v-if="isBetPlacerVisible" :price="price" :outcomeUid="outcome.Uid"></BetPlacer>
@@ -50,10 +49,30 @@
 </script>
 
 <style lang="scss" scoped>
-    //@import "vue-material/theme/engine";
+    .outcome {
+        display: inline-block;
+        margin-left: 35px;
+
+        &:hover {
+            background-color: blue; // blue by default (home)
+            border-radius: 30px 0px;
+
+            &.away {
+                background-color: green; // todo: change colors
+            }
+        }
+    }
 
     .betplacer {
         margin-bottom: 50px;
+    }
+
+    .outcomeName,
+    .price {
+        display: block;
+        text-align: center;
+        padding: 0px 10px;
+
     }
 
     .md-layout-item {

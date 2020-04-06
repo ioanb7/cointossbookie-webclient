@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <md-content class="md-elevation-3">
-      <MainBetting msg="Welcome to Your Vue.js App" />
-    </md-content>
+    <main>
+      <MainBetting />
+    </main>
   </div>
 </template>
 
@@ -22,6 +22,7 @@
     line-height: 1.5;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
+    background: url(http://ioanb7.com/wp-content/themes/ioanb7_sys/assets/img/pattern.png);
   }
 
   // TODO: fix this

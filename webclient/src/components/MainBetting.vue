@@ -4,8 +4,9 @@
       <ScoreBoard :id="GameId" :fixtureState="FixtureState" :items="Score" />
       <MarketFlipOnExactOrder class="marketOnExactOrder" v-if="marketOnExactOrderTrueProbability" :scoreSoFar="Score"
         :trueProbability="marketOnExactOrderTrueProbability" :gameId="GameId" />
-      <div class="markets" :key="market.Id" v-for="market in this.marketsToDisplay">
-        <Market :market="market"></Market>
+      <div class="marketGroups">
+        <MarketGroup v-for="(marketGroup, index) in marketsToDisplayGrouped" :key="index" :marketType="index"
+          :markets="marketGroup" />
       </div>
     </div>
   </div>
@@ -14,9 +15,12 @@
 
 <script>
   import MarketFlipOnExactOrder from './MarketFlipOnExactOrder.vue'
-  import Market from './Market.vue'
+  import MarketGroup from './MarketGroup.vue'
   import ScoreBoard from './ScoreBoard.vue'
   import Networking from '../helpers/networking';
+  import {
+    groupBy
+  } from '../helpers'
   import {
     mapGetters,
     mapMutations
@@ -26,7 +30,7 @@
     name: "MainBetting",
     components: {
       ScoreBoard,
-      Market,
+      MarketGroup,
       MarketFlipOnExactOrder
     },
     data() {
@@ -50,8 +54,12 @@
       },
       marketsToDisplay() {
         return this.Markets.filter((item) => {
-          return item.Status == 'Open' && item.MarketType != 'Flip On Exact Order'
+          return item.MarketType != 'Flip On Exact Order'
         })
+      },
+      marketsToDisplayGrouped() {
+        const result = groupBy(this.marketsToDisplay, 'MarketType')
+        return result
       },
       marketOnExactOrderTrueProbability() {
         let market = this.Markets.find((item) => {
@@ -91,9 +99,16 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .centered-container {
     padding: 50px;
+    font-weight: 400;
+    font-family: 'Roboto Condensed', sans-serif; // TODO: body ?
+  }
+
+  // TODO: change this
+  .marketGroups {
+    height: 1000px;
   }
 
   .marketOnExactOrder {
@@ -101,7 +116,7 @@
     margin: 0 auto;
   }
 
-  .markets:nth-child(odd) {
+  .market:nth-child(odd) {
     background-color: #4299e1;
   }
 </style>

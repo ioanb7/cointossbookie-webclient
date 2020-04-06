@@ -5,8 +5,8 @@
             <b>io</b>
         </p>
         <ul class='suggestedBetValues'>
-            <template v-for="suggestedBetValue in suggestedBetValues">
-                <li :key="suggestedBetValue" v-if="canPlaceBet(suggestedBetValue)">
+            <template>
+                <li v-for="suggestedBetValue in suggestedBetValues" :key="suggestedBetValue">
                     <a href="#" @click.prevent='betValue = suggestedBetValue'>{{suggestedBetValue}}</a>
                 </li>
             </template>
@@ -42,6 +42,9 @@
             ]),
             suggestedBetValues() {
                 return [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000]
+            },
+            placeableBetValues() {
+                return this.suggestedBetValues.filter(x => this.canPlaceBet(x))
             },
             winnings() {
                 if (!this.betValue || this.betValue < 0) {

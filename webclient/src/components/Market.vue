@@ -1,25 +1,21 @@
 <template>
     <div class="market">
-        <div class="md-layout md-gutter">
+        <div>
             <header>
-                <h2>
+                <h3>
                     <span>{{this.market.MarketType}}</span>
                     &nbsp;
                     <span v-if="handicap">
                         (<strong>{{handicap}}</strong>)
                     </span>
-                </h2>
+                </h3>
             </header>
-            <div class="selectionsOrder">
-                <template v-for="item in hostTypes">
-                    <Score :key="item.id" :item="item.val" />
-                </template>
+            <div class="selectionsOrder" v-if="hostTypes.length > 0">
+                <Score v-for="item in hostTypes" :key="item.id" :item="item.val" />
             </div>
 
             <div class="outcomes">
-                <template v-for="outcome in market.Outcomes">
-                    <Outcome :key="outcome.Id" :outcome="outcome" />
-                </template>
+                <Outcome v-for="outcome in market.Outcomes" :key="outcome.Id" :outcome="outcome" />
             </div>
         </div>
     </div>
@@ -66,6 +62,12 @@
 </script>
 
 <style lang="scss" scoped>
+    .outcomes,
+    header {
+        display: inline-block;
+    }
+
+    /*
     header {
         width: 80%;
         margin: 20px;
@@ -82,5 +84,5 @@
         strong {
             font-weight: 600;
         }
-    }
+    }*/
 </style>
