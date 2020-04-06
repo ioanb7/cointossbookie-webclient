@@ -47,6 +47,7 @@ func (c *client) handle() {
 				//if err := c.conn.WriteMessage(websocket.BinaryMessage, n); err != nil {
 				//if err := c.conn.WriteJSON(n); err != nil {
 				log.Println("ws write error:", err)
+				c.conn.Close()
 				return
 			}
 		}

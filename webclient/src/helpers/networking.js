@@ -7,6 +7,16 @@ export default class Networking {
     this.convertor = new Convertor();
   }
   
+  logMessage(message, isError) {
+    message = `cointoss bookie's websocket: ${message}`
+    if (!isError) {
+      console.log(message)
+      return
+    }
+    
+    console.error(message)
+  }
+
   run = () => {
     var self = this;
 
@@ -15,19 +25,20 @@ export default class Networking {
 
     rws.addEventListener('open', () => {
       rws.send('hello!');
-      console.log("WebSocket: open")
+      self.logMessage('Open')
     });
 
     rws.addEventListener('error', () => {
       console.log("WebSocket: error")
+      self.logMessage('Errored', true)
     });
 
     rws.addEventListener('close', () => {
-      console.log("WebSocket: close")
+      self.logMessage('Closed')
     });
 
     rws.addEventListener('message', (message) => {
-      console.log("WebSocket: message")
+      self.logMessage('Received message')
       self.onMessage(self.convertor.All(JSON.parse(message.data)))
     });
 
