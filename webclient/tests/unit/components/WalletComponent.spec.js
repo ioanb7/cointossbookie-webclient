@@ -14,7 +14,7 @@ describe("WalletComponent.vue", () => {
       getWallet: () => 99,
     }
     store = new Vuex.Store({
-      actions,
+      getters,
     })
   })
 
