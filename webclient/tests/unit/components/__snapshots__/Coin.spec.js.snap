@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Coin.vue renders head icon 1`] = `
+<span class="coin">
+  <img src="https://img.icons8.com/dotty/80/000000/fan-head.png">
+</span>
+`;
+
+exports[`Coin.vue renders home icon 1`] = `
+<span class="coin">
+  <img src="https://img.icons8.com/dotty/80/000000/fan-head.png">
+</span>
+`;
+
+exports[`Coin.vue renders none icon 1`] = `
+<span class="coin">
+  <span class="neither">
+    ?
+  </span>
+</span>
+`;
+
+exports[`Coin.vue renders tail icon 1`] = `
+<span class="coin">
+  <img src="https://img.icons8.com/dotty/80/000000/tail-of-whale.png">
+</span>
+`;

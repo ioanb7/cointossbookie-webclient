@@ -11,6 +11,9 @@
             ...mapGetters([
                 'getWallet'
             ])
+        },
+        data() {
+            return {}
         }
     }
 </script>

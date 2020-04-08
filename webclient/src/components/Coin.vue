@@ -15,6 +15,9 @@
                     return ["head", "tail", ""].includes(prop)
                 }
             }
+        },
+        data() {
+            return {};
         }
     }
 </script>
