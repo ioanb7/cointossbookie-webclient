@@ -1,5 +1,5 @@
 <template>
-    <div class="market">
+    <div class="market" :class="{open: market.Status == 'Open', notOpen: market.Status != 'Open'}">
         <div>
             <header>
                 <h3>
@@ -65,6 +65,14 @@
     .outcomes,
     header {
         display: inline-block;
+    }
+
+    .notOpen {
+        color: #ccc;
+
+        a {
+            color: #ccc;
+        }
     }
 
     /*

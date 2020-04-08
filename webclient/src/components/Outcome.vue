@@ -49,6 +49,20 @@
 </script>
 
 <style lang="scss" scoped>
+    a:visited,
+    a:active,
+    a:link {
+        color: black;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .outcomeName {
+        text-decoration: underline;
+    }
+
     .outcome {
         display: inline-block;
         margin-left: 35px;
