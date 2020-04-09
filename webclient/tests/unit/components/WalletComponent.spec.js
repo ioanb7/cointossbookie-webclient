@@ -25,8 +25,8 @@ describe("WalletComponent.vue", () => {
     })
   }
 
-  it("renders correct ammount", () => {
+  it("renders correct amount", () => {
     const wrapper = getWallet()
-    expect(wrapper.text()).toContain("99io")
+    expect(wrapper.text()).toContain(" 99io")
   })
 })
