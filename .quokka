@@ -1,6 +1,0 @@
-{
-  "babel": {
-    "configFile": "./webclient/babel.config.js",
-    "path": "./webclient/node_modules/@babel/core"
-  }
-}

@@ -24,17 +24,6 @@
             "args": [],
             "showLog": true,
             "apiVersion": 1
-        },
-        {
-            "type": "chrome",
-            "request": "launch",
-            "name": "vuejs: chrome",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}/webclient/src",
-            "breakOnLoad": true,
-            "sourceMapPathOverrides": {
-                "webpack:///src/*": "${webRoot}/*"
-            }
         }
     ]
 }
