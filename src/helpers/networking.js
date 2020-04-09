@@ -20,27 +20,23 @@ export default class Networking {
   run = () => {
     var self = this;
 
-    const rws = new ReconnectingWebSocket('ws://localhost:7777/status');
-    rws.binaryType = "arraybuffer";
-
-    rws.addEventListener('open', () => {
-      rws.send('hello!');
+    this.rws = new ReconnectingWebSocket(process.env.WEBSOCKET_URL);
+    this.rws.addEventListener('open', () => {
+      self.rws.send('hello!');
       self.logMessage('Open')
     });
 
-    rws.addEventListener('error', () => {
-      console.log("WebSocket: error")
+    this.rws.addEventListener('error', () => {
       self.logMessage('Errored', true)
     });
 
-    rws.addEventListener('close', () => {
+    this.rws.addEventListener('close', () => {
       self.logMessage('Closed')
     });
 
-    rws.addEventListener('message', (message) => {
+    this.rws.addEventListener('message', (message) => {
       self.logMessage('Received message')
       self.onMessage(self.convertor.All(JSON.parse(message.data)))
     });
-
   }
 }

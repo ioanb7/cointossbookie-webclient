@@ -1,0 +1,1258 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Convertor.js renders fixture state 1`] = `
+"
+0: Pre Match
+1: In Play
+2: Finished
+3: undefined
+"
+`;
+
+exports[`Convertor.js renders game output sample 1`] = `
+Object {
+  "FixtureState": "In Play",
+  "GameId": 35,
+  "Markets": Array [
+    Object {
+      "Handicap": 1,
+      "HostTypes": Array [],
+      "Id": 0,
+      "MarketType": "Flip",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Home / Away",
+          "TrueProbability": 0,
+          "Uid": "35-Flip-1-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Home / Away",
+          "TrueProbability": 1,
+          "Uid": "35-Flip-1-Away",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 2,
+      "HostTypes": Array [],
+      "Id": 1,
+      "MarketType": "Flip",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Home / Away",
+          "TrueProbability": 0,
+          "Uid": "35-Flip-2-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Home / Away",
+          "TrueProbability": 1,
+          "Uid": "35-Flip-2-Away",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 3,
+      "HostTypes": Array [],
+      "Id": 2,
+      "MarketType": "Flip",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Home / Away",
+          "TrueProbability": 0.5,
+          "Uid": "35-Flip-3-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Home / Away",
+          "TrueProbability": 0.5,
+          "Uid": "35-Flip-3-Away",
+        },
+      ],
+      "Status": "Open",
+    },
+    Object {
+      "Handicap": 4,
+      "HostTypes": Array [],
+      "Id": 3,
+      "MarketType": "Flip",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Home / Away",
+          "TrueProbability": 0.5,
+          "Uid": "35-Flip-4-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Home / Away",
+          "TrueProbability": 0.5,
+          "Uid": "35-Flip-4-Away",
+        },
+      ],
+      "Status": "Open",
+    },
+    Object {
+      "Handicap": 5,
+      "HostTypes": Array [],
+      "Id": 4,
+      "MarketType": "Flip",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Home / Away",
+          "TrueProbability": 0.5,
+          "Uid": "35-Flip-5-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Home / Away",
+          "TrueProbability": 0.5,
+          "Uid": "35-Flip-5-Away",
+        },
+      ],
+      "Status": "Open",
+    },
+    Object {
+      "Handicap": 0.5,
+      "HostTypes": Array [],
+      "Id": 5,
+      "MarketType": "Home Win Over Under",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Over / Under",
+          "TrueProbability": 2,
+          "Uid": "35-Home Win Over Under-0.5-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Over / Under",
+          "TrueProbability": 2,
+          "Uid": "35-Home Win Over Under-0.5-Away",
+        },
+      ],
+      "Status": "Suspended",
+    },
+    Object {
+      "Handicap": 1.5,
+      "HostTypes": Array [],
+      "Id": 6,
+      "MarketType": "Home Win Over Under",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Over / Under",
+          "TrueProbability": 2,
+          "Uid": "35-Home Win Over Under-1.5-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Over / Under",
+          "TrueProbability": 2,
+          "Uid": "35-Home Win Over Under-1.5-Away",
+        },
+      ],
+      "Status": "Suspended",
+    },
+    Object {
+      "Handicap": 2.5,
+      "HostTypes": Array [],
+      "Id": 7,
+      "MarketType": "Home Win Over Under",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Over / Under",
+          "TrueProbability": 2,
+          "Uid": "35-Home Win Over Under-2.5-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Over / Under",
+          "TrueProbability": 2,
+          "Uid": "35-Home Win Over Under-2.5-Away",
+        },
+      ],
+      "Status": "Open",
+    },
+    Object {
+      "Handicap": 3.5,
+      "HostTypes": Array [],
+      "Id": 8,
+      "MarketType": "Home Win Over Under",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Over / Under",
+          "TrueProbability": 2,
+          "Uid": "35-Home Win Over Under-3.5-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Over / Under",
+          "TrueProbability": 2,
+          "Uid": "35-Home Win Over Under-3.5-Away",
+        },
+      ],
+      "Status": "Open",
+    },
+    Object {
+      "Handicap": 4.5,
+      "HostTypes": Array [],
+      "Id": 9,
+      "MarketType": "Home Win Over Under",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Over / Under",
+          "TrueProbability": 2,
+          "Uid": "35-Home Win Over Under-4.5-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Over / Under",
+          "TrueProbability": 2,
+          "Uid": "35-Home Win Over Under-4.5-Away",
+        },
+      ],
+      "Status": "Open",
+    },
+    Object {
+      "Handicap": 1,
+      "HostTypes": Array [],
+      "Id": 10,
+      "MarketType": "Flip On Exact Position",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Home / Away",
+          "TrueProbability": 0,
+          "Uid": "35-Flip On Exact Position-1-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Home / Away",
+          "TrueProbability": 1,
+          "Uid": "35-Flip On Exact Position-1-Away",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 2,
+      "HostTypes": Array [],
+      "Id": 11,
+      "MarketType": "Flip On Exact Position",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Home / Away",
+          "TrueProbability": 0,
+          "Uid": "35-Flip On Exact Position-2-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Home / Away",
+          "TrueProbability": 1,
+          "Uid": "35-Flip On Exact Position-2-Away",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 3,
+      "HostTypes": Array [],
+      "Id": 12,
+      "MarketType": "Flip On Exact Position",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Home / Away",
+          "TrueProbability": 0.5,
+          "Uid": "35-Flip On Exact Position-3-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Home / Away",
+          "TrueProbability": 0.5,
+          "Uid": "35-Flip On Exact Position-3-Away",
+        },
+      ],
+      "Status": "Open",
+    },
+    Object {
+      "Handicap": 4,
+      "HostTypes": Array [],
+      "Id": 13,
+      "MarketType": "Flip On Exact Position",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Home / Away",
+          "TrueProbability": 1,
+          "Uid": "35-Flip On Exact Position-4-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Home / Away",
+          "TrueProbability": 1,
+          "Uid": "35-Flip On Exact Position-4-Away",
+        },
+      ],
+      "Status": "Open",
+    },
+    Object {
+      "Handicap": 5,
+      "HostTypes": Array [],
+      "Id": 14,
+      "MarketType": "Flip On Exact Position",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Home / Away",
+          "TrueProbability": 2,
+          "Uid": "35-Flip On Exact Position-5-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Home / Away",
+          "TrueProbability": 2,
+          "Uid": "35-Flip On Exact Position-5-Away",
+        },
+      ],
+      "Status": "Open",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Home",
+        "Home",
+        "Home",
+        "Home",
+        "Home",
+      ],
+      "Id": 15,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Home-Home-Home-Home-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Home-Home-Home-Home-Home",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Home",
+        "Home",
+        "Home",
+        "Home",
+        "Away",
+      ],
+      "Id": 16,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Home-Home-Home-Home-Away",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Home-Home-Home-Home-Away",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Home",
+        "Home",
+        "Home",
+        "Away",
+        "Home",
+      ],
+      "Id": 17,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Home-Home-Home-Away-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Home-Home-Home-Away-Home",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Home",
+        "Home",
+        "Home",
+        "Away",
+        "Away",
+      ],
+      "Id": 18,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Home-Home-Home-Away-Away",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Home-Home-Home-Away-Away",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Home",
+        "Home",
+        "Away",
+        "Home",
+        "Home",
+      ],
+      "Id": 19,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Home-Home-Away-Home-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Home-Home-Away-Home-Home",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Home",
+        "Home",
+        "Away",
+        "Home",
+        "Away",
+      ],
+      "Id": 20,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Home-Home-Away-Home-Away",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Home-Home-Away-Home-Away",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Home",
+        "Home",
+        "Away",
+        "Away",
+        "Home",
+      ],
+      "Id": 21,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Home-Home-Away-Away-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Home-Home-Away-Away-Home",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Home",
+        "Home",
+        "Away",
+        "Away",
+        "Away",
+      ],
+      "Id": 22,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Home-Home-Away-Away-Away",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Home-Home-Away-Away-Away",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Home",
+        "Away",
+        "Home",
+        "Home",
+        "Home",
+      ],
+      "Id": 23,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Home-Away-Home-Home-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Home-Away-Home-Home-Home",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Home",
+        "Away",
+        "Home",
+        "Home",
+        "Away",
+      ],
+      "Id": 24,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Home-Away-Home-Home-Away",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Home-Away-Home-Home-Away",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Home",
+        "Away",
+        "Home",
+        "Away",
+        "Home",
+      ],
+      "Id": 25,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Home-Away-Home-Away-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Home-Away-Home-Away-Home",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Home",
+        "Away",
+        "Home",
+        "Away",
+        "Away",
+      ],
+      "Id": 26,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Home-Away-Home-Away-Away",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Home-Away-Home-Away-Away",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Home",
+        "Away",
+        "Away",
+        "Home",
+        "Home",
+      ],
+      "Id": 27,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Home-Away-Away-Home-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Home-Away-Away-Home-Home",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Home",
+        "Away",
+        "Away",
+        "Home",
+        "Away",
+      ],
+      "Id": 28,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Home-Away-Away-Home-Away",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Home-Away-Away-Home-Away",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Home",
+        "Away",
+        "Away",
+        "Away",
+        "Home",
+      ],
+      "Id": 29,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Home-Away-Away-Away-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Home-Away-Away-Away-Home",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Home",
+        "Away",
+        "Away",
+        "Away",
+        "Away",
+      ],
+      "Id": 30,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Home-Away-Away-Away-Away",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Home-Away-Away-Away-Away",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Away",
+        "Home",
+        "Home",
+        "Home",
+        "Home",
+      ],
+      "Id": 31,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Away-Home-Home-Home-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Away-Home-Home-Home-Home",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Away",
+        "Home",
+        "Home",
+        "Home",
+        "Away",
+      ],
+      "Id": 32,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Away-Home-Home-Home-Away",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Away-Home-Home-Home-Away",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Away",
+        "Home",
+        "Home",
+        "Away",
+        "Home",
+      ],
+      "Id": 33,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Away-Home-Home-Away-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Away-Home-Home-Away-Home",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Away",
+        "Home",
+        "Home",
+        "Away",
+        "Away",
+      ],
+      "Id": 34,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Away-Home-Home-Away-Away",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Away-Home-Home-Away-Away",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Away",
+        "Home",
+        "Away",
+        "Home",
+        "Home",
+      ],
+      "Id": 35,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Away-Home-Away-Home-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Away-Home-Away-Home-Home",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Away",
+        "Home",
+        "Away",
+        "Home",
+        "Away",
+      ],
+      "Id": 36,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Away-Home-Away-Home-Away",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Away-Home-Away-Home-Away",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Away",
+        "Home",
+        "Away",
+        "Away",
+        "Home",
+      ],
+      "Id": 37,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Away-Home-Away-Away-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Away-Home-Away-Away-Home",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Away",
+        "Home",
+        "Away",
+        "Away",
+        "Away",
+      ],
+      "Id": 38,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 0,
+          "Uid": "35-EXACT_ORDER-Away-Home-Away-Away-Away",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 1,
+          "Uid": "35-EXACT_ORDER-Away-Home-Away-Away-Away",
+        },
+      ],
+      "Status": "Settled",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Away",
+        "Away",
+        "Home",
+        "Home",
+        "Home",
+      ],
+      "Id": 39,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 2,
+          "Uid": "35-EXACT_ORDER-Away-Away-Home-Home-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 2,
+          "Uid": "35-EXACT_ORDER-Away-Away-Home-Home-Home",
+        },
+      ],
+      "Status": "Open",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Away",
+        "Away",
+        "Home",
+        "Home",
+        "Away",
+      ],
+      "Id": 40,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 2,
+          "Uid": "35-EXACT_ORDER-Away-Away-Home-Home-Away",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 2,
+          "Uid": "35-EXACT_ORDER-Away-Away-Home-Home-Away",
+        },
+      ],
+      "Status": "Open",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Away",
+        "Away",
+        "Home",
+        "Away",
+        "Home",
+      ],
+      "Id": 41,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 2,
+          "Uid": "35-EXACT_ORDER-Away-Away-Home-Away-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 2,
+          "Uid": "35-EXACT_ORDER-Away-Away-Home-Away-Home",
+        },
+      ],
+      "Status": "Open",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Away",
+        "Away",
+        "Home",
+        "Away",
+        "Away",
+      ],
+      "Id": 42,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 2,
+          "Uid": "35-EXACT_ORDER-Away-Away-Home-Away-Away",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 2,
+          "Uid": "35-EXACT_ORDER-Away-Away-Home-Away-Away",
+        },
+      ],
+      "Status": "Open",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Away",
+        "Away",
+        "Away",
+        "Home",
+        "Home",
+      ],
+      "Id": 43,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 2,
+          "Uid": "35-EXACT_ORDER-Away-Away-Away-Home-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 2,
+          "Uid": "35-EXACT_ORDER-Away-Away-Away-Home-Home",
+        },
+      ],
+      "Status": "Open",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Away",
+        "Away",
+        "Away",
+        "Home",
+        "Away",
+      ],
+      "Id": 44,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 2,
+          "Uid": "35-EXACT_ORDER-Away-Away-Away-Home-Away",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 2,
+          "Uid": "35-EXACT_ORDER-Away-Away-Away-Home-Away",
+        },
+      ],
+      "Status": "Open",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Away",
+        "Away",
+        "Away",
+        "Away",
+        "Home",
+      ],
+      "Id": 45,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 2,
+          "Uid": "35-EXACT_ORDER-Away-Away-Away-Away-Home",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 2,
+          "Uid": "35-EXACT_ORDER-Away-Away-Away-Away-Home",
+        },
+      ],
+      "Status": "Open",
+    },
+    Object {
+      "Handicap": 0,
+      "HostTypes": Array [
+        "Away",
+        "Away",
+        "Away",
+        "Away",
+        "Away",
+      ],
+      "Id": 46,
+      "MarketType": "Flip On Exact Order",
+      "Outcomes": Array [
+        Object {
+          "HostType": "Home",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 2,
+          "Uid": "35-EXACT_ORDER-Away-Away-Away-Away-Away",
+        },
+        Object {
+          "HostType": "Away",
+          "OutcomeType": "Yes / No",
+          "TrueProbability": 2,
+          "Uid": "35-EXACT_ORDER-Away-Away-Away-Away-Away",
+        },
+      ],
+      "Status": "Open",
+    },
+  ],
+  "Score": Array [
+    Object {
+      "id": 0,
+      "val": "Away",
+    },
+    Object {
+      "id": 1,
+      "val": "Away",
+    },
+    Object {
+      "id": 2,
+      "val": "None",
+    },
+    Object {
+      "id": 3,
+      "val": "None",
+    },
+    Object {
+      "id": 4,
+      "val": "None",
+    },
+  ],
+}
+`;
+
+exports[`Convertor.js renders host type 1`] = `
+"
+0: None
+1: Home
+2: Away
+3: undefined
+"
+`;
+
+exports[`Convertor.js renders market status 1`] = `
+"
+0: Open
+1: Suspended
+2: Hidden
+3: Settled
+4: undefined
+"
+`;
+
+exports[`Convertor.js renders market type 1`] = `
+"
+0: Home Win Over Under
+1: Flip
+2: Flip On Exact Position
+3: Flip On Exact Order
+4: undefined
+"
+`;
+
+exports[`Convertor.js renders outcome type 1`] = `
+"
+0: Home / Away
+1: Yes / No
+2: Over / Under
+3: undefined
+"
+`;
