@@ -1,7 +1,7 @@
 <template>
     <div class="betplacer">
         <p>
-            <input type="text" v-model="betValue" label="How much would you like to bet?" @focus="focused" />
+            <input type="text" v-model="betValue" label="How much would you like to bet?" />
             <b>io</b>
         </p>
         <ul class='suggestedBetValues'>
@@ -11,13 +11,14 @@
                 </li>
             </template>
         </ul>
-        <p>Estimated winnings: {{winnings}} <b>io</b></p>
-        <p><a @click.prevent='placeMyBet' href="#">Bet</a></p>
+        <p>Estimated winnings: <span class="estimated-winnings">{{winnings}}</span><b>io</b></p>
+        <p><a @click.prevent='placeMyBet' class="placeMyBet" href="#">Bet</a></p>
         <p v-if='placed'>Placed!</p>
     </div>
 </template>
 
 <script>
+    // TODO: rename css classes in the entire project to use the suggested standard format
     import {
         mapGetters,
         mapMutations
@@ -53,9 +54,9 @@
                 var bet = parseFloat(this.betValue)
                 var price = this.price
                 var winnings = bet + bet * price
-                if (isNaN(winnings)) {
-                    return 0.0.toFixed(2)
-                }
+                //if (isNaN(winnings)) {
+                //    return 0.0.toFixed(2)
+                //}
                 return winnings.toFixed(2)
             }
         },
@@ -65,20 +66,15 @@
             ]),
             placeMyBet() {
                 this.placeBet({
-                    outcomeUid: this.outcomeUid,
+                    uid: this.outcomeUid,
                     betValue: this.betValue,
                     winnings: parseFloat(this.winnings)
                 })
-                this.placed = true;
-                this.betValue = 0;
+                this.placed = true
+                this.betValue = ''
             },
-            canPlaceBet(bet) {
-                return bet <= this.getWallet && bet > 0;
-            },
-            focused() {
-                if (this.betValue == "0") {
-                    this.betValue = ''
-                }
+            canPlaceBet(betValue) {
+                return betValue <= this.getWallet && betValue > 0
             }
         }
     }

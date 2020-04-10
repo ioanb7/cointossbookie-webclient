@@ -5,6 +5,7 @@ module.exports = () => ({
         ],
 
         tests: [
-            'test/**/*Spec.js'
+            'test/**/*Spec.js',
+            'src/**/*.test.js'
         ]
 });

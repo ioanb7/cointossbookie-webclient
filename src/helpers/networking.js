@@ -26,7 +26,7 @@ export default class Networking {
       maxReconnectInterval: process.env.VUE_APP_WEBSOCKET_MAX_RECONNECT_INTERVAL || 2500
     });
     this.rws.addEventListener('open', () => {
-      self.rws.send('hello!');
+      self.rws.send('hello!')
       self.logMessage('Open')
     });
 
