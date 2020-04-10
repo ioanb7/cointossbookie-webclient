@@ -5,10 +5,6 @@ Vue.use(Vuex);
 
 import BetManager from './BetManager';
 import * as storeHelpers from './storeHelpers';
-import Counter2 from '../store/storeExample'
-import {
-  getModule
-} from 'vuex-module-decorators';
 
 const store = new Vuex.Store({
   state: {
@@ -29,8 +25,6 @@ const store = new Vuex.Store({
   actions: {},
   modules: {},
   modules: {
-    counter2: Counter2
   }
 });
 export default store
-export const Counter2Module = getModule(Counter2, store);

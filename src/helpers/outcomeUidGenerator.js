@@ -9,6 +9,7 @@ export default function outcomeUidGenerator(market, outcome) {
     if (!market) {
         throw "market is null"
     }
+    
     switch (market.MarketType) {
         case "Home Win Over Under":
         case "Flip":

@@ -85,7 +85,6 @@
         var settledOutcomes = settledMarkets.flatMap(m => m.Outcomes)
         var mySettledOutcomes = settledOutcomes.filter(o => bets.includes(o.Uid))
         if (mySettledOutcomes.length) {
-          debugger; // eslint-disable-line
           var mySettledBets = mySettledOutcomes.map(o => ({
             uid: o.Uid,
             won: o.TrueProbability == 1.0
