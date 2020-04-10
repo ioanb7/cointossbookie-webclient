@@ -1,30 +1,19 @@
 <template>
-    <p>Your money: <b>{{getWallet}}io</b>, counter: {{counter}} {{countValue}} </p>
+    <p>Your money: <b>{{getWallet}}io</b></p>
 </template>
 
 <script>
     import {
-        mapGetters,
-        mapMutations
+        mapGetters
     } from 'vuex'
-
     export default {
         computed: {
             ...mapGetters([
-                'getWallet',
-                'countValue'
+                'getWallet'
             ])
         },
         data() {
-            this.increment(5)
-            return {
-                counter: this.counter
-            }
-        },
-        methods: {
-            ...mapMutations([
-                'increment'
-            ])
+            return {}
         }
     }
 </script>
