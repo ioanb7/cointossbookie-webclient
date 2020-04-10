@@ -6,7 +6,7 @@ import Networking from '@/helpers/Networking'
 
 describe('Networking.js', () => {
   var getNetworkingAndServer = function (onMessage) {
-    const server = new Server(process.env.WEBSOCKET_URL);
+    const server = new Server(process.env.VUE_APP_WEBSOCKET_URL);
     const networking = new Networking(onMessage);
 
     expect(Convertor).toHaveBeenCalledTimes(1);
@@ -58,6 +58,30 @@ describe('Networking.js', () => {
     expect(mockConvertorAll).toHaveBeenCalledTimes(1);
     //expect(mockConvertorAll.mock.calls[0][0]).toEqual(payload) == below
     expect(mockConvertorAll).toHaveBeenNthCalledWith(1, payload)
+  })
+
+   // TODO: websocket library doesn't look like it supports reconnect
+  it.skip('reconnects', async () => {
+    // set up
+    const dispatch = jest.fn();
+    let {
+      server,
+      networking
+    } = getNetworkingAndServer(dispatch)
+
+    // execute
+    networking.run()
+    await server.connected
+    expect(networking.rws.readyState).toEqual(WebSocket.OPEN)
+    await server.close()
+    await server.connected
+
+    return new Promise(function(resolve) {
+      setTimeout(function () {
+        expect(networking.rws.readyState).toEqual(WebSocket.OPEN)
+        resolve()
+      }, 4000)
+    })
   })
 
   it('calls the logger when it retrieves a message', async () => {

@@ -3,4 +3,5 @@ module.exports = {
         devtool: 'source-map'
     },
     assetsDir: 'cointossbookie',
+    transpileDependencies: ['vuex-module-decorators']
 }
