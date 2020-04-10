@@ -30,7 +30,8 @@ describe("Market.vue", () => {
     var market = shallowMount(Market, {
       propsData: {
         market: {
-          Handicap: handicap || 0
+          Handicap: handicap || 0,
+          Outcomes: []
         }
       },
       store,

@@ -11,12 +11,12 @@ describe('Coin.vue', () => {
   }
 
   it('renders head icon', () => {
-    const coin = getCoin("head")
+    const coin = getCoin("heads")
     expect(coin.html()).toMatchSnapshot();
   })
 
   it('renders tail icon', () => {
-    const coin = getCoin("tail")
+    const coin = getCoin("tails")
     expect(coin.html()).toMatchSnapshot();
   })
 

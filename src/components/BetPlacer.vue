@@ -6,7 +6,7 @@
         </p>
         <ul class='suggestedBetValues'>
             <template>
-                <li v-for="suggestedBetValue in suggestedBetValues" :key="suggestedBetValue">
+                <li v-for="suggestedBetValue in placeableBetValues" :key="suggestedBetValue">
                     <a href="#" @click.prevent='betValue = suggestedBetValue'>{{suggestedBetValue}}</a>
                 </li>
             </template>
@@ -41,11 +41,9 @@
             ...mapGetters([
                 'getWallet'
             ]),
-            suggestedBetValues() {
-                return [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000]
-            },
             placeableBetValues() {
-                return this.suggestedBetValues.filter(x => this.canPlaceBet(x))
+                var suggestedBetValues = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000]
+                return suggestedBetValues.filter(x => this.canPlaceBet(x))
             },
             winnings() {
                 if (!this.betValue || this.betValue < 0) {
@@ -54,9 +52,6 @@
                 var bet = parseFloat(this.betValue)
                 var price = this.price
                 var winnings = bet + bet * price
-                //if (isNaN(winnings)) {
-                //    return 0.0.toFixed(2)
-                //}
                 return winnings.toFixed(2)
             }
         },

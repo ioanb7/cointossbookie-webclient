@@ -12,10 +12,10 @@
         computed: {
             coinType() {
                 if (this.item == 'Home') {
-                    return 'head';
+                    return 'heads';
                 }
                 if (this.item == 'Away') {
-                    return 'tail';
+                    return 'tails';
                 }
                 return ''
             }

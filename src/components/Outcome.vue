@@ -1,7 +1,7 @@
 <template>
     <div class="outcome" :class="{home: outcome.HostType=='Home', away: outcome.HostType=='Away'}">
         <p>
-            <a @click.prevent='isBetPlacerVisible = !isBetPlacerVisible' href="#">
+            <a @click.prevent='toggleIsBetPlacerVisible' class="isBetPlacerVisibleTrigger" href="#">
                 <b class="outcomeName">{{outcomeName}}</b>
                 <span class="price">{{price}}</span>
             </a>
@@ -13,7 +13,16 @@
 <script>
     import BetPlacer from './BetPlacer.vue'
     export default {
-        props: ["outcome"],
+        props: {
+            "outcome": {
+                type: Object,
+                required: true
+            },
+            "isOutcomeStatusOpen": {
+                type: Boolean,
+                required: true
+            }
+        },
         components: {
             BetPlacer
         },
@@ -22,11 +31,18 @@
                 'isBetPlacerVisible': false
             }
         },
+        watch: {
+            isOutcomeStatusOpen(isOutcomeStatusOpen) {
+                if (!isOutcomeStatusOpen) {
+                    this.isBetPlacerVisible = false
+                }
+            }
+        },
         computed: {
             price() {
-                return this.outcome.TrueProbability * 1.05
+                return this.outcome.TrueProbability * 0.95
             },
-            outcomeName() {
+            outcomeName() { // TODO: move this logic out of here i think.
                 var hostType = this.outcome.HostType
                 var result = this.outcome.HostType
                 switch (this.outcome.OutcomeType) {
@@ -43,6 +59,15 @@
                         }
                 }
                 return result
+            }
+        },
+        methods: {
+            toggleIsBetPlacerVisible() {
+                if (!this.isOutcomeStatusOpen) {
+                    return;
+                }
+
+                this.isBetPlacerVisible = !this.isBetPlacerVisible
             }
         }
     }

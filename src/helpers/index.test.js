@@ -4,14 +4,14 @@ describe('helpers.js', () => {
 
   describe('groupBy', () => {
 
-    it('groupBy works for an empty list', () => {
+    it('works for an empty list', () => {
       var input = []
       var output = {}
 
       expect(groupBy(input, 'age')).toEqual(output)
     });
 
-    it('groupBy works for integer key value', () => {
+    it('works for integer key value', () => {
       var input = [{
           name: 'x',
           age: 20
@@ -29,7 +29,7 @@ describe('helpers.js', () => {
       expect(groupBy(input, 'age')).toEqual(output)
     });
 
-    it("groupBy doesn't combine values if they don't equal", () => {
+    it("doesn't combine values if they don't equal", () => {
       var input = [{
           name: 'x',
           age: 20

@@ -17,13 +17,11 @@ describe("MarketFlipOnExactOrder.vue", () => {
   let store;
 
   beforeEach(() => {
-    getters = {
-    }
-    mutations = {
-    }
+    getters = {}
+    mutations = {}
     store = new Vuex.Store({
       getters,
-      mutations
+      mutations,
     })
   })
 
@@ -35,23 +33,17 @@ describe("MarketFlipOnExactOrder.vue", () => {
         gameId: 99
       },
       store,
-      localVue,
+      localVue
     })
     return marketFlipOnExactOrder
   }
 
-  it("creates happy path", async () => {
-    // eslint-disable-next-line no-unused-vars
-    const wrapper = getMarketFlipOnExactOrder()
-  })
-
-  it("creates happy path", async () => {
+  it("creates happy path", () => {
     // eslint-disable-next-line no-unused-vars
     const wrapper = getMarketFlipOnExactOrder()
   })
 
   it("initial host types works", async () => {
-    // eslint-disable-next-line no-unused-vars
     const wrapper = getMarketFlipOnExactOrder([{
       'val': 'Away'
     }, {
@@ -65,11 +57,10 @@ describe("MarketFlipOnExactOrder.vue", () => {
   })
 
   it("changes the can change based on watch changes for the score", async () => {
-    // eslint-disable-next-line no-unused-vars
     const wrapper = getMarketFlipOnExactOrder()
     expect(wrapper.vm.hostTypes[0].canChange).toBe(true)
     expect(wrapper.vm.hostTypes[1].canChange).toBe(true)
-    wrapper.setData({
+    wrapper.setProps({
       scoreSoFar: [{
         'id': 0,
         'val': 'Away'
@@ -81,33 +72,41 @@ describe("MarketFlipOnExactOrder.vue", () => {
   })
 
   it("throws for invalid score id", async () => { // TODO: should this really be here?
-    // eslint-disable-next-line no-unused-vars
     const wrapper = getMarketFlipOnExactOrder()
-    wrapper.setData({
+    wrapper.setProps({
       scoreSoFar: [{
         'id': -3,
         'val': 'Away'
       }]
     })
-
-    expect(Vue.nextTick()).rejects.toThrow()
+    //
+    jest.spyOn(global.console, 'error').mockImplementation((e) => {
+      if (e.toString().includes("TypeError: Cannot set property '_error' of undefined"))
+        return;
+      expect(e.toString()).toContain("Couldn't find host type in props for val -3")
+    });
+    await Vue.nextTick()
+    jest.spyOn(global.console, 'error').mockRestore()
   })
 
-  it("flip works", async () => {
-    // eslint-disable-next-line no-unused-vars
+  it("flip works", () => {
     const wrapper = getMarketFlipOnExactOrder()
     expect(wrapper.vm.hostTypes[0].val).toEqual('Home')
     wrapper.vm.flip(0)
     expect(wrapper.vm.hostTypes[0].val).toEqual('Away')
   })
 
-  it("can change works", async () => {
-    // eslint-disable-next-line no-unused-vars
+  it("can change works", () => {
     const wrapper = getMarketFlipOnExactOrder()
     expect(wrapper.vm.canChange(0)).toBe(true)
     expect(wrapper.vm.canChange(4)).toBe(true)
 
     expect(() => wrapper.vm.canChange(-1)).toThrow()
     expect(() => wrapper.vm.canChange(5)).toThrow()
+  })
+
+  it("outcome uid is not empty (bad test)", () => {
+    const wrapper = getMarketFlipOnExactOrder()
+    expect(wrapper.vm.outcomeUid).not.toBe("")
   })
 })

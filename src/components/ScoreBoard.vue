@@ -1,5 +1,6 @@
 <template>
     <div class="scoreboard">
+        <WalletComponent />
         <h1 class="title">Game <span class="game-id">{{this.id}}</span></h1>
         <div class="fixture-state">
             {{this.fixtureState}}
@@ -7,13 +8,12 @@
         <div class="scores">
             <Score v-for="item in this.items" :key="item.id" :item="item.val" />
         </div>
-        <WalletComponent />
     </div>
 </template>
 
 <script>
     import WalletComponent from './WalletComponent.vue'
-    import Score from './Score.vue'
+    import Score from './Score.vue' // TODO: use store for this, but this template is not used only for the game.
     export default {
         components: {
             Score,

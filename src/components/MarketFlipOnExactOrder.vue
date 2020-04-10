@@ -52,14 +52,14 @@
             scoreSoFar(scoreSoFarNew) {
                 var self = this;
                 scoreSoFarNew.forEach((score) => {
-                    var localScore = self.hostTypes.find((elem) => elem.id == score.id);
-                    if (!localScore) {
-                        throw "Couldn't find local store.";
+                    var hostTypeAssociated = self.hostTypes.find((elem) => elem.id == score.id);
+                    if (!hostTypeAssociated) {
+                        throw `Couldn't find host type in props for val ${score.id}`;
                     }
 
-                    localScore.canChange = score.val == 'None';
+                    hostTypeAssociated.canChange = score.val == 'None';
                     if (score.val != 'None') {
-                        localScore.val = score.val;
+                        hostTypeAssociated.val = score.val;
                     }
                 })
             }

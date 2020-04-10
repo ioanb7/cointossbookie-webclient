@@ -1,7 +1,7 @@
 <template>
     <span class="coin">
-        <img v-if="coinType == 'head'" src="https://img.icons8.com/dotty/80/000000/fan-head.png" />
-        <img v-else-if="coinType == 'tail'" src="https://img.icons8.com/dotty/80/000000/tail-of-whale.png" />
+        <img v-if="coinType == 'heads'" src="https://img.icons8.com/dotty/80/000000/fan-head.png" />
+        <img v-else-if="coinType == 'tails'" src="https://img.icons8.com/dotty/80/000000/tail-of-whale.png" />
         <span v-else class="neither">?</span>
     </span>
 </template>
@@ -12,7 +12,7 @@
                 type: String,
                 default: "",
                 validator(prop) {
-                    return ["head", "tail", ""].includes(prop)
+                    return ["heads", "tails", ""].includes(prop)
                 }
             }
         },

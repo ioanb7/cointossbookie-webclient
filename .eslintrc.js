@@ -15,13 +15,7 @@ module.exports = {
         "no-undef": 2
     },
     "parserOptions": {
-        parser: "babel-eslint",
-        sourceType: "module",
-        ecmaVersion: 7,
-        ecmaFeatures: {
-            legacyDecorators: true,
-            allowJs: true
-        }
+        parser: "babel-eslint"
     },
     "extends": ["plugin:vue/base"]
 }

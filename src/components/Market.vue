@@ -12,7 +12,8 @@
             </header>
 
             <div class="outcomes">
-                <Outcome v-for="outcome in market.Outcomes" :key="outcome.Id" :outcome="outcome" />
+                <Outcome v-for="outcome in market.Outcomes" :key="outcome.Id" :outcome="outcome"
+                    :isOutcomeStatusOpen="market.Status == 'Open'" />
             </div>
         </div>
     </div>
