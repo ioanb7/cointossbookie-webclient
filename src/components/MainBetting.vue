@@ -38,8 +38,7 @@
         GameId: 0,
         Markets: [],
         FixtureState: "",
-        Score: [],
-        update_id: 0
+        Score: []
       }
     },
     created() {
@@ -79,7 +78,7 @@
         var networking = new Networking(this.update);
         networking.run()
       },
-      update(data) {
+      update(data) { // TODO: move this out of here into a store (dif than the wallet one).
         var bets = this.getBetsUids
         var settledMarkets = data.Markets.filter(m => m.Status == 'Settled')
         var settledOutcomes = settledMarkets.flatMap(m => m.Outcomes)

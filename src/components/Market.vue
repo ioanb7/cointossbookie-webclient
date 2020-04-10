@@ -10,9 +10,6 @@
                     </span>
                 </h3>
             </header>
-            <div class="selectionsOrder" v-if="hostTypes.length > 0">
-                <Score v-for="item in hostTypes" :key="item.id" :item="item.val" />
-            </div>
 
             <div class="outcomes">
                 <Outcome v-for="outcome in market.Outcomes" :key="outcome.Id" :outcome="outcome" />
@@ -33,14 +30,6 @@
             Outcome
         },
         computed: {
-            hostTypes() {
-                return this.market.HostTypes.map((val, i) => {
-                    return {
-                        'id': i,
-                        'val': val
-                    }
-                })
-            },
             handicap() {
                 var handicap = this.market.Handicap.toFixed(2);
 

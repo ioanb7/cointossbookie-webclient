@@ -30,7 +30,20 @@
     import BetPlacer from './BetPlacer.vue'
     import Score from './Score.vue'
     export default {
-        props: ["scoreSoFar", "trueProbability", "gameId"],
+        props: {
+            scoreSoFar: {
+                type: Array,
+                required: true
+            },
+            trueProbability: {
+                type: Number,
+                required: true
+            },
+            gameId: {
+                type: Number,
+                required: true
+            }
+        },
         components: {
             Score,
             BetPlacer
@@ -41,8 +54,7 @@
                 scoreSoFarNew.forEach((score) => {
                     var localScore = self.hostTypes.find((elem) => elem.id == score.id);
                     if (!localScore) {
-                        console.error("Couldn't find local store.");
-                        return;
+                        throw "Couldn't find local store.";
                     }
 
                     localScore.canChange = score.val == 'None';
@@ -54,7 +66,7 @@
         },
         data() {
             return {
-                'hostTypes': this.initialHostTypesValues(
+                hostTypes: this.initialHostTypesValues(
                     !this.scoreSoFar ? [] : this.scoreSoFar.filter((s) => s.val != 'None').map((s) => s.val)
                 ),
                 isBetPlacerVisible: false
@@ -80,11 +92,11 @@
                 return initialValues
             },
             canChange(position) {
-                var localScore = this.hostTypes.find((elem) => elem.id == position);
-                if (!localScore) {
-                    console.error("Couldn't find local store.");
-                    return;
+                if (position < 0 || position > 4) {
+                    throw `position out of bounds ${position}`
                 }
+
+                var localScore = this.hostTypes.find((elem) => elem.id == position);
                 return localScore.canChange
             },
             flip(position) {

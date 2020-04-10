@@ -8,7 +8,7 @@ describe('bet store', () => {
         modules: {
             betModule
         }
-    });
+    }); // TODO: try using createLocalVue
     const initialStateCopy = JSON.parse(JSON.stringify(store.state))
     afterEach(() => {
         store.replaceState(JSON.parse(JSON.stringify(initialStateCopy)))
