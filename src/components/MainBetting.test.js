@@ -6,7 +6,7 @@ jest.mock('@/helpers/networking');
 import Networking from '@/helpers/networking';
 import MainBetting from "@/components/MainBetting.vue";
 import Vuex from "vuex";
-//import Vue from "vue";
+import Vue from "vue"
 const localVue = createLocalVue();
 
 localVue.use(Vuex);
@@ -49,7 +49,7 @@ describe("MainBetting.vue", () => {
 
   it("update happy path", async () => {
     const wrapper = getMainBetting()
-    expect(wrapper.vm.$data.Markets).toEqual([])
+    expect(wrapper.vm.hasLoaded).toBe(false)
 
     wrapper.vm.update({
       Markets: [],
@@ -57,11 +57,12 @@ describe("MainBetting.vue", () => {
       FixtureState: "fixtureStateSomeValue",
       Score: [1,2,3,4]
     })
+    expect(wrapper.vm.hasLoaded).toBe(true)
 
-    expect(wrapper.vm.$data.GameId).toEqual(999)
-    expect(wrapper.vm.$data.FixtureState).toEqual("fixtureStateSomeValue")
-    expect(wrapper.vm.$data.Score).toEqual([1,2,3,4])
-    expect(wrapper.vm.$data.Markets).toEqual([])
+    expect(wrapper.vm.$data.currentGame.GameId).toEqual(999)
+    expect(wrapper.vm.$data.currentGame.FixtureState).toEqual("fixtureStateSomeValue")
+    expect(wrapper.vm.$data.currentGame.Score).toEqual([1, 2, 3, 4])
+    expect(wrapper.vm.$data.currentGame.Markets).toEqual([])
   })
 
   it("calls settle lose bet for a bet placed", async () => {
@@ -100,32 +101,51 @@ describe("MainBetting.vue", () => {
     }])
   })
 
-  it("marketsToDisplay doesn't display the X-X-X-X-X markets", async () => {
+  it("caches data for the next game until confirmed", async () => {
     const wrapper = getMainBetting()
-    wrapper.vm.update({
-      Markets: [{
-        Outcomes: [{
-          Uid: 'someUid'
-        }],
-        MarketType: 'Flip On Exact Order',
-        Status: 'SomeStatus'
-      }]
-    })
-    expect(wrapper.vm.marketsToDisplay).toStrictEqual([])
-  })
-
-  it("returns correct trueprobability for the X-X-X-X-X markets", async () => {
-    const wrapper = getMainBetting()
-    wrapper.vm.update({
+    expect(wrapper.vm.$data.invitationToNextGameIsDisplayed).toBe(false)
+    var updateExample = {
       Markets: [{
         Outcomes: [{
           Uid: 'someUid',
-          TrueProbability: 88
+          TrueProbability: 0.9
         }],
-        MarketType: 'Flip On Exact Order',
         Status: 'Open'
-      }]
-    })
-    expect(wrapper.vm.marketOnExactOrderTrueProbability).toStrictEqual(88)
+      }],
+      GameId: 7
+    };
+    wrapper.vm.update(updateExample)
+    expect(wrapper.vm.$data.invitationToNextGameIsDisplayed).toBe(false)
+
+    updateExample.GameId = 8
+    wrapper.vm.update(updateExample)
+
+    expect(wrapper.vm.$data.currentGame.GameId).toStrictEqual(7)
+    expect(wrapper.vm.$data.invitationToNextGameIsDisplayed).toBe(true)
+  })
+  
+  it("shows an invitation to the next game", async () => {
+    const wrapper = getMainBetting()
+    var updateExample = {
+      Markets: [{
+        Outcomes: [{
+          Uid: 'someUid',
+          TrueProbability: 0.9
+        }],
+        Status: 'Open'
+      }],
+      GameId: 7
+    };
+    wrapper.vm.update(updateExample)
+
+    updateExample.GameId = 8
+    wrapper.vm.update(updateExample)
+    expect(wrapper.vm.$data.currentGame.GameId).toStrictEqual(7)
+
+    await Vue.nextTick()
+    var element = wrapper.find(".nextGame")
+    element.trigger('click')
+    expect(wrapper.vm.$data.invitationToNextGameIsDisplayed).toBe(false)
+    expect(wrapper.vm.$data.currentGame.GameId).toStrictEqual(8)
   })
 })

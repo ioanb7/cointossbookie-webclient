@@ -1,26 +1,20 @@
 <template>
   <div v-if="hasLoaded">
     <div class="centered-container">
-      <ScoreBoard :id="GameId" :fixtureState="FixtureState" :items="Score" />
-      <MarketFlipOnExactOrder class="marketOnExactOrder" v-if="marketOnExactOrderTrueProbability" :scoreSoFar="Score"
-        :trueProbability="marketOnExactOrderTrueProbability" :gameId="GameId" />
-      <div class="marketGroups">
-        <MarketGroup v-for="(marketGroup, index) in marketsToDisplayGrouped" :key="index" :marketType="index"
-          :markets="marketGroup" />
-      </div>
+      <p v-if="invitationToNextGameIsDisplayed">
+        <a href="#" @click.prevent="joinNextGame" class="nextGame">Want to join
+          the next game?</a>
+      </p>
+      <Game :gameId="currentGame.GameId" :markets="currentGame.Markets" :fixtureState="currentGame.FixtureState"
+        :score="currentGame.Score" />
     </div>
   </div>
   <p v-else>Loading...</p>
 </template>
 
 <script>
-  import MarketFlipOnExactOrder from './MarketFlipOnExactOrder.vue'
-  import MarketGroup from './MarketGroup.vue'
-  import ScoreBoard from './ScoreBoard.vue'
   import Networking from '../helpers/networking';
-  import {
-    groupBy
-  } from '../helpers'
+  import Game from './Game';
   import {
     mapGetters,
     mapMutations
@@ -29,16 +23,13 @@
   export default {
     name: "MainBetting",
     components: {
-      ScoreBoard,
-      MarketGroup,
-      MarketFlipOnExactOrder
+      Game
     },
     data() {
       return {
-        GameId: 0,
-        Markets: [],
-        FixtureState: "",
-        Score: []
+        currentGame: {},
+        invitationToNextGameIsDisplayed: false,
+        dataForNextGame: null
       }
     },
     created() {
@@ -49,25 +40,7 @@
         'getBetsUids'
       ]),
       hasLoaded() {
-        return this.GameId != 0
-      },
-      marketsToDisplay() {
-        return this.Markets.filter((item) => {
-          return item.MarketType != 'Flip On Exact Order'
-        })
-      },
-      marketsToDisplayGrouped() {
-        const result = groupBy(this.marketsToDisplay, 'MarketType')
-        return result
-      },
-      marketOnExactOrderTrueProbability() {
-        let market = this.Markets.find((item) => {
-          return item.Status == 'Open' && item.MarketType == 'Flip On Exact Order'
-        })
-        if (!market) {
-          return 0
-        }
-        return market.Outcomes[0].TrueProbability
+        return this.currentGame.GameId !== undefined
       }
     },
     methods: {
@@ -91,7 +64,23 @@
           this.settledBets(mySettledBets)
         }
 
-        Object.assign(this.$data, data)
+        if (data.GameId != this.currentGame.GameId && this.currentGame.GameId !== undefined) {
+          this.invitationToNextGameIsDisplayed = true
+          this.dataForNextGame = data
+        } else {
+          /*
+          this.currentGame.Markets = data.Markets
+          this.currentGame.GameId = data.GameId
+          this.currentGame.FixtureState = data.FixtureState
+          this.currentGame.Score = data.Score*/
+          this.currentGame = {} // without this, tests fail
+          Object.assign(this.currentGame, data)
+        }
+      },
+      joinNextGame() {
+        this.invitationToNextGameIsDisplayed = false
+        this.currentGame = this.dataForNextGame
+        this.dataForNextGame = null
       }
     }
   }
@@ -102,19 +91,5 @@
     padding: 50px;
     font-weight: 400;
     font-family: 'Roboto Condensed', sans-serif; // TODO: body ?
-  }
-
-  // TODO: change this
-  .marketGroups {
-    height: 1000px;
-  }
-
-  .marketOnExactOrder {
-    padding: 30px;
-    margin: 0 auto;
-  }
-
-  .market:nth-child(odd) {
-    background-color: #4299e1;
   }
 </style>
