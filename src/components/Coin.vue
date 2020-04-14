@@ -41,8 +41,15 @@
     }
 
     .neither {
-        background-color: #ccc;
         text-align: center;
-        display: table-cell;
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 2.5em;
+        border: 1px solid #000;
+        border-radius: 50px;
+        margin: 5px;
+        width: 40px;
+        height: 40px;
+        font-weight: 900;
     }
 </style>

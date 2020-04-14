@@ -1,15 +1,26 @@
 <template>
-  <div v-if="hasLoaded">
-    <div class="centered-container">
-      <p v-if="invitationToNextGameIsDisplayed">
-        <a href="#" @click.prevent="joinNextGame" class="nextGame">Want to join
-          the next game?</a>
-      </p>
-      <Game :gameId="currentGame.GameId" :markets="currentGame.Markets" :fixtureState="currentGame.FixtureState"
-        :score="currentGame.Score" />
+  <div class="container-with-border m-auto">
+    <div class="subContainer">
+      <div v-if="hasLoaded">
+        <div class="invitationToNextGame" v-if="invitationToNextGameIsDisplayed">
+          <p>
+            <a href="#" @click.prevent="joinNextGame" class="p-5 inline-block w-full text-center hover:bg-teal-600">
+              Want to join the next game?</a>
+          </p>
+        </div>
+        <Game :gameId="currentGame.GameId" :markets="currentGame.Markets" :fixtureState="currentGame.FixtureState"
+          :score="currentGame.Score" />
+
+      </div>
+      <div v-else>
+        <p class="text-white p-12 text-center">
+          <span v-if="loading_timer < 5">Loading cointoss bookie..</span>
+          <span v-else-if="loading_timer < 10">Loading cointoss bookie takes longer than usual...</span>
+          <span v-else>Cointoss bookie appears to be OFFLINE.</span>
+        </p>
+      </div>
     </div>
   </div>
-  <p v-else>Loading...</p>
 </template>
 
 <script>
@@ -29,11 +40,19 @@
       return {
         currentGame: {},
         invitationToNextGameIsDisplayed: false,
-        dataForNextGame: null
+        dataForNextGame: null,
+        loading_timer: 0,
+        loading_interval: null
       }
     },
     created() {
       this.setUpWebSocket();
+
+      var self = this;
+      this.loading_timer = 0
+      this.loading_interval = setInterval(function () {
+        self.loading_timer++
+      }, 1000)
     },
     computed: {
       ...mapGetters([
@@ -52,6 +71,12 @@
         networking.run()
       },
       update(data) { // TODO: move this out of here into a store (dif than the wallet one).
+        if (this.loading_interval !== null) {
+          clearInterval(this.loading_interval)
+          this.loading_interval = null
+          this.loading_timer = 0
+        }
+
         var bets = this.getBetsUids
         var settledMarkets = data.Markets.filter(m => m.Status == 'Settled')
         var settledOutcomes = settledMarkets.flatMap(m => m.Outcomes)
@@ -87,9 +112,22 @@
 </script>
 
 <style lang="scss" scoped>
-  .centered-container {
-    padding: 50px;
-    font-weight: 400;
-    font-family: 'Roboto Condensed', sans-serif; // TODO: body ?
+  .container-with-border {
+    border-top: 30px solid #fbab7f;
+    border-bottom: 30px solid #fbab7f;
+
+    background-color: #FDCBB0;
+    max-width: 1024px;
+    min-width: 750px;
+
+    .subContainer {
+      background-color: #202225;
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+  }
+
+  .invitationToNextGame {
+    color: white;
   }
 </style>

@@ -33,6 +33,7 @@
     "mock-socket": "^9.0.3",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2",
+    "tailwindcss": "^1.2.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "vue-template-compiler": "^2.6.11",
     "wallaby-vue-compiler": "^1.0.6"
@@ -50,7 +51,8 @@
       "parser": "babel-eslint"
     },
     "rules": {},
-    "overrides": [{
+    "overrides": [
+      {
         "files": [
           "**/__tests__/*.{j,t}s?(x)",
           "**/tests/unit/**/*.spec.{j,t}s?(x)"

@@ -64,23 +64,4 @@
             color: #ccc;
         }
     }
-
-    /*
-    header {
-        width: 80%;
-        margin: 20px;
-    }
-
-    .market {
-        padding: 10px;
-    }
-
-    h2 {
-        vertical-align: middle;
-        font-weight: 300;
-
-        strong {
-            font-weight: 600;
-        }
-    }*/
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app-cointossbookie">
     <main>
       <MainBetting />
     </main>
@@ -18,7 +18,7 @@
 </script>
 
 <style lang="scss" scoped>
-  #app {
+  #app-cointossbookie {
     line-height: 1.5;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -26,7 +26,7 @@
   }
 
   // TODO: fix this
-  #app::selection {
+  #app-cointossbookie::selection {
     background-color: transparent !important;
   }
 </style>
