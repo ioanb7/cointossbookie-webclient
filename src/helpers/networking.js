@@ -40,6 +40,10 @@ export default class Networking {
 
     this.rws.addEventListener('message', (message) => {
       self.logMessage('Received message')
+      if (!['{', '['].includes(message.data[0])) {
+        return
+      }
+
       self.onMessage(self.convertor.All(JSON.parse(message.data)))
     });
   }

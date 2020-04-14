@@ -60,6 +60,24 @@ describe('Networking.js', () => {
     expect(mockConvertorAll).toHaveBeenNthCalledWith(1, payload)
   })
 
+  it('does not call the convertor when it retrieves a non-json message', async () => {
+    // set up
+    const dispatch = jest.fn();
+    let {
+      server,
+      networking
+    } = getNetworkingAndServer(dispatch)
+
+    // execute
+    networking.run()
+    await server.connected;
+    server.send("Welcome!");
+
+    // assert convertor is called
+    const mockConvertorAll = Convertor.mock.instances[0].All
+    expect(mockConvertorAll).toHaveBeenCalledTimes(0);
+  })
+
    // TODO: websocket library doesn't look like it supports reconnect
   it.skip('reconnects', async () => {
     // set up
