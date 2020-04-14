@@ -1,20 +1,18 @@
 <template>
-    <div class="market" :class="{open: market.Status == 'Open', notOpen: market.Status != 'Open'}">
-        <div>
-            <header>
-                <h3>
-                    <span>{{this.market.MarketType}}</span>
-                    &nbsp;
-                    <span v-if="handicap">
-                        (<strong>{{handicap}}</strong>)
-                    </span>
-                </h3>
-            </header>
+    <div class="market flex flex-no-wrap" :class="{open: market.Status == 'Open', notOpen: market.Status != 'Open'}">
+        <header>
+            <h3 class="block">
+                <span>{{this.market.MarketType}}</span>
+                &nbsp;
+                <span v-if="handicap">
+                    (<strong>{{handicap}}</strong>)
+                </span>
+            </h3>
+        </header>
 
-            <div class="outcomes">
-                <Outcome v-for="outcome in market.Outcomes" :key="outcome.Id" :outcome="outcome"
-                    :isOutcomeStatusOpen="market.Status == 'Open'" />
-            </div>
+        <div class="outcomes">
+            <Outcome v-for="outcome in market.Outcomes" :key="outcome.Id" :outcome="outcome"
+                :isOutcomeStatusOpen="market.Status == 'Open'" />
         </div>
     </div>
 </template>
@@ -53,8 +51,11 @@
 
 <style lang="scss" scoped>
     .outcomes,
-    header {
-        display: inline-block;
+    header {}
+
+    h3 {
+        line-height: 4.5rem;
+        height: 100%;
     }
 
     .notOpen {

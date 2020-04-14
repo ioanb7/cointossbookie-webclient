@@ -1,5 +1,9 @@
 <template>
-    <div class="outcome" :class="{home: outcome.HostType=='Home', away: outcome.HostType=='Away'}">
+    <div class="outcome p-3" :class="{
+        home: outcome.HostType=='Home',
+        away: outcome.HostType=='Away',
+        statusOpen: isOutcomeStatusOpen,
+        statusNotOpen: !isOutcomeStatusOpen}">
         <p>
             <a @click.prevent='toggleIsBetPlacerVisible' class="isBetPlacerVisibleTrigger" href="#">
                 <b class="outcomeName">{{outcomeName}}</b>
@@ -91,10 +95,11 @@
     .outcome {
         display: inline-block;
         margin-left: 35px;
+    }
 
+    .outcome.statusOpen {
         &:hover {
             background-color: blue; // blue by default (home)
-            border-radius: 30px 0px;
 
             &.away {
                 background-color: green; // todo: change colors
@@ -123,5 +128,16 @@
             background: md-get-palette-color(red, 200);
             content: " ";
         }
+    }
+
+    .statusNotOpen .outcomeName,
+    .statusNotOpen .price {
+        visibility: hidden;
+
+        &:hover {}
+    }
+
+    .statusNotOpen a:hover {
+        cursor: inherit
     }
 </style>

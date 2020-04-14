@@ -113,17 +113,22 @@
 
 <style lang="scss" scoped>
   .container-with-border {
-    border-top: 30px solid #fbab7f;
-    border-bottom: 30px solid #fbab7f;
-
-    background-color: #FDCBB0;
     max-width: 1024px;
-    min-width: 750px;
+    min-width: 300px;
+  }
 
-    .subContainer {
-      background-color: #202225;
-      margin-left: 30px;
-      margin-right: 30px;
+  @media screen and (min-width: 360px) {
+    .container-with-border {
+      border-top: 30px solid #fbab7f;
+      border-bottom: 30px solid #fbab7f;
+
+      background-color: #FDCBB0;
+
+      .subContainer {
+        background-color: #389bb2; // #202225;
+        margin-left: 30px;
+        margin-right: 30px;
+      }
     }
   }
 

@@ -1,9 +1,11 @@
 <template>
   <div class="game">
     <ScoreBoard :id="gameId" :fixtureState="fixtureState" :items="score" />
-    <MarketFlipOnExactOrder class="marketOnExactOrder" v-if="marketOnExactOrderTrueProbability" :scoreSoFar="score"
-      :trueProbability="marketOnExactOrderTrueProbability" :gameId="gameId" />
-    <div class="marketGroups">
+    <div class="marketGroups flex flex-wrap">
+      <MarketGroup v-for="(marketGroup, index) in marketsToDisplayGrouped" :key="index" :marketType="index"
+        :markets="marketGroup" />
+      <MarketFlipOnExactOrder v-if="marketOnExactOrderTrueProbability" :scoreSoFar="score"
+        :trueProbability="marketOnExactOrderTrueProbability" :gameId="gameId" />
       <MarketGroup v-for="(marketGroup, index) in marketsToDisplayGrouped" :key="index" :marketType="index"
         :markets="marketGroup" />
     </div>
@@ -54,10 +56,7 @@
 </script>
 
 <style lang="scss" scoped>
-  // TODO: change this
-  .marketGroups {
-    height: 1000px;
-  }
+  .marketGroups {}
 
   .marketOnExactOrder {
     padding: 30px;

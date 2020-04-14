@@ -1,10 +1,8 @@
 <template>
     <keep-alive>
-        <div class="marketOnExactOrder" v-if="canChange(3)">
+        <div class="marketGroup" v-if="canChange(3)">
             <header>
-                <h2>
-                    <b>EXACT POSITION</b>
-                </h2>
+                <h2>Exact Position</h2>
             </header>
             <div class="selectionsOrder">
                 <Score v-for="item in hostTypes" :key="item.id" :item="item.val"
@@ -119,18 +117,6 @@
 </script>
 
 <style lang="scss" scoped>
-    .marketOnExactOrder {
-        width: 360px;
-
-        h2,
-        .selectionsOrder,
-        p {
-            margin: 0 auto;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-    }
-
     .canNotChange {
         border: 1px solid black;
     }

@@ -25,18 +25,17 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     .marketGroup {
-        border: 1px solid black;
-        float: left;
+        border: 1px solid #ccc;
         margin: 30px;
-        border-radius: 20px 0px;
-        box-shadow: 0px -3px 10px rgb(165, 165, 165);
         background: white;
         padding: 20px;
-    }
+        width: 350px;
+        justify-content: space-between;
 
-    header {
-        display: inline-block;
+        header {
+            display: inline-block;
+        }
     }
 </style>
