@@ -4,8 +4,9 @@
       <div v-if="hasLoaded">
         <div class="invitationToNextGame" v-if="invitationToNextGameIsDisplayed">
           <p>
-            <a href="#" @click.prevent="joinNextGame" class="p-5 inline-block w-full text-center hover:bg-teal-600">
-              Want to join the next game?</a>
+            <a href="#" @click.prevent="joinNextGame"
+              class="bg-red-700 p-5 inline-block w-full text-center hover:bg-teal-600">
+              This game is finished now. Click here to join the next one.</a>
           </p>
         </div>
         <Game :gameId="currentGame.GameId" :markets="currentGame.Markets" :fixtureState="currentGame.FixtureState"

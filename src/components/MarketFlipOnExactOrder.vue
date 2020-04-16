@@ -1,17 +1,18 @@
 <template>
     <keep-alive>
-        <div class="marketGroup" v-if="canChange(3)">
-            <header>
-                <h2>Exact Position</h2>
+        <div class="marketGroup sm:p-4 sm:m-4 mb-20" v-if="canChange(3)">
+            <header class="bg-white w-full p-1 px-3">
+                <h2>Exact Order</h2>
             </header>
-            <div class="selectionsOrder">
-                <Score v-for="item in hostTypes" :key="item.id" :item="item.val"
-                    :class="{canNotChange: !canChange(item.id), canChange: canChange(item.id)}"
-                    @click.native="flip(item.id)" />
+            <div class="selectionsOrder my-5">
+                <Score v-for="item in hostTypes" :key="item.id" :item="item.val" :class="{
+                        canNotChange: !canChange(item.id),
+                        canChange: canChange(item.id),
+                        'bg-white': canChange(item.id)}" @click.native="flip(item.id)" />
             </div>
-            <p><i>Note: Click on the image to toggle</i></p>
-            <p>
-                <a @click.prevent='isBetPlacerVisible = !isBetPlacerVisible' href="#">
+            <p class="font-hairline text-sm">Note: Click on the image to toggle</p>
+            <p class="block my-4 mt-10">
+                <a class="bg-white p-4" @click.prevent='isBetPlacerVisible = !isBetPlacerVisible' href="#">
                     Place bet ?
                 </a>
             </p>

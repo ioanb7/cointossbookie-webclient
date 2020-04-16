@@ -1,7 +1,8 @@
 <template>
-    <div class="market flex flex-no-wrap" :class="{open: market.Status == 'Open', notOpen: market.Status != 'Open'}">
-        <header>
-            <h3 class="block">
+    <div class="market flex flex-no-wrap my-1"
+        :class="{open: market.Status == 'Open', notOpen: market.Status != 'Open'}">
+        <header class="bg-white">
+            <h3 class="block px-3 py-1">
                 <span>{{this.market.MarketType}}</span>
                 &nbsp;
                 <span v-if="handicap">

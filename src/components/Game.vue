@@ -6,8 +6,6 @@
         :markets="marketGroup" />
       <MarketFlipOnExactOrder v-if="marketOnExactOrderTrueProbability" :scoreSoFar="score"
         :trueProbability="marketOnExactOrderTrueProbability" :gameId="gameId" />
-      <MarketGroup v-for="(marketGroup, index) in marketsToDisplayGrouped" :key="index" :marketType="index"
-        :markets="marketGroup" />
     </div>
   </div>
 </template>

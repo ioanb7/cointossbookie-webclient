@@ -1,9 +1,10 @@
 <template>
-    <div class="outcome p-3" :class="{
+    <div class="outcome p-3 m-1" :class="{
         home: outcome.HostType=='Home',
         away: outcome.HostType=='Away',
         statusOpen: isOutcomeStatusOpen,
-        statusNotOpen: !isOutcomeStatusOpen}">
+        statusNotOpen: !isOutcomeStatusOpen,
+        'bg-white': isOutcomeStatusOpen}">
         <p>
             <a @click.prevent='toggleIsBetPlacerVisible' class="isBetPlacerVisibleTrigger" href="#">
                 <b class="outcomeName">{{outcomeName}}</b>
