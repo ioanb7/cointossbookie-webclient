@@ -1,9 +1,9 @@
-import Convertor from '@/helpers/Convertor'
+import Convertor from '@/helpers/convertor'
 
 // Note: the unit tests in this class will break easily
 // it helps the developer/tester to break if the snapshot changes
 // - consider it a way to confirm the changes to the code when they change
-describe('Convertor.js', () => {
+describe('convertor.js', () => {
   var getConvertor = function () {
     return new Convertor()
   }

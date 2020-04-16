@@ -2,9 +2,9 @@ import Convertor from '@/helpers/convertor';
 jest.mock('@/helpers/convertor');
 
 import Server from "jest-websocket-mock";
-import Networking from '@/helpers/Networking'
+import Networking from '@/helpers/networking'
 
-describe('Networking.js', () => {
+describe('networking.js', () => {
   var getNetworkingAndServer = function (onMessage) {
     const server = new Server(process.env.VUE_APP_WEBSOCKET_URL);
     const networking = new Networking(onMessage);
