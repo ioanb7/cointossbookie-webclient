@@ -1,24 +1,8 @@
 # cointossbookie-webclient
 
-## Project setup
-```
-npm install
-```
+[![Build Status](https://dev.azure.com/ioanbiticu/ioanbiticu/_apis/build/status/ioanb7.cointossbookie-webclient?branchName=master)](https://dev.azure.com/ioanbiticu/ioanbiticu/_build/latest?definitionId=1&branchName=master)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+> \> 90% coverage
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+More readme coming up..

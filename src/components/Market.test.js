@@ -2,7 +2,6 @@ import {
   shallowMount,
   createLocalVue
 } from "@vue/test-utils";
-jest.mock('@/helpers/networking');
 import Market from "@/components/Market.vue";
 import Vuex from "vuex";
 const localVue = createLocalVue();

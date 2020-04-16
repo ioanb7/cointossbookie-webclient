@@ -13,12 +13,18 @@ describe("BetPlacer.vue", () => {
   let mutations;
   let store;
 
+  let currentGameFn = jest.fn().mockReturnValue({
+    Markets: []
+  })
+
   beforeEach(() => {
     getters = {
       getWallet: getWalletFn,
+      currentGame: currentGameFn
     }
     mutations = {
-      placeBet: jest.fn()
+      placeBet: jest.fn(),
+      cancelBetPlacer: jest.fn()
     }
     store = new Vuex.Store({
       getters,
@@ -74,5 +80,30 @@ describe("BetPlacer.vue", () => {
   it("placeableBetValues happy path", () => {
     const wrapper = getBetPlacer()
     expect(wrapper.vm.placeableBetValues).toStrictEqual([1, 2, 5, 10, 20, 50, 100])
+  })
+
+  it("placeableBetValues happy path", () => {
+    let outcome = {
+      Uid: "someUid"
+    }
+    currentGameFn.mockReturnValue({
+      Markets: [
+        {
+          Outcomes: [
+            outcome
+          ]
+        }
+      ]
+    })
+
+    const wrapper = getBetPlacer()
+    expect(wrapper.vm.outcome).toBe(outcome)
+  })
+
+  it("exit calls store cancel bet placer", () => {
+    const wrapper = getBetPlacer()
+    expect(mutations.cancelBetPlacer).toHaveBeenCalledTimes(0)
+    wrapper.vm.exit()
+    expect(mutations.cancelBetPlacer).toHaveBeenCalledTimes(1)
   })
 })

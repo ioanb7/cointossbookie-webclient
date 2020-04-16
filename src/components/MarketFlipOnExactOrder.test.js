@@ -2,7 +2,6 @@ import {
   shallowMount,
   createLocalVue
 } from "@vue/test-utils";
-jest.mock('@/helpers/networking');
 import MarketFlipOnExactOrder from "@/components/MarketFlipOnExactOrder.vue";
 import Vuex from "vuex";
 import Vue from "vue";

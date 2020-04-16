@@ -1,7 +1,6 @@
 import {
   shallowMount,
 } from "@vue/test-utils";
-jest.mock('@/helpers/networking');
 import Game from "@/components/Game.vue";
 
 describe("Game.vue", () => {

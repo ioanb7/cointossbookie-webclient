@@ -1,42 +1,52 @@
 <template>
-    <div class="marketGroup">
-        <header>
+    <div class="marketGroup sm:p-4 sm:m-4 mb-20">
+        <header class="bg-white w-full px-3 p-1">
             <h2>{{marketType}}</h2>
         </header>
 
         <div class="markets">
             <Market v-for="market in this.markets" :key="market.Id" :market="market"></Market>
         </div>
+
+        <p class="font-hairline text-sm mt-10">Note: Click on any selection to bet</p>
+        <BetPlacer v-if="betPlacer != null" :price="betPlacer.price" :outcomeUid="betPlacer.outcomeId"></BetPlacer>
     </div>
 </template>
 
 <script>
+    import BetPlacer from './BetPlacer.vue'
     import Market from './Market.vue'
+    import {
+        mapGetters
+    } from 'vuex'
     export default {
         components: {
-            Market
+            Market,
+            BetPlacer
         },
         props: ["markets", "marketType"],
-        data() {
-            return {
-
+        computed: {
+            ...mapGetters(['allBetPlacers']),
+            betPlacer() {
+                return this.findBetPlacerForThisMarketType(this.allBetPlacers)
+            }
+        },
+        methods: {
+            findBetPlacerForThisMarketType(allBetPlacers) {
+                var result = allBetPlacers.find(betPlacer => betPlacer.marketType == this.marketType)
+                return result
             }
         }
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     .marketGroup {
-        border: 1px solid black;
-        float: left;
-        margin: 30px;
-        border-radius: 20px 0px;
-        box-shadow: 0px -3px 10px rgb(165, 165, 165);
-        background: white;
-        padding: 20px;
-    }
+        min-width: 375px;
+        justify-content: space-between;
 
-    header {
-        display: inline-block;
+        header {
+            display: inline-block;
+        }
     }
 </style>

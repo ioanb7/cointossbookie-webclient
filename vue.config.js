@@ -8,10 +8,12 @@ module.exports = {
         },
         devtool: 'source-map'
     },
+
     transpileDependencies: ['vuex-module-decorators'],
 
     //https://dev.to/coolgoose/static--fixed-filenames-for-generated-vue-cli-builds-3a2l
-    assetsDir: assetsDir,
+    assetsDir: 'cointossbookie',
+
     // outputDir: assetsDir, // TODO: ideally the same.
     configureWebpack: {
         output: {
@@ -19,6 +21,7 @@ module.exports = {
             chunkFilename: assetsDir + "/[name].js"
         }
     },
+
     chainWebpack: config => {
         if (config.plugins.has("extract-css")) {
             const extractCSSPlugin = config.plugin("extract-css");
@@ -35,5 +38,7 @@ module.exports = {
             .delete("html")
             .delete("prefetch")
             .delete("preload");*/
-    }
+    },
+
+    productionSourceMap: false
 }

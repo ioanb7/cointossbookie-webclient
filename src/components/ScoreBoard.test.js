@@ -1,7 +1,6 @@
 import {
   shallowMount,
 } from "@vue/test-utils";
-jest.mock('@/helpers/networking');
 import ScoreBoard from "@/components/ScoreBoard.vue";
 
 describe("ScoreBoard.vue", () => {

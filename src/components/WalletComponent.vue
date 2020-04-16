@@ -7,6 +7,7 @@
         mapGetters
     } from 'vuex'
     export default {
+        name: 'WalletComponent',
         computed: {
             ...mapGetters([
                 'getWallet'
