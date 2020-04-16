@@ -17,6 +17,33 @@ steps:
 
 - script: |
     npm install
-    npm run test:unit
+  displayName: 'install dependencies'
+  continueOnError: false
+
+- script: |
+    npm run test:unit-coverage
+  displayName: 'test'
+  continueOnError: false
+
+- task: PublishTestResults@2
+  displayName: 'Publish Jest Unit Test Results'
+  inputs:
+    testResultsFiles: junit.xml
+    mergeTestResults: true
+    testRunTitle: 'Jest Unit Tests'
+    failTaskOnFailedTests: true
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish code coverage from Jest tests'
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+    # reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
+    failIfCoverageEmpty: true
+
+- script: |
     npm run build
-  displayName: 'npm install, test and build'
+  displayName: 'npm build for prod'
+
+
+
