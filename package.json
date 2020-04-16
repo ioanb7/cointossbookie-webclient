@@ -6,6 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
+    "test:unit-coverage": "vue-cli-service test:unit --ci --reporters=jest-junit --reporters=default --coverage --coverageReporters=cobertura --coverageReporters=html",
     "lint": "vue-cli-service lint",
     "build-bundle": "vue-cli-service build --target lib --name myLib src/main.js"
   },
@@ -28,6 +29,7 @@
     "babel-plugin-transform-decorators": "^6.24.1",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.1.2",
+    "jest-junit": "^10.0.0",
     "jest-serializer-html": "^7.0.0",
     "jest-websocket-mock": "^2.0.2",
     "mock-socket": "^9.0.3",
