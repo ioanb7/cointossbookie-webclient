@@ -8,12 +8,21 @@
 
 <script>
   import MainBetting from './components/MainBetting.vue'
+  import {
+    mapMutations,
+  } from 'vuex'
 
   export default {
     name: 'App',
     components: {
       MainBetting
-    }
+    },
+    created() {
+      this.setUpHub()
+    },
+    methods: {
+      ...mapMutations(['setUpHub']),
+    },
   }
 </script>
 

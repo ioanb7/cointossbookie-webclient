@@ -6,18 +6,23 @@
         statusNotOpen: !isOutcomeStatusOpen,
         'bg-white': isOutcomeStatusOpen}">
         <p>
-            <a @click.prevent='toggleIsBetPlacerVisible' class="isBetPlacerVisibleTrigger" href="#">
-                <b class="outcomeName">{{outcomeName}}</b>
+            <a class="openBetPlacer" @click.prevent='openBetPlacer' href="#">
+                <b class="outcomeName">
+                    <OutcomeName :outcome="outcome" /></b>
                 <span class="price">{{price}}</span>
             </a>
         </p>
-        <BetPlacer v-if="isBetPlacerVisible" :price="price" :outcomeUid="outcome.Uid"></BetPlacer>
     </div>
 </template>
 
 <script>
-    import BetPlacer from './BetPlacer.vue'
+    import {
+        mapMutations
+    } from 'vuex'
+    import OutcomeName from './OutcomeName'
+
     export default {
+        name: 'Outcome',
         props: {
             "outcome": {
                 type: Object,
@@ -29,50 +34,23 @@
             }
         },
         components: {
-            BetPlacer
-        },
-        data() {
-            return {
-                'isBetPlacerVisible': false
-            }
-        },
-        watch: {
-            isOutcomeStatusOpen(isOutcomeStatusOpen) {
-                if (!isOutcomeStatusOpen) {
-                    this.isBetPlacerVisible = false
-                }
-            }
+            OutcomeName
         },
         computed: {
             price() {
                 return this.outcome.TrueProbability * 0.95
             },
-            outcomeName() { // TODO: move this logic out of here i think.
-                var hostType = this.outcome.HostType
-                var result = this.outcome.HostType
-                switch (this.outcome.OutcomeType) {
-                    case "Yes / No":
-                        result = "Yes"
-                        if (hostType == "Away") {
-                            result = "No"
-                        }
-                        break;
-                    case "Over / Under":
-                        result = "Over"
-                        if (hostType == "Away") {
-                            result = "Under"
-                        }
-                }
-                return result
-            }
         },
         methods: {
-            toggleIsBetPlacerVisible() {
+            ...mapMutations(['addOrReplaceBetPlacer']),
+            openBetPlacer() {
                 if (!this.isOutcomeStatusOpen) {
                     return;
                 }
-
-                this.isBetPlacerVisible = !this.isBetPlacerVisible
+                this.addOrReplaceBetPlacer({
+                    outcomeId: this.outcome.Uid,
+                    price: this.price
+                })
             }
         }
     }

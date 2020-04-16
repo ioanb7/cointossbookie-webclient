@@ -31,6 +31,7 @@
     import WalletComponent from './WalletComponent.vue'
     import Score from './Score.vue' // TODO: use store for this, but this template is not used only for the game.
     export default {
+        name: 'ScoreBoard',
         components: {
             Score,
             WalletComponent

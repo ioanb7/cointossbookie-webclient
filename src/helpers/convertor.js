@@ -66,6 +66,9 @@ export default class Convertor {
         outcome.Uid = gameOutput.Id + "-" + outcomeUidGenerator(market, outcome)
       });
     });
+
+    //assert none of the outcome ids are duplicated.
+
     return {
       GameId: gameOutput.Id,
       Markets: ms,

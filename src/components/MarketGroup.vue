@@ -9,19 +9,32 @@
         </div>
 
         <p class="font-hairline text-sm mt-10">Note: Click on any selection to bet</p>
+        <BetPlacer v-if="betPlacer != null" :price="betPlacer.price" :outcomeUid="betPlacer.outcomeId"></BetPlacer>
     </div>
 </template>
 
 <script>
+    import BetPlacer from './BetPlacer.vue'
     import Market from './Market.vue'
+    import {
+        mapGetters
+    } from 'vuex'
     export default {
         components: {
-            Market
+            Market,
+            BetPlacer
         },
         props: ["markets", "marketType"],
-        data() {
-            return {
-
+        computed: {
+            ...mapGetters(['allBetPlacers']),
+            betPlacer() {
+                return this.findBetPlacerForThisMarketType(this.allBetPlacers)
+            }
+        },
+        methods: {
+            findBetPlacerForThisMarketType(allBetPlacers) {
+                var result = allBetPlacers.find(betPlacer => betPlacer.marketType == this.marketType)
+                return result
             }
         }
     }

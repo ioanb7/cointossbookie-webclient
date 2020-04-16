@@ -5,6 +5,7 @@
 <script>
     import Coin from './Coin.vue'
     export default {
+        name: 'Score',
         components: {
             Coin
         },

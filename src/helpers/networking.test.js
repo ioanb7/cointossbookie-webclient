@@ -78,7 +78,7 @@ describe('networking.js', () => {
     expect(mockConvertorAll).toHaveBeenCalledTimes(0);
   })
 
-   // TODO: websocket library doesn't look like it supports reconnect
+   // TODO: websocket mock library doesn't look like it supports reconnect
   it.skip('reconnects', async () => {
     // set up
     const dispatch = jest.fn();

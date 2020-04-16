@@ -29,6 +29,7 @@
     "babel-plugin-transform-decorators": "^6.24.1",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.1.2",
+    "jest-extended": "^0.11.5",
     "jest-junit": "^10.0.0",
     "jest-serializer-html": "^7.0.0",
     "jest-websocket-mock": "^2.0.2",
@@ -38,6 +39,7 @@
     "tailwindcss": "^1.2.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "vue-template-compiler": "^2.6.11",
+    "vuex-mock-store": "0.0.8",
     "wallaby-vue-compiler": "^1.0.6"
   },
   "eslintConfig": {
@@ -88,6 +90,9 @@
     "last 2 versions"
   ],
   "jest": {
+    "setupFilesAfterEnv": [
+      "jest-extended"
+    ],
     "moduleFileExtensions": [
       "js",
       "json",
