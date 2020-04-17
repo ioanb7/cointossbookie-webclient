@@ -2,6 +2,7 @@
     <div class="betplacer">
         <template v-if="!placed">
             <OutcomeName :outcome="outcome" />
+            <a href="#" @click.prevent="exit">Exit</a>
             <p>
                 <input type="text" v-model="betValue" label="How much would you like to bet?" />
                 <b>io</b>
@@ -16,8 +17,7 @@
             <p>Estimated winnings: <span class="estimated-winnings">{{winnings}}</span><b>io</b></p>
             <p><a @click.prevent='placeMyBet' class="placeMyBet" href="#">Bet</a></p>
         </template>
-        <p v-if='placed'>Placed! Potential winnings {{placedPotentialWinnings}}io <a href="#"
-                @click.prevent="exit">Exit</a></p>
+        <p v-if='placed'>Placed! Potential winnings {{placedPotentialWinnings}}io</p>
     </div>
 </template>
 

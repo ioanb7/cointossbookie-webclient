@@ -1,6 +1,6 @@
 <template>
   <div class="game">
-    <ScoreBoard :id="gameId" :fixtureState="fixtureState" :items="score" />
+    <Header :id="gameId" :fixtureState="fixtureState" :items="score" />
     <div class="marketGroups flex flex-wrap">
       <MarketGroup v-for="(marketGroup, index) in marketsToDisplayGrouped" :key="index" :marketType="index"
         :markets="marketGroup" />
@@ -13,7 +13,7 @@
 <script>
   import MarketFlipOnExactOrder from './MarketFlipOnExactOrder.vue'
   import MarketGroup from './MarketGroup.vue'
-  import ScoreBoard from './ScoreBoard.vue'
+  import Header from './Header.vue'
   import {
     groupBy
   } from '../helpers'
@@ -21,7 +21,7 @@
   export default {
     name: "Game",
     components: {
-      ScoreBoard,
+      Header,
       MarketGroup,
       MarketFlipOnExactOrder
     },
@@ -54,8 +54,6 @@
 </script>
 
 <style lang="scss" scoped>
-  .marketGroups {}
-
   .marketOnExactOrder {
     padding: 30px;
     margin: 0 auto;

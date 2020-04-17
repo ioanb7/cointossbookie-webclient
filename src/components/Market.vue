@@ -23,7 +23,7 @@
     import Score from './Score.vue'
     export default {
         props: {
-            market: Object, // TODO: market type.
+            market: Object
         },
         components: {
             Score,
@@ -51,9 +51,6 @@
 </script>
 
 <style lang="scss" scoped>
-    .outcomes,
-    header {}
-
     h3 {
         line-height: 4.5rem;
         height: 100%;
