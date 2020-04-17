@@ -10,7 +10,7 @@
                 <span class="outcomeName">
                     <OutcomeName :outcome="outcome" />
                 </span>
-                <span class="price">{{price}}</span>
+                <span class="price">{{priceIncluded}}</span>
             </a>
         </p>
     </div>
@@ -40,6 +40,9 @@
         computed: {
             price() {
                 return this.outcome.TrueProbability * 0.95
+            },
+            priceIncluded() {
+                return this.price + 1
             },
         },
         methods: {

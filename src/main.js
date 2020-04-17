@@ -10,6 +10,15 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   Vue.config.productionTip = false
 }
+
+Vue.directive('focus', {
+  // When the bound element is inserted into the DOM...
+  inserted: function (el) {
+    // Focus the element
+    el.focus()
+  }
+})
+
 new Vue({
   store,
   render: h => h(App)

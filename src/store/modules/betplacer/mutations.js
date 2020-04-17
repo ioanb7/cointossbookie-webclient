@@ -1,21 +1,29 @@
 
+
+function getMarketForOutcomeId(game, outcomeId) {
+    let marketFound = null
+    game.Markets.forEach(market => {
+        market.Outcomes.forEach(outcome => {
+            if (outcome.Uid == outcomeId) {
+                marketFound = market
+            }
+        });
+    });
+    return marketFound
+}
+
+
 export default {
     addOrReplaceBetPlacer(state, {marketType, marketId, outcomeId, price}) {
         if (!marketType || !marketId) {
             var latestGame = this.getters.currentGame
-
-            latestGame.Markets.forEach(market => {
-                market.Outcomes.forEach(outcome => {
-                    if (outcome.Uid == outcomeId) {
-                        marketType = market.MarketType
-                        marketId = market.Id
-                    }
-                });
-            });
-
-            if (!marketType || !marketId) {
+            var market = getMarketForOutcomeId(latestGame, outcomeId)
+            if (!market) {
                 throw `Couldn't find market id and market type for outcome id ${outcomeId}`
             }
+
+            marketType = market.MarketType
+            marketId = market.Id
         }
 
         for (let index = 0; index < state.betPlacers.length; index++) {
@@ -43,6 +51,12 @@ export default {
     },
 
     cancelBetPlacer(state, outcomeId) {
-        state.betPlacers = state.betPlacers.filter(betPlacer => betPlacer.outcomeId != outcomeId)
+        var latestGame = this.getters.currentGame
+
+        let marketTypeForThisBet = getMarketForOutcomeId(latestGame, outcomeId).MarketType
+        state.betPlacers = state.betPlacers.filter(betPlacer => {
+            let marketTypeForThisBetPlacer = getMarketForOutcomeId(latestGame, betPlacer.outcomeId).MarketType
+            return marketTypeForThisBet != marketTypeForThisBetPlacer
+        })
     }
 }

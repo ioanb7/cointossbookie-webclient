@@ -1,7 +1,7 @@
 <template>
   <div class="game">
     <Header :id="gameId" :fixtureState="fixtureState" :items="score" />
-    <div class="marketGroups flex flex-wrap">
+    <div class="marketGroups flex flex-wrap justify-center p-2 sm:p-0">
       <MarketGroup v-for="(marketGroup, index) in marketsToDisplayGrouped" :key="index" :marketType="index"
         :markets="marketGroup" />
       <MarketFlipOnExactOrder v-if="marketOnExactOrderTrueProbability" :scoreSoFar="score"

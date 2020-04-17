@@ -1,5 +1,5 @@
 <template>
-    <div class="marketGroup sm:p-4 sm:m-4 mb-20">
+    <div class="marketGroup sm:p-4 sm:m-4 mb-20 ">
         <header class="bg-white w-full px-3 p-1">
             <h2>{{marketType}}</h2>
         </header>

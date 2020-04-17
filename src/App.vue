@@ -34,6 +34,10 @@
     background: url(http://ioanb7.com/wp-content/themes/ioanb7_sys/assets/img/pattern.png);
   }
 
+  body {
+    min-width: 480px;
+  }
+
   // TODO: fix this
   #app-cointossbookie::selection {
     background-color: transparent !important;

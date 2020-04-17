@@ -11,12 +11,14 @@
                         'bg-white': canChange(item.id)}" @click.native="flip(item.id)" />
             </div>
             <p class="font-hairline text-sm">Note: Click on the image to toggle</p>
-            <p class="block my-4 mt-10">
-                <a class="bg-white p-4" @click.prevent='isBetPlacerVisible = !isBetPlacerVisible' href="#">
+            <BetPlacer v-if="betPlacer != null" :price="betPlacer.price" :outcomeUid="betPlacer.outcomeId"
+                :showTitle="false"></BetPlacer>
+            <p v-else class="block my-4 mt-10">
+                <a class="bg-white p-4" @click.prevent='openBetPlacer' href="#">
                     Place bet ?
                 </a>
             </p>
-            <BetPlacer v-if="isBetPlacerVisible" :price="trueProbability" :outcomeUid=outcomeUid />
+            <!-- TODO: show prices for this -->
         </div>
     </keep-alive>
 </template>
@@ -25,6 +27,10 @@
     import {
         ExactOrderMarket
     } from '../helpers/outcomeUidGenerator'
+    import {
+        mapGetters,
+        mapMutations
+    } from 'vuex'
 
     import BetPlacer from './BetPlacer.vue'
     import Score from './Score.vue'
@@ -72,11 +78,16 @@
             }
         },
         computed: {
+            ...mapGetters(['allBetPlacers']),
+            betPlacer() {
+                return this.findBetPlacerForThisMarketType(this.allBetPlacers)
+            },
             outcomeUid() {
                 return this.gameId + "-" + ExactOrderMarket(this.hostTypes.map(ht => ht.val))
             }
         },
         methods: {
+            ...mapMutations(['addOrReplaceBetPlacer']),
             initialHostTypesValues(initialValues) {
                 const initialValuesLength = initialValues.length
                 initialValues = initialValues.concat(['Home', 'Away', 'Home', 'Away', 'Home'])
@@ -111,6 +122,16 @@
                         return true;
                     }
                     return false;
+                })
+            },
+            findBetPlacerForThisMarketType(allBetPlacers) {
+                var result = allBetPlacers.find(betPlacer => betPlacer.marketType == 'Flip On Exact Order')
+                return result
+            },
+            openBetPlacer() {
+                this.addOrReplaceBetPlacer({
+                    outcomeId: this.outcomeUid,
+                    price: this.trueProbability
                 })
             }
         }

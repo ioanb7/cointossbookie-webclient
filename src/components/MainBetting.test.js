@@ -132,21 +132,21 @@ describe("MainBetting.vue", () => {
       GameId: 999
     };
 
-    store.getters.allGames[1000] = updateExample
+    store.getters.allGames = {...store.getters.allGames, 1000: updateExample}
     store.getters.latestGameId = 1000
-
-    await Vue.nextTick()
 
     updateExample.GameId = 7
     store.getters.allGames[999] = updateExample
     expect(wrapper.vm.currentGame.GameId).toStrictEqual(7)
     expect(wrapper.vm.displayedGameId).toStrictEqual(999)
 
+    debugger; // eslint-disable-line
+
     await Vue.nextTick()
     expectTheInvitationToShow(wrapper, true)
   })
 
-  it.skip("changes current displayed game when invitation is accepted", async () => {
+  it("changes current displayed game when invitation is accepted", async () => {
     const wrapper = getMainBetting()
     await Vue.nextTick()
 

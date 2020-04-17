@@ -74,7 +74,7 @@
     min-width: 300px;
   }
 
-  @media screen and (min-width: 360px) {
+  @media screen and (min-width: 480px) {
     .container-with-border {
       border-top: 30px solid #fbab7f;
       border-bottom: 30px solid #fbab7f;

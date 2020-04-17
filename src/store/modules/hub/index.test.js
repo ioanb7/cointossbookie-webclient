@@ -109,4 +109,4 @@ describe('hub', () => {
         expect(store.getters.isConnected).toBe(true)
         expect(store.getters.connectionProgress).toBe(0)
     })
-});
+})
