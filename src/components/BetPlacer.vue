@@ -145,7 +145,6 @@
                 'cancelBetPlacer'
             ]),
             placeMyBet() {
-                // if errors..
                 this.placeBet({
                     uid: this.outcomeUid,
                     betValue: this.betValue,

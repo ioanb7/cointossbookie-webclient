@@ -17,6 +17,13 @@ describe('betplacer', () => {
         getters: {
             currentGame() {
                 return game
+            },
+            getMarketForOutcomeId() {
+                return (uid) => {
+                    if (uid == "OutcomeIdDOESNOTEXIST")
+                        return null;
+                    return game.Markets[0]
+                }
             }
         },
         modules: {
@@ -105,6 +112,23 @@ describe('betplacer', () => {
 
         expect(store.getters.allBetPlacers).toBeArrayOfSize(0)
     });
+
+    it('does not remove bet placer if the market is open', () => {
+        let betPlacer = {
+            marketType: "Flip(n)",
+            marketId: 211,
+            outcomeId: "OutcomeId",
+            price: -3
+        }
+        store.commit("addOrReplaceBetPlacer", betPlacer)
+        store.commit("updateBetPlacer", [{
+            marketId: 211,
+            isOpen: true
+        }])
+
+        expect(store.getters.allBetPlacers).toBeArrayOfSize(1)
+    });
+    
     it('is able to put bet after it has been removed', () => {
         let betPlacer = {
             marketType: "Flip(n)",

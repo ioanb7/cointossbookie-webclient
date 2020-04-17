@@ -1,23 +1,12 @@
 
 
-function getMarketForOutcomeId(game, outcomeId) {
-    let marketFound = null
-    game.Markets.forEach(market => {
-        market.Outcomes.forEach(outcome => {
-            if (outcome.Uid == outcomeId) {
-                marketFound = market
-            }
-        });
-    });
-    return marketFound
-}
+
 
 
 export default {
     addOrReplaceBetPlacer(state, {marketType, marketId, outcomeId, price}) {
         if (!marketType || !marketId) {
-            var latestGame = this.getters.currentGame
-            var market = getMarketForOutcomeId(latestGame, outcomeId)
+            var market = this.getters.getMarketForOutcomeId(outcomeId)
             if (!market) {
                 throw `Couldn't find market id and market type for outcome id ${outcomeId}`
             }
@@ -45,17 +34,18 @@ export default {
     },
     
     updateBetPlacer(state, marketIdsAndStatuses) {
+        let marketIdsToDelete = marketIdsAndStatuses.filter(val => !val.isOpen).map(val => val.marketId)
         state.betPlacers = state.betPlacers
             .filter(betPlacer =>
-                !marketIdsAndStatuses.find(val => val.marketId == betPlacer.marketId))
+                !marketIdsToDelete.includes(betPlacer.marketId))
     },
 
     cancelBetPlacer(state, outcomeId) {
-        var latestGame = this.getters.currentGame
-
-        let marketTypeForThisBet = getMarketForOutcomeId(latestGame, outcomeId).MarketType
+        debugger; // eslint-disable-line
+        let marketTypeForThisBet = this.getters.getMarketForOutcomeId(outcomeId).MarketType
+        let self = this
         state.betPlacers = state.betPlacers.filter(betPlacer => {
-            let marketTypeForThisBetPlacer = getMarketForOutcomeId(latestGame, betPlacer.outcomeId).MarketType
+            let marketTypeForThisBetPlacer = self.getters.getMarketForOutcomeId(betPlacer.outcomeId).MarketType
             return marketTypeForThisBet != marketTypeForThisBetPlacer
         })
     }

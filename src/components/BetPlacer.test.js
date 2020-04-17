@@ -1,11 +1,11 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import BetPlacer from "@/components/BetPlacer.vue";
 import Vuex from "vuex";
-import Vue from "vue";
+import flushPromises from 'flush-promises';
 const localVue = createLocalVue();
+import FakeValidationProvider from './FakeValidationProvider';
 
 localVue.use(Vuex);
-
 describe("BetPlacer.vue", () => {
 
   let getWalletFn = jest.fn().mockReturnValue(100)
@@ -38,6 +38,9 @@ describe("BetPlacer.vue", () => {
         price: 10,
         outcomeUid: 'someUid'
       },
+      stubs: {
+        ValidationProvider: FakeValidationProvider
+      },
       store,
       localVue,
     })
@@ -48,19 +51,20 @@ describe("BetPlacer.vue", () => {
     betPlacer.setData({
       'betValue': value
     })
-    await Vue.nextTick()
+    await flushPromises()
   }
 
   it("renders correct amount", async () => {
     const wrapper = getBetPlacer()
     await setBetValue(wrapper, 2)
-    expect(wrapper.find('.estimated-winnings').text()).toEqual("22.00")
+    expect(wrapper.find('.estimated-winnings').text()).toEqual("22.00io")
   })
 
-  it("placeMyBet happy path", () => {
+  it("placeMyBet happy path", async () => {
     const wrapper = getBetPlacer()
-    setBetValue(wrapper, 2)
+    await setBetValue(wrapper, 2)
     const element = wrapper.find('.placeMyBet');
+    wrapper.html() // ?
     element.trigger('click')
     expect(mutations.placeBet).toHaveBeenCalledTimes(1)
     expect(mutations.placeBet).toBeCalledWith({}, {
