@@ -8,8 +8,8 @@
             <Market v-for="market in this.markets" :key="market.Id" :market="market"></Market>
         </div>
 
-        <p class="font-hairline text-sm mt-10">Note: Click on any selection to bet</p>
         <BetPlacer v-if="betPlacer != null" :price="betPlacer.price" :outcomeUid="betPlacer.outcomeId"></BetPlacer>
+        <p v-else class="font-hairline text-sm mt-10">Note: Click on any selection to bet</p>
     </div>
 </template>
 
