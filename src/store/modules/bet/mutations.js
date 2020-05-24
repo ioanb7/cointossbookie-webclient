@@ -28,9 +28,7 @@ function settleBet(state, {
 function settleBetWin(state, uid) {
     var bet = findBet(state, uid);
     if (!bet) {
-        // TODO: proper logging for this so it doesn't show in the jest output when testing as though it's an error.
-        //console.error(`Couldn't settle bet ${uid}`)
-        return;
+        throw `Couldn't settle bet ${uid}`
     }
     
     state.money += bet.winnings;

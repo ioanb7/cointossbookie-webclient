@@ -20,6 +20,15 @@
                 var hostType = this.outcome.HostType
                 var result = this.outcome.HostType
                 switch (this.outcome.OutcomeType) {
+                    case "Home / Away":
+                        if (hostType == "Away") {
+                            result = "Tails"
+                        } else if (hostType == "Home") {
+                            result = "Heads"
+                        } else {
+                            throw `Invalid host type ${hostType}`
+                        }
+                        break;
                     case "Yes / No":
                         if (hostType == "Away") {
                             result = "No"

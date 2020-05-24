@@ -1,15 +1,16 @@
 <template>
-    <div class="outcome p-3 m-1" :class="{
+    <div class="outcome mx-1" :class="{
         home: outcome.HostType=='Home',
         away: outcome.HostType=='Away',
         statusOpen: isOutcomeStatusOpen,
         statusNotOpen: !isOutcomeStatusOpen,
         'bg-white': isOutcomeStatusOpen}">
-        <p>
-            <a class="openBetPlacer" @click.prevent='openBetPlacer' href="#">
-                <b class="outcomeName">
-                    <OutcomeName :outcome="outcome" /></b>
-                <span class="price">{{price}}</span>
+        <p class="inline-block text-xs">
+            <a class="openBetPlacer p-6 py-6 inline-block" @click.prevent='openBetPlacer' href="#">
+                <span class="outcomeName">
+                    <OutcomeName :outcome="outcome" />
+                </span>
+                <span class="price">{{priceIncluded}}</span>
             </a>
         </p>
     </div>
@@ -40,6 +41,9 @@
             price() {
                 return this.outcome.TrueProbability * 0.95
             },
+            priceIncluded() {
+                return this.price + 1
+            },
         },
         methods: {
             ...mapMutations(['addOrReplaceBetPlacer']),
@@ -57,19 +61,26 @@
 </script>
 
 <style lang="scss" scoped>
-    a:visited,
-    a:active,
-    a:link {
-        color: black;
+    .outcome.statusOpen {
+
+        a:visited,
+        a:active,
+        a:link {
+            color: black;
+            background-color: white;
+        }
+
+        a:hover {
+            color: white;
+            background-color: black;
+        }
     }
 
     a {
         text-decoration: none;
     }
 
-    .outcomeName {
-        text-decoration: underline;
-    }
+    .outcomeName {}
 
     .outcome {
         display: inline-block;
@@ -78,11 +89,7 @@
 
     .outcome.statusOpen {
         &:hover {
-            background-color: blue; // blue by default (home)
-
-            &.away {
-                background-color: green; // todo: change colors
-            }
+            //color: white;
         }
     }
 
@@ -96,17 +103,6 @@
         text-align: center;
         padding: 0px 10px;
 
-    }
-
-    .md-layout-item {
-
-        &:after {
-            width: 100%;
-            height: 100%;
-            display: block;
-            background: md-get-palette-color(red, 200);
-            content: " ";
-        }
     }
 
     .statusNotOpen .outcomeName,

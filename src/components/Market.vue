@@ -1,13 +1,11 @@
 <template>
     <div class="market flex flex-no-wrap my-1"
         :class="{open: market.Status == 'Open', notOpen: market.Status != 'Open'}">
-        <header class="bg-white">
+        <header class="bg-white text-sm">
             <h3 class="block px-3 py-1">
                 <span>{{this.market.MarketType}}</span>
                 &nbsp;
-                <span v-if="handicap">
-                    (<strong>{{handicap}}</strong>)
-                </span>
+                <span v-if="handicap">{{handicap}}</span>
             </h3>
         </header>
 
@@ -23,7 +21,7 @@
     import Score from './Score.vue'
     export default {
         props: {
-            market: Object, // TODO: market type.
+            market: Object
         },
         components: {
             Score,
@@ -51,9 +49,6 @@
 </script>
 
 <style lang="scss" scoped>
-    .outcomes,
-    header {}
-
     h3 {
         line-height: 4.5rem;
         height: 100%;

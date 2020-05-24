@@ -11,12 +11,15 @@
                         'bg-white': canChange(item.id)}" @click.native="flip(item.id)" />
             </div>
             <p class="font-hairline text-sm">Note: Click on the image to toggle</p>
-            <p class="block my-4 mt-10">
-                <a class="bg-white p-4" @click.prevent='isBetPlacerVisible = !isBetPlacerVisible' href="#">
+            <!-- TODO: this is faulty. -->
+            <p>Current price: {{price}}</p>
+            <BetPlacer v-if="betPlacer != null" :price="trueProbability" :outcomeUid="betPlacer.outcomeId"
+                :showTitle="false"></BetPlacer>
+            <p v-else class="block my-4 mt-10">
+                <a class="bg-white p-4" @click.prevent='openBetPlacer' href="#">
                     Place bet ?
                 </a>
             </p>
-            <BetPlacer v-if="isBetPlacerVisible" :price="trueProbability" :outcomeUid=outcomeUid />
         </div>
     </keep-alive>
 </template>
@@ -25,6 +28,10 @@
     import {
         ExactOrderMarket
     } from '../helpers/outcomeUidGenerator'
+    import {
+        mapGetters,
+        mapMutations
+    } from 'vuex'
 
     import BetPlacer from './BetPlacer.vue'
     import Score from './Score.vue'
@@ -72,11 +79,20 @@
             }
         },
         computed: {
+            ...mapGetters(['allBetPlacers']),
+            betPlacer() {
+                return this.findBetPlacerForThisMarketType(this.allBetPlacers)
+            },
             outcomeUid() {
                 return this.gameId + "-" + ExactOrderMarket(this.hostTypes.map(ht => ht.val))
+            },
+            price() {
+                console.log("TP is ", this.trueProbability)
+                return this.trueProbability * 0.8 + 1
             }
         },
         methods: {
+            ...mapMutations(['addOrReplaceBetPlacer']),
             initialHostTypesValues(initialValues) {
                 const initialValuesLength = initialValues.length
                 initialValues = initialValues.concat(['Home', 'Away', 'Home', 'Away', 'Home'])
@@ -111,6 +127,19 @@
                         return true;
                     }
                     return false;
+                })
+            },
+            findBetPlacerForThisMarketType(allBetPlacers) {
+                if (!allBetPlacers || !allBetPlacers instanceof Array) {
+                    throw "allBetPlacers is not an array"
+                }
+                var result = allBetPlacers.find(betPlacer => betPlacer.marketType == 'Flip On Exact Order')
+                return result
+            },
+            openBetPlacer() {
+                this.addOrReplaceBetPlacer({
+                    outcomeId: this.outcomeUid,
+                    price: this.trueProbability
                 })
             }
         }

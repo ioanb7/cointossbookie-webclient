@@ -1,27 +1,83 @@
 <template>
-    <div class="betplacer">
-        <template v-if="!placed">
-            <OutcomeName :outcome="outcome" />
-            <p>
-                <input type="text" v-model="betValue" label="How much would you like to bet?" />
-                <b>io</b>
-            </p>
-            <ul class='suggestedBetValues'>
-                <template>
-                    <li v-for="suggestedBetValue in placeableBetValues" :key="suggestedBetValue">
-                        <a href="#" @click.prevent='betValue = suggestedBetValue'>{{suggestedBetValue}}</a>
-                    </li>
-                </template>
-            </ul>
-            <p>Estimated winnings: <span class="estimated-winnings">{{winnings}}</span><b>io</b></p>
-            <p><a @click.prevent='placeMyBet' class="placeMyBet" href="#">Bet</a></p>
+    <div class="betplacer relative bg-white p-10 pr-16" @keydown.esc="exit">
+        <a href="#" @click.prevent="exit" class="exit absolute top-0 right-0 m-10">
+            <svg class="w-6 h-5 fill-current text-gray-600" viewBox="0 0 20 20" enable-background="new 0 0 20 20">
+                <path d="M14.348,14.849c-0.469,0.469-1.229,0.469-1.697,0L10,11.819l-2.651,3.029c-0.469,0.469-1.229,0.469-1.697,0
+                        c-0.469-0.469-0.469-1.229,0-1.697l2.758-3.15L5.651,6.849c-0.469-0.469-0.469-1.228,0-1.697s1.228-0.469,1.697,0L10,8.183
+                        l2.651-3.031c0.469-0.469,1.228-0.469,1.697,0s0.469,1.229,0,1.697l-2.758,3.152l2.758,3.15
+                        C14.817,13.62,14.817,14.38,14.348,14.849z"
+                    :style="{transform: 'scale(1.8) translate(-4px, -4px)'}" />
+            </svg>
+        </a>
+        <template v-if="placed">
+            <p>Placed! Potential winnings {{placedPotentialWinnings}}io</p>
         </template>
-        <p v-if='placed'>Placed! Potential winnings {{placedPotentialWinnings}}io <a href="#"
-                @click.prevent="exit">Exit</a></p>
+        <template v-else-if="!placed && getWallet == 0">
+            <p>You're broke!</p>
+            <p class="text-xs">Wait for the end of the game for your winnings (if any)</p>
+        </template>
+        <template v-else>
+            <ValidationProvider :rules="'positive:' + getWallet" v-slot="{ errors }">
+                <p v-if="showTitle" class="mb-10">
+                    <OutcomeName :outcome="outcome" />
+                </p>
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="betValue">
+                        Bet value
+                    </label>
+                    <input v-focus type="number" v-model="betValue" id="betValue"
+                        label="How much would you like to bet?" class="shadow appearance-none border py-2 px-3 text-gray-700 leading-tight
+                        focus:outline-none focus:shadow-outline" placeholder="2" :class="{
+                            'border-red-500': errors.length != 0
+                        }" />
+                    <b class="mx-2">io</b>
+                    <ul>
+                        <li v-for="error in errors" :key="error" class="text-red-500 text-xs italic">{{ error }}</li>
+                    </ul>
+
+                </div>
+                <template v-if="errors.length == 0">
+                    <ul class="suggestedBetValues inline-block flex flex-wrap mt-4">
+                        <template>
+                            <li v-for="suggestedBetValue in placeableBetValues" :key="suggestedBetValue"
+                                class="inline-block bg-gray-200 text-xs mr-2 mb-2 min-w-1/4">
+                                <a href="#" @click.prevent='betValue = suggestedBetValue'
+                                    class="w-full inline-block text-center p-1">{{suggestedBetValue}}<strong>io</strong></a>
+                            </li>
+                        </template>
+                    </ul>
+                    <p class="mt-8 text-center"><span class="estimated-winnings">{{winnings}}<strong>io</strong></span>
+                        estimated winnings
+                    </p>
+                    <p class="pr-0">
+                        <a @click.prevent='placeMyBet' class="placeMyBet inline-block p-4 px-6 my-4 mt-2 border hover:bg-gray-400 hover:text-white w-full
+                            " href="#">
+                            Bet
+                        </a>
+                    </p>
+                </template>
+            </ValidationProvider>
+        </template>
     </div>
 </template>
 
 <script>
+    import {
+        ValidationProvider
+    } from 'vee-validate';
+    import {
+        extend
+    } from 'vee-validate';
+
+    extend('positive', (value, args) => {
+        let wallet = parseInt(args[0])
+        if (value <= wallet) {
+            return true
+        }
+
+        return `You don't own ${value}io yet!`;
+    });
+
     import OutcomeName from './OutcomeName'
     // TODO: rename css classes in the entire project to use the suggested standard format
     import {
@@ -31,13 +87,18 @@
     export default {
         name: 'BetPlacer',
         components: {
-            OutcomeName
+            OutcomeName,
+            ValidationProvider
         },
         props: {
             price: Number,
             outcomeUid: {
                 type: String,
                 required: true
+            },
+            showTitle: {
+                type: Boolean,
+                default: true
             }
         },
         data() {
@@ -62,6 +123,8 @@
                 }
                 var bet = parseFloat(this.betValue)
                 var price = this.price
+                console.log("The bet is: ", bet)
+                console.log("The price is: ", price)
                 var winnings = bet + bet * price
                 return winnings.toFixed(2)
             },
@@ -104,9 +167,5 @@
 </script>
 
 <style lang="scss" scoped>
-    .betplacer {
-        border: 1px solid #ccc;
-        background-color: white;
-        padding: 30px;
-    }
+    .betplacer {}
 </style>

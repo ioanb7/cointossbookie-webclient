@@ -1,7 +1,7 @@
 <template>
   <div class="game">
-    <ScoreBoard :id="gameId" :fixtureState="fixtureState" :items="score" />
-    <div class="marketGroups flex flex-wrap">
+    <Header :id="gameId" :fixtureState="fixtureState" :items="score" />
+    <div class="marketGroups flex flex-wrap justify-center p-2 sm:p-0">
       <MarketGroup v-for="(marketGroup, index) in marketsToDisplayGrouped" :key="index" :marketType="index"
         :markets="marketGroup" />
       <MarketFlipOnExactOrder v-if="marketOnExactOrderTrueProbability" :scoreSoFar="score"
@@ -13,7 +13,7 @@
 <script>
   import MarketFlipOnExactOrder from './MarketFlipOnExactOrder.vue'
   import MarketGroup from './MarketGroup.vue'
-  import ScoreBoard from './ScoreBoard.vue'
+  import Header from './Header.vue'
   import {
     groupBy
   } from '../helpers'
@@ -21,7 +21,7 @@
   export default {
     name: "Game",
     components: {
-      ScoreBoard,
+      Header,
       MarketGroup,
       MarketFlipOnExactOrder
     },
@@ -47,6 +47,7 @@
         if (!market) {
           return 0
         }
+        console.log("TP in the game is: ", market.Outcomes[0].TrueProbability)
         return market.Outcomes[0].TrueProbability
       }
     }
@@ -54,8 +55,6 @@
 </script>
 
 <style lang="scss" scoped>
-  .marketGroups {}
-
   .marketOnExactOrder {
     padding: 30px;
     margin: 0 auto;

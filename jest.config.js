@@ -1,5 +1,7 @@
-// TODO: load these from the .env.test file for wallaby (they don't have to be in wallaby.js)
-process.env.VUE_APP_WEBSOCKET_URL = "ws://localhost:11/status"
+var path = require('path')
+require('dotenv').config({
+  path: path.resolve(process.cwd(), '.env.test')
+})
 
 module.exports = {
   preset: '@vue/cli-plugin-unit-jest',

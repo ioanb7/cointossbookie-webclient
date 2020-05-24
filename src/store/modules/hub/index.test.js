@@ -7,7 +7,8 @@ import hubModule from '.'
 
 describe('hub', () => {
     let mutations = {
-        settledBets: jest.fn()
+        settledBets: jest.fn(),
+        updateBetPlacer: jest.fn()
     }
 
     const store = new Vuex.Store({
@@ -18,7 +19,7 @@ describe('hub', () => {
         modules: {
             hubModule
         }
-    }); // TODO: try using createLocalVue
+    });
     const initialStateCopy = JSON.parse(JSON.stringify(store.state))
     afterEach(() => {
         store.replaceState(JSON.parse(JSON.stringify(initialStateCopy)))
@@ -109,4 +110,4 @@ describe('hub', () => {
         expect(store.getters.isConnected).toBe(true)
         expect(store.getters.connectionProgress).toBe(0)
     })
-});
+})

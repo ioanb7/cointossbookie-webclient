@@ -16,7 +16,9 @@ describe("MarketFlipOnExactOrder.vue", () => {
   let store;
 
   beforeEach(() => {
-    getters = {}
+    getters = {
+      allBetPlacers: () => []
+    }
     mutations = {}
     store = new Vuex.Store({
       getters,
@@ -29,7 +31,7 @@ describe("MarketFlipOnExactOrder.vue", () => {
       propsData: {
         scoreSoFar: scoreSoFar || [],
         trueProbability: 2,
-        gameId: 99
+        gameId: 99,
       },
       store,
       localVue

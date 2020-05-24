@@ -2,6 +2,7 @@ import {
   shallowMount,
 } from "@vue/test-utils";
 import OutcomeName from "@/components/OutcomeName.vue";
+import Vue from 'vue'
 
 describe("OutcomeName.vue", () => {
 
@@ -39,8 +40,11 @@ describe("OutcomeName.vue", () => {
     expect(wrapper.vm.outcomeName).toBe("Under")
   })
 
-  it("throws for invalid outcome combination", () => {
+  it("throws for invalid outcome combination", async () => {
+    jest.spyOn(global.console, 'error').mockImplementation(jest.fn())
     expect(() => getOutcome("Yes / No", "None")).toThrow()
+    await Vue.nextTick()
+    jest.spyOn(global.console, 'error').mockRestore()
   })
 
   it("returns missing if outcome is null", async () => {

@@ -27,11 +27,10 @@
 </template>
 
 <script>
-    // TODO: rename this component to Header
     import WalletComponent from './WalletComponent.vue'
-    import Score from './Score.vue' // TODO: use store for this, but this template is not used only for the game.
+    import Score from './Score.vue'
     export default {
-        name: 'ScoreBoard',
+        name: 'Header',
         components: {
             Score,
             WalletComponent
