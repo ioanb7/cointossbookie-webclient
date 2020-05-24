@@ -47,6 +47,7 @@
         if (!market) {
           return 0
         }
+        console.log("TP in the game is: ", market.Outcomes[0].TrueProbability)
         return market.Outcomes[0].TrueProbability
       }
     }

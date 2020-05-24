@@ -19,11 +19,9 @@ export default class Networking {
 
   run () {
     var self = this;
-
     this.rws = new ReconnectingWebSocket(process.env.VUE_APP_WEBSOCKET_URL, null, {
-      // TODO: make these actual values for prod in .env
-      reconnectInterval: process.env.VUE_APP_WEBSOCKET_TIMEOUT || 1000, 
-      maxReconnectInterval: process.env.VUE_APP_WEBSOCKET_MAX_RECONNECT_INTERVAL || 2500
+      reconnectInterval: process.env.VUE_APP_WEBSOCKET_TIMEOUT, 
+      maxReconnectInterval: process.env.VUE_APP_WEBSOCKET_MAX_RECONNECT_INTERVAL
     });
     this.rws.addEventListener('open', () => {
       self.rws.send('hello!')

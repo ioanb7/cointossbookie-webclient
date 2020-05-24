@@ -11,14 +11,15 @@
                         'bg-white': canChange(item.id)}" @click.native="flip(item.id)" />
             </div>
             <p class="font-hairline text-sm">Note: Click on the image to toggle</p>
-            <BetPlacer v-if="betPlacer != null" :price="betPlacer.price" :outcomeUid="betPlacer.outcomeId"
+            <!-- TODO: this is faulty. -->
+            <p>Current price: {{price}}</p>
+            <BetPlacer v-if="betPlacer != null" :price="trueProbability" :outcomeUid="betPlacer.outcomeId"
                 :showTitle="false"></BetPlacer>
             <p v-else class="block my-4 mt-10">
                 <a class="bg-white p-4" @click.prevent='openBetPlacer' href="#">
                     Place bet ?
                 </a>
             </p>
-            <!-- TODO: show prices for this -->
         </div>
     </keep-alive>
 </template>
@@ -84,6 +85,10 @@
             },
             outcomeUid() {
                 return this.gameId + "-" + ExactOrderMarket(this.hostTypes.map(ht => ht.val))
+            },
+            price() {
+                console.log("TP is ", this.trueProbability)
+                return this.trueProbability * 0.8 + 1
             }
         },
         methods: {
@@ -125,6 +130,9 @@
                 })
             },
             findBetPlacerForThisMarketType(allBetPlacers) {
+                if (!allBetPlacers || !allBetPlacers instanceof Array) {
+                    throw "allBetPlacers is not an array"
+                }
                 var result = allBetPlacers.find(betPlacer => betPlacer.marketType == 'Flip On Exact Order')
                 return result
             },

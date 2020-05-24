@@ -123,6 +123,8 @@
                 }
                 var bet = parseFloat(this.betValue)
                 var price = this.price
+                console.log("The bet is: ", bet)
+                console.log("The price is: ", price)
                 var winnings = bet + bet * price
                 return winnings.toFixed(2)
             },

@@ -8,7 +8,7 @@ describe('bet store', () => {
         modules: {
             betModule
         }
-    }); // TODO: try using createLocalVue
+    });
     const initialStateCopy = JSON.parse(JSON.stringify(store.state))
     afterEach(() => {
         store.replaceState(JSON.parse(JSON.stringify(initialStateCopy)))
@@ -84,18 +84,18 @@ describe('bet store', () => {
             uid: 7,
             won: true
         }])
-        store.commit('settledBets', [{
+        expect(() => store.commit('settledBets', [{
             uid: 7,
             won: true
-        }])
+        }])).toThrow()
         expect(store.getters.getWallet).toEqual(102)
     });
 
     it('has the right money after winning a bet that is not in memory', () => {
-        store.commit('settledBets', [{
+        expect(() => store.commit('settledBets', [{
             uid: 3,
             won: true
-        }])
+        }])).toThrow()
         expect(store.getters.getWallet).toEqual(100)
     });
 

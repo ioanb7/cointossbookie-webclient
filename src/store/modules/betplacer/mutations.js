@@ -41,7 +41,6 @@ export default {
     },
 
     cancelBetPlacer(state, outcomeId) {
-        debugger; // eslint-disable-line
         let marketTypeForThisBet = this.getters.getMarketForOutcomeId(outcomeId).MarketType
         let self = this
         state.betPlacers = state.betPlacers.filter(betPlacer => {

@@ -67,7 +67,8 @@ export default class Convertor {
       });
     });
 
-    //assert none of the outcome ids are duplicated.
+    //TODO: assert none of the outcome ids are duplicated.
+    //TODO: check out all the comments in the project.
 
     return {
       GameId: gameOutput.Id,

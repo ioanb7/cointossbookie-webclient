@@ -56,7 +56,6 @@ describe('networking.js', () => {
     // assert convertor is called
     const mockConvertorAll = Convertor.mock.instances[0].All
     expect(mockConvertorAll).toHaveBeenCalledTimes(1);
-    //expect(mockConvertorAll.mock.calls[0][0]).toEqual(payload) == below
     expect(mockConvertorAll).toHaveBeenNthCalledWith(1, payload)
   })
 
@@ -78,7 +77,7 @@ describe('networking.js', () => {
     expect(mockConvertorAll).toHaveBeenCalledTimes(0);
   })
 
-   // TODO: websocket mock library doesn't look like it supports reconnect
+   // Note: websocket mock library doesn't look like it supports reconnect. Needs testing manually.
   it.skip('reconnects', async () => {
     // set up
     const dispatch = jest.fn();

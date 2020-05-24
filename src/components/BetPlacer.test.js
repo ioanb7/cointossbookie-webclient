@@ -4,7 +4,7 @@ import Vuex from "vuex";
 import flushPromises from 'flush-promises';
 const localVue = createLocalVue();
 import FakeValidationProvider from './FakeValidationProvider';
-
+localVue.directive('focus', () => {})
 localVue.use(Vuex);
 describe("BetPlacer.vue", () => {
 

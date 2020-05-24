@@ -1,11 +1,15 @@
 module.exports = () => ({
     autoDetect: true,
-        files: [
-            'src/**/*.js'
-        ],
+    files: [
+        'src/**/*.js'
+    ],
 
-        tests: [
-            'test/**/*Spec.js',
-            'src/**/*.test.js'
-        ]
+    tests: [
+        'test/**/*spec.js',
+        'src/**/*.test.js'
+    ],
+
+    reportConsoleErrorAsError: true,
+    lowCoverageThreshold: 99,
+    runAllTestsInAffectedTestFile: true
 });

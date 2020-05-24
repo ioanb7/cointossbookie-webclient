@@ -140,8 +140,6 @@ describe("MainBetting.vue", () => {
     expect(wrapper.vm.currentGame.GameId).toStrictEqual(7)
     expect(wrapper.vm.displayedGameId).toStrictEqual(999)
 
-    debugger; // eslint-disable-line
-
     await Vue.nextTick()
     expectTheInvitationToShow(wrapper, true)
   })
